@@ -11,16 +11,16 @@ import java.util.Date;
  * @author Youss
  */
 public class User {
-    static int userIdCounter = 0;
-    String userId;
-    String email;
-    String username;
-    String hashedPassword;
-    Date dateOfBirth;
-    String status;
-    String profilePhotoPath;
-    String coverPhotoPath;
-    String bio;
+    private static int userIdCounter = 0;
+    private String userId;
+    private String email;
+    private String username;
+    private String hashedPassword;
+    private Date dateOfBirth;
+    private String status;
+    private String profilePhotoPath;
+    private String coverPhotoPath;
+    private String bio;
     
     
     public User(String email, String username, String hashedPassword, Date dateOfBirth) {
