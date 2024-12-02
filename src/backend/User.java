@@ -23,18 +23,19 @@ public class User {
     String bio;
     
     
-    public User(String email, String username, String hashedPassword, Date dateOfBirth, String status, String profilePhotoPath, String coverPhotoPath, String bio) {
+    public User(String email, String username, String hashedPassword, Date dateOfBirth) {
         
-        this.userId = userId;
+        this.userId = "user"+ ++userIdCounter;
         this.email = email;
         this.username = username;
         this.hashedPassword = hashedPassword;
         this.dateOfBirth = dateOfBirth;
-        this.status = status;
-        this.profilePhotoPath = profilePhotoPath;
-        this.coverPhotoPath = coverPhotoPath;
-        this.bio = bio;
+        this.status = "offline";
+        this.profilePhotoPath = "none";
+        this.coverPhotoPath = "none";
+        this.bio = "none";
     }
+    
     
     
     
