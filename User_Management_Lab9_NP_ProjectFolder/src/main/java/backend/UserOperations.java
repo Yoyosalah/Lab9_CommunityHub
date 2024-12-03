@@ -18,7 +18,7 @@ public class UserOperations {
         this.databaseManager = new UserDatabase();
     }
 
-    public boolean signUp(String email, String username, String password, String dateOfBirth) {
+    public boolean signUp(String email, String username, String password, String dateOfBirth, String MobileNumbe, String gender) {
         if (databaseManager.containsUserByEmail(email)) {
             System.out.println("Email already exists!");
             return false;
@@ -33,7 +33,7 @@ public class UserOperations {
             System.out.println("Invalid email format!");
             return false;
         }
-        
+
         if (!UserSecurity.isValidDate(dateOfBirth)) {
             System.out.println("Invalid date of birth format!");
             return false;
@@ -45,7 +45,9 @@ public class UserOperations {
                 username,
                 hashedPassword,
                 LocalDate.parse(dateOfBirth),
-                "offline"
+                "offline",
+                MobileNumbe,
+                gender
         );
         databaseManager.insertUser(newUser);
         System.out.println("User signed up successfully!");
