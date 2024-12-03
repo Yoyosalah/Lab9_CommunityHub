@@ -17,14 +17,18 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ImgSelect extends javax.swing.JFrame {
 
-    private ImageIcon selectedImageIcon; // Store the selected image as ImageIcon
+    private ImageIcon image; // Store the selected image as ImageIcon to pass it to the content creator
 
     /**
      * Creates new form ImgSelect
      */
     public ImgSelect() {
-        this.setLocationRelativeTo(null);
+
         initComponents();
+    }
+
+    public ImageIcon getimage() {
+        return image;
     }
 
     /**
@@ -53,9 +57,9 @@ public class ImgSelect extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,34 +146,32 @@ public class ImgSelect extends javax.swing.JFrame {
         int result = fileChooser.showOpenDialog(ImgSelect.this);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            selectedImageIcon = new ImageIcon(selectedFile.getAbsolutePath());
-            jLabel1.setIcon(selectedImageIcon);
+            image = new ImageIcon(selectedFile.getAbsolutePath());
+            jLabel1.setIcon(image);
+            int labelWidth = jLabel1.getWidth();
+            int labelHeight = jLabel1.getHeight();
 
-            SwingUtilities.invokeLater(() -> {
-                int labelWidth = jLabel1.getWidth();
-                int labelHeight = jLabel1.getHeight();
+            if (labelWidth > 0 && labelHeight > 0) {
+                Image scaledImage = image.getImage().getScaledInstance(
+                        labelWidth, labelHeight, Image.SCALE_SMOOTH);
+                jLabel1.setIcon(new ImageIcon(scaledImage));
+            } else {
+                System.out.println("Label dimensions not available yet.");
+            }
 
-                if (labelWidth > 0 && labelHeight > 0) {
-                    Image scaledImage = selectedImageIcon.getImage().getScaledInstance(
-                            labelWidth, labelHeight, Image.SCALE_SMOOTH);
-                    jLabel1.setIcon(new ImageIcon(scaledImage));
-                } else {
-                    System.out.println("Label dimensions not available yet.");
-                }
+            // Repaint the label to ensure it updates visually
+            jLabel1.revalidate();
+            jLabel1.repaint();
 
-                // Repaint the label to ensure it updates visually
-                jLabel1.revalidate();
-                jLabel1.repaint();
-            });
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (selectedImageIcon != null) {
+        if (image != null) {
             // store the img to add it to the post
             JOptionPane.showMessageDialog(this, "Image Saved!", "Success", JOptionPane.INFORMATION_MESSAGE);
-
+            this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(this, "No image selected!", "Error", JOptionPane.ERROR_MESSAGE);
         }

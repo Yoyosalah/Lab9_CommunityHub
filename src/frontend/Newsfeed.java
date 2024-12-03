@@ -4,13 +4,16 @@
  */
 package frontend;
 
+import backend.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author BLU-RAY
  */
 public class Newsfeed extends javax.swing.JFrame {
-
-    
+    private static User user;
+    private static ProfileManager profile;
     public Newsfeed() {
         initComponents();
     }
@@ -44,9 +47,9 @@ public class Newsfeed extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(308, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -64,7 +67,9 @@ public class Newsfeed extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        String authorid = user.getUserId();
+        ArrayList<Content> contentlist = profile.userPosts();
+        AddPost ap =new AddPost(contentlist, authorid);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

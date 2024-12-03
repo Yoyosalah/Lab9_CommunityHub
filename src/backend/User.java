@@ -35,6 +35,10 @@ public class User {
         this.coverPhotoPath = "none";
         this.bio = "none";
     }
+
+    public String getUserId() {
+        return userId;
+    }
     
     
     

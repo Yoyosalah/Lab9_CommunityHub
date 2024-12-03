@@ -4,6 +4,7 @@
  */
 package backend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,31 +18,31 @@ public class ProfileManager {
         this.user = user;
     }
     
-    void updateProfilePhoto(String filePath){
+    public void updateProfilePhoto(String filePath){
         
     }
     
-    void updateCoverPhoto(String filePath){
+    public void updateCoverPhoto(String filePath){
         
     }
     
-    void updateBio(String bio){
+    public void updateBio(String bio){
         
     }
     
-    void changePassword(String hashedPassword){
+    public void changePassword(String hashedPassword){
         
     }
     
-    List<Post> userPosts(){
+    public ArrayList<Content> userPosts(){
         
     }
     
-    List<User> friends(){
+    public ArrayList<User> friends(){
         
     }
     
-    void saveUserDetails(){
+    public void saveUserDetails(){
         
     }
 }
