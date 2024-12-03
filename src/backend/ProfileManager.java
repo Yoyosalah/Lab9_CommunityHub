@@ -5,6 +5,7 @@
 package backend;
 
 import java.util.List;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -17,31 +18,33 @@ public class ProfileManager {
         this.user = user;
     }
     
-    void updateProfilePhoto(String filePath){
+    public void updateProfilePhoto(String filePath){ 
+        
+        user.setProfilePhotoPath(filePath);
+    }
+    
+    public void updateCoverPhoto(String filePath){
+        
+        user.setCoverPhotoPath(filePath);
+    }
+    
+    public void updateBio(String bio){
+        user.setBio(bio);
+    }
+    
+    public void changePassword(String hashedPassword){
+        user.setHashedPassword(hashedPassword);
+    }
+    
+ /*   public List<Post> userPosts(){
         
     }
     
-    void updateCoverPhoto(String filePath){
+    public List<User> friends(){
         
-    }
+    }*/
     
-    void updateBio(String bio){
-        
-    }
-    
-    void changePassword(String hashedPassword){
-        
-    }
-    
-    List<Post> userPosts(){
-        
-    }
-    
-    List<User> friends(){
-        
-    }
-    
-    void saveUserDetails(){
+    public void saveUserDetails(){
         
     }
 }
