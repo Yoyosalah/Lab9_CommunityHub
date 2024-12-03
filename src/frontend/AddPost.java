@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.UUID;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -133,7 +134,14 @@ public class AddPost extends javax.swing.JFrame {
         String data = jTextField1.getText();
         String contentid = null;  // Declare it outside the loop
         boolean isDuplicate = false;
-
+        if (data == null) {
+            JOptionPane.showMessageDialog(
+                            null, // to center the message
+                            "Wrong Entry!",
+                            "Warning",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+        }
         do {
             // Generate a new content ID
             contentid = UUID.randomUUID().toString();

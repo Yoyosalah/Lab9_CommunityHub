@@ -10,20 +10,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author BLU-RAY
  */
 public class AddStory extends javax.swing.JFrame {
+
     private ImgSelect imgs;
     private static ArrayList<Content> contentlist;
     private static String authorid;
-    
+
     /**
      * Creates new form AddStory
      */
-    public AddStory(ArrayList<Content> contentlist,String authorid) {
+    public AddStory(ArrayList<Content> contentlist, String authorid) {
         initComponents();
         this.contentlist = contentlist;
         this.authorid = authorid;
@@ -59,6 +62,11 @@ public class AddStory extends javax.swing.JFrame {
         jLabel2.setText("Add Image :");
 
         jButton1.setText("Select Image");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Post");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +133,14 @@ public class AddStory extends javax.swing.JFrame {
         // TODO add your handling code here:
         ImageIcon img = imgs.getimage();
         String data = jTextField1.getText();
+        if (data == null) {
+            JOptionPane.showMessageDialog(
+                            null, // to center the message
+                            "Wrong Entry!",
+                            "Warning",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+        }
         String contentid = null;  // Declare it outside the loop
         boolean isDuplicate = false;
 
@@ -136,20 +152,26 @@ public class AddStory extends javax.swing.JFrame {
             isDuplicate = false;
             for (Content content : contentlist) {
                 if (content != null && content.getContentid() != null && content.getContentid().equals(contentid)) {
-                    isDuplicate = true;  // Mark as duplicate if content ID matches
-                    break;  // No need to continue checking once a match is found
+                    isDuplicate = true; 
+                    break;  
                 }
             }
         } while (isDuplicate);
-         Date timestamp = new Date();
+        Date timestamp = new Date();
         if (img != null) {
             // Create the Story with the generated contentid
             Story s = new Story(data, contentid, authorid, timestamp);
-        }
-        else{
-        Story s = new Story(data, contentid, authorid, timestamp,img);
+        } else {
+            Story s = new Story(data, contentid, authorid, timestamp, img);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ImgSelect imgs = new ImgSelect();
+        this.imgs = imgs;
+        imgs.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,7 +203,7 @@ public class AddStory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddStory(contentlist,authorid).setVisible(true);
+                new AddStory(contentlist, authorid).setVisible(true);
             }
         });
     }
