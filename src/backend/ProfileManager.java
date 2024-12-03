@@ -39,7 +39,7 @@ public class ProfileManager {
     }
     
     public ArrayList<User> friends(){
-        
+        return new ArrayList<>();
     }
     
     public void saveUserDetails(){

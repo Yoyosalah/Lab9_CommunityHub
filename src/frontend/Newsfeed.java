@@ -17,6 +17,7 @@ public class Newsfeed extends javax.swing.JFrame {
     private static ProfileManager profile;
     public Newsfeed() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**

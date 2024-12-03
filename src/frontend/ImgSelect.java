@@ -23,7 +23,7 @@ public class ImgSelect extends javax.swing.JFrame {
      * Creates new form ImgSelect
      */
     public ImgSelect() {
-
+        this.setVisible(true);
         initComponents();
     }
 

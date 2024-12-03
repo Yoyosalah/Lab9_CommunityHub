@@ -28,7 +28,7 @@ public class AddPost extends javax.swing.JFrame {
         initComponents();
         this.contentlist = contentlist;
         this.authorid = authorid;
-        
+        this.setVisible(true);
     }
 
     /**
