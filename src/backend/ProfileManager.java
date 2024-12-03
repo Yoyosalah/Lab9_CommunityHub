@@ -35,7 +35,7 @@ public class ProfileManager {
     }
     
     public ArrayList<Content> userPosts(){
-        
+        return new ArrayList<>();
     }
     
     public ArrayList<User> friends(){

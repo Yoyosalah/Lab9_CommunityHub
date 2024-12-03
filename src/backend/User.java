@@ -21,6 +21,9 @@ public class User {
     private String profilePhotoPath;
     private String coverPhotoPath;
     private String bio;
+
+    public User() {
+    }
     
     
     public User(String email, String username, String hashedPassword, Date dateOfBirth) {
@@ -37,7 +40,7 @@ public class User {
     }
 
     public String getUserId() {
-        return userId;
+        return "5555a7a";
     }
     
     
