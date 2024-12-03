@@ -9,7 +9,7 @@ package frontend;
  * @author BLU-RAY
  */
 public class AddPost extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form AddPost
      */

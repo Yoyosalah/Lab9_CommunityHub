@@ -7,6 +7,7 @@ package backend;
 import java.awt.image.BufferedImage;
 import java.util.*;
 import java.time.*;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.time.*;
  */
 public class Story extends Content {
 
-    public Story(String content, String contentid, String authorid, Date timestamp, BufferedImage image) {
+    public Story(String content, String contentid, String authorid, Date timestamp, ImageIcon image) {
         this.content = content;
         this.contentid = contentid;
         this.authorid = authorid;
@@ -46,7 +47,7 @@ public class Story extends Content {
         return timestamp;
     }
 
-    public BufferedImage getImage() {
+    public ImageIcon getImage() {
         return image;
     }
 
