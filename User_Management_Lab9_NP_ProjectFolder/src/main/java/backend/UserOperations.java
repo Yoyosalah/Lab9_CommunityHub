@@ -18,7 +18,7 @@ public class UserOperations {
         this.databaseManager = new UserDatabase();
     }
 
-    public boolean signUp(String email, String username, String password, String dateOfBirth, String MobileNumbe, String gender) {
+    public boolean signUp(String email, String username, String password, String dateOfBirth, String mobileNumber, String gender) {
         if (databaseManager.containsUserByEmail(email)) {
             System.out.println("Email already exists!");
             return false;
@@ -39,6 +39,10 @@ public class UserOperations {
             return false;
         }
 
+        if (!UserSecurity.isInt(mobileNumber)) {
+            System.out.println("Invalid number!");
+            return false;
+        }
         String hashedPassword = UserSecurity.hashPassword(password);
         User newUser = new User(
                 email,
@@ -46,7 +50,7 @@ public class UserOperations {
                 hashedPassword,
                 LocalDate.parse(dateOfBirth),
                 "offline",
-                MobileNumbe,
+                mobileNumber,
                 gender
         );
         databaseManager.insertUser(newUser);

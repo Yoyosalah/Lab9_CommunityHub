@@ -19,7 +19,7 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private String MobileNumbe;
+    private String mobileNumber;
     private String gender;
 
     //set the following by setters not constructors
@@ -35,14 +35,14 @@ public class User {
         // default constructor required for Jackson library 
     }
 
-    public User(String email, String username, String password, LocalDate dateOfBirth, String status, String MobileNumbe, String gender) {
+    public User(String email, String username, String password, LocalDate dateOfBirth, String status, String mobileNumber, String gender) {
         this.userId = getUsersNum();
         this.email = email;
         this.username = username;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.status = status;
-        this.MobileNumbe = MobileNumbe;
+        this.mobileNumber = mobileNumber;
         this.gender = gender;
         incrementUsers();
     }
@@ -72,7 +72,7 @@ public class User {
     }
 
     public String getMobileNumbe() {
-        return MobileNumbe;
+        return mobileNumber;
     }
 
     public String getGender() {
@@ -113,8 +113,8 @@ public class User {
         this.password = password;
     }
 
-    public void setMobileNumbe(String MobileNumbe) {
-        this.MobileNumbe = MobileNumbe;
+    public void setMobileNumbe(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public void setGender(String gender) {
