@@ -21,7 +21,7 @@ public class AddPost extends javax.swing.JFrame {
     private ImgSelect imgs;
     private static ArrayList<Content> contentlist;
     private static String authorid;
-    
+
     /**
      * Creates new form AddPost
      */
@@ -29,7 +29,9 @@ public class AddPost extends javax.swing.JFrame {
         initComponents();
         this.contentlist = contentlist;
         this.authorid = authorid;
+        this.imgs = null;
         this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -130,38 +132,55 @@ public class AddPost extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ImageIcon img = imgs.getimage();
+        ImageIcon img = null;
+        if (imgs != null) {
+            img = imgs.getimage();
+        }
         String data = jTextField1.getText();
-        String contentid = null;  // Declare it outside the loop
+        String contentid = null;
         boolean isDuplicate = false;
-        if (data == null) {
+        if (data.isEmpty()) {
             JOptionPane.showMessageDialog(
-                            null, // to center the message
-                            "Wrong Entry!",
-                            "Warning",
-                            JOptionPane.ERROR_MESSAGE
-                    );
-        }
-        do {
-            // Generate a new content ID
-            contentid = UUID.randomUUID().toString();
+                    null, // to center the message
+                    "Empty Text!",
+                    "Warning",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        } else {
+            do {
+                // Generate a new content ID
+                contentid = UUID.randomUUID().toString();
 
-            // Check if the content ID already exists in the contentlist
-            isDuplicate = false;
-            for (Content content : contentlist) {
-                if (content != null && content.getContentid() != null && content.getContentid().equals(contentid)) {
-                    isDuplicate = true;  // Mark as duplicate if content ID matches
-                    break;  // No need to continue checking once a match is found
+                // Check if the content ID already exists in the contentlist
+                isDuplicate = false;
+                for (Content content : contentlist) {
+                    if (content != null && content.getContentid() != null && content.getContentid().equals(contentid)) {
+                        isDuplicate = true;  // Mark as duplicate if content ID matches
+                        break;  // No need to continue checking once a match is found
+                    }
                 }
+            } while (isDuplicate);
+            Date timestamp = new Date();
+            if (img != null) {
+                // Create the Story with the generated contentid
+                Post p = new Post(data, contentid, authorid, timestamp);
+                JOptionPane.showMessageDialog(
+                        null, // to center the message
+                        "Post Added Succefully!",
+                        "Warning",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                this.setVisible(false);
+            } else {
+                Post p = new Post(data, contentid, authorid, timestamp, img);
+                JOptionPane.showMessageDialog(
+                        null, // to center the message
+                        "Post Added Succefully!",
+                        "Warning",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                this.setVisible(false);
             }
-        } while (isDuplicate);
-         Date timestamp = new Date();
-        if (img != null) {
-            // Create the Story with the generated contentid
-            Post p = new Post(data, contentid, authorid, timestamp);
-        }
-        else{
-        Post p = new Post(data, contentid, authorid, timestamp,img);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -202,7 +221,7 @@ public class AddPost extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPost(contentlist,authorid).setVisible(true);
+                new AddPost(contentlist, authorid).setVisible(true);
             }
         });
     }

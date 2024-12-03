@@ -18,6 +18,7 @@ public class Newsfeed extends javax.swing.JFrame {
     public Newsfeed() {
         initComponents();
         this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -30,7 +30,9 @@ public class AddStory extends javax.swing.JFrame {
         initComponents();
         this.contentlist = contentlist;
         this.authorid = authorid;
+        this.imgs = null;
         this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -131,38 +133,55 @@ public class AddStory extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ImageIcon img = imgs.getimage();
-        String data = jTextField1.getText();
-        if (data == null) {
-            JOptionPane.showMessageDialog(
-                            null, // to center the message
-                            "Wrong Entry!",
-                            "Warning",
-                            JOptionPane.ERROR_MESSAGE
-                    );
+        ImageIcon img = null;
+        if (imgs != null) {
+            img = imgs.getimage();
         }
-        String contentid = null;  // Declare it outside the loop
-        boolean isDuplicate = false;
-
-        do {
-            // Generate a new content ID
-            contentid = UUID.randomUUID().toString();
-
-            // Check if the content ID already exists in the contentlist
-            isDuplicate = false;
-            for (Content content : contentlist) {
-                if (content != null && content.getContentid() != null && content.getContentid().equals(contentid)) {
-                    isDuplicate = true; 
-                    break;  
-                }
-            }
-        } while (isDuplicate);
-        Date timestamp = new Date();
-        if (img != null) {
-            // Create the Story with the generated contentid
-            Story s = new Story(data, contentid, authorid, timestamp);
+        String data = jTextField1.getText();
+        if (data.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null, // to center the message
+                    "Empty Text!",
+                    "Warning",
+                    JOptionPane.ERROR_MESSAGE
+            );
         } else {
-            Story s = new Story(data, contentid, authorid, timestamp, img);
+            String contentid = null;
+            boolean isDuplicate = false;
+
+            do {
+                // Generate a new content ID
+                contentid = UUID.randomUUID().toString();
+                // Check if the content ID already exists in the contentlist
+                isDuplicate = false;
+                for (Content content : contentlist) {
+                    if (content != null && content.getContentid() != null && content.getContentid().equals(contentid)) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+            } while (isDuplicate);
+            Date timestamp = new Date();
+            if (img != null) {
+                // Create the Story with the generated contentid
+                Story s = new Story(data, contentid, authorid, timestamp);
+                JOptionPane.showMessageDialog(
+                        null, // to center the message
+                        "Post Added Succefully!",
+                        "Warning",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                this.setVisible(false);
+            } else {
+                Story s = new Story(data, contentid, authorid, timestamp, img);
+                JOptionPane.showMessageDialog(
+                        null, // to center the message
+                        "Post Added Succefully!",
+                        "Warning",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                this.setVisible(false);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
