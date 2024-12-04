@@ -18,13 +18,14 @@ import javax.swing.filechooser.FileFilter;
 public class ImgSelect extends javax.swing.JFrame {
 
     private ImageIcon image; // Store the selected image as ImageIcon to pass it to the content creator
+    private ImageIcon view; // View the selected image before saving it
 
     /**
      * Creates new form ImgSelect
      */
     public ImgSelect() {
-        this.setVisible(true);
         initComponents();
+        this.setVisible(true);
         setLocationRelativeTo(null);
     }
 
@@ -147,30 +148,27 @@ public class ImgSelect extends javax.swing.JFrame {
         int result = fileChooser.showOpenDialog(ImgSelect.this);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            image = new ImageIcon(selectedFile.getAbsolutePath());
-            jLabel1.setIcon(image);
+            view = new ImageIcon(selectedFile.getAbsolutePath());
+            jLabel1.setIcon(view);
             int labelWidth = jLabel1.getWidth();
             int labelHeight = jLabel1.getHeight();
+            Image scaledImage = view.getImage().getScaledInstance( //scale image to fit label in panel
+                    labelWidth, labelHeight, Image.SCALE_SMOOTH);
+            jLabel1.setIcon(new ImageIcon(scaledImage));
+            /*if (labelWidth > 0 && labelHeight > 0) {
 
-            if (labelWidth > 0 && labelHeight > 0) {
-                Image scaledImage = image.getImage().getScaledInstance(
-                        labelWidth, labelHeight, Image.SCALE_SMOOTH);
-                jLabel1.setIcon(new ImageIcon(scaledImage));
             } else {
                 System.out.println("Label dimensions not available yet.");
             }
-
-            // Repaint the label to ensure it updates visually
             jLabel1.revalidate();
-            jLabel1.repaint();
-
+            jLabel1.repaint();*/
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (image != null) {
-            // store the img to add it to the post
+        if (view != null) {
+            image = view;// store the img to take it from getter
             JOptionPane.showMessageDialog(this, "Image Saved!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
         } else {
