@@ -13,11 +13,26 @@ import javax.swing.JOptionPane;
  */
 public class UserOperations {
 
-    private static final UserDatabase databaseManager = new UserDatabase();;
+    private static final UserDatabase databaseManager = new UserDatabase();
+
+    ;
 
 
 
-    public static boolean signUp(String email, String username, String password, String dateOfBirth, String mobileNumber, String gender) {
+    public static boolean signUp(String email, String username, String password, LocalDate dateOfBirth, String mobileNumber, String gender) {
+        if (!UserSecurity.isValidEmail(email)) {
+//            System.out.println("Invalid email format!");
+
+            JOptionPane.showMessageDialog(
+                    null, // to center the message
+                    "Invalid email format!",
+                    "Warning",
+                    JOptionPane.ERROR_MESSAGE
+            );
+
+            return false;
+        }
+
         if (databaseManager.containsUserByEmail(email)) {
             //System.out.println("Email already exists!");
 
@@ -44,22 +59,8 @@ public class UserOperations {
             return false;
         }
 
-        if (!UserSecurity.isValidEmail(email)) {
-//            System.out.println("Invalid email format!");
-
-            JOptionPane.showMessageDialog(
-                    null, // to center the message
-                    "Invalid email format!",
-                    "Warning",
-                    JOptionPane.ERROR_MESSAGE
-            );
-
-            return false;
-        }
-
         if (!UserSecurity.isValidDate(dateOfBirth)) {
 //            System.out.println("Invalid date of birth format!");
-
             JOptionPane.showMessageDialog(
                     null, // to center the message
                     "Invalid date of birth format!",
@@ -78,9 +79,7 @@ public class UserOperations {
                     "Warning",
                     JOptionPane.ERROR_MESSAGE
             );
-            
-            
-            
+
             return false;
         }
         String hashedPassword = UserSecurity.hashPassword(password);
@@ -88,25 +87,41 @@ public class UserOperations {
                 email,
                 username,
                 hashedPassword,
-                LocalDate.parse(dateOfBirth),
+                dateOfBirth,
                 "offline",
                 mobileNumber,
                 gender
         );
+        System.out.println(dateOfBirth);
+
         databaseManager.insertUser(newUser);
 //        System.out.println("User signed up successfully!");
         JOptionPane.showMessageDialog(
                 null, // to center the message
                 "User signed up successfully!",
                 "Warning",
-                JOptionPane.ERROR_MESSAGE
+                JOptionPane.INFORMATION_MESSAGE
         );
-        
+
         return true;
     }
 
     public static boolean login(String email, String password) {
         User user = databaseManager.getUserByEmail(email);
+
+        if (!UserSecurity.isValidEmail(email)) {
+//            System.out.println("Invalid email format!");
+
+            JOptionPane.showMessageDialog(
+                    null, // to center the message
+                    "Invalid email format!",
+                    "Warning",
+                    JOptionPane.ERROR_MESSAGE
+            );
+
+            return false;
+        }
+
         if (user == null) {
 //            System.out.println("Email not found!");
             JOptionPane.showMessageDialog(
@@ -126,7 +141,7 @@ public class UserOperations {
                     "Warning",
                     JOptionPane.ERROR_MESSAGE
             );
-            
+
             return false;
         }
 
@@ -134,12 +149,12 @@ public class UserOperations {
         databaseManager.saveToFile();
 //        System.out.println("User logged in successfully!");
         JOptionPane.showMessageDialog(
-                    null, // to center the message
-                    "User logged in successfully!",
-                    "Warning",
-                    JOptionPane.ERROR_MESSAGE
-            );
-        
+                null, // to center the message
+                "User logged in successfully!",
+                "Warning",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+
         return true;
     }
 
@@ -153,9 +168,9 @@ public class UserOperations {
                     null, // to center the message
                     "User logged out successfully!",
                     "Warning",
-                    JOptionPane.ERROR_MESSAGE
+                    JOptionPane.INFORMATION_MESSAGE
             );
-            
+
         }
     }
 }

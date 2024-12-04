@@ -218,8 +218,11 @@ public class LandingPage extends Window {
         } else {
 
             if (UserOperations.login(email, password)) {
+                //send to the next page
+                Logout_Example nextPage = new Logout_Example();
+                nextPage.setEmail(email);
                 this.setVisible(false); // or maybe dispose 
-                //send to the next page 
+
             }
 
         }
@@ -232,8 +235,9 @@ public class LandingPage extends Window {
 
     private void SignUPbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUPbtnActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
         SignUpPage SignPage = new SignUpPage();
+
+        this.setVisible(false);
 
     }//GEN-LAST:event_SignUPbtnActionPerformed
 

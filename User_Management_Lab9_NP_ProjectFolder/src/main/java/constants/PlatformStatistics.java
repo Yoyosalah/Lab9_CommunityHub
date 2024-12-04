@@ -25,4 +25,11 @@ public class PlatformStatistics {
             UsersNum--;
         }
     }
+
+    public static void setUsersNum(int UsersNum) {
+        PlatformStatistics.UsersNum = UsersNum;
+    }
+    
+    
+    
 }

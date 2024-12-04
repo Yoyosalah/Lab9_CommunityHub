@@ -20,6 +20,7 @@ forntend\SignUpPage.class
 backend\UserOperations.class
 forntend\LandingPage$5.class
 forntend\SignUpPage$3.class
+forntend\SignUpPage$8.class
 backend\UserDatabase.class
 forntend\LandingPage$2.class
 forntend\Logout_Example$1.class

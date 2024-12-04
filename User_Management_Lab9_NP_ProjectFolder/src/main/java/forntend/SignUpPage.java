@@ -331,13 +331,16 @@ public class SignUpPage extends Window {
         } else {
             String username = firstName + " " + surName;
 
-            Date d = jDateChooser1.getDate();
-            LocalDate dateOfBirth = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            Date d = jDateChooser1.getDate(); // extracts a date from a JDateChooser
+            LocalDate dateOfBirth = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); //converts it into a LocalDate
 
-            //String email, String username, String password, String dateOfBirth, String mobileNumber, String gender) 
             if (UserOperations.signUp(email, username, password, dateOfBirth, mobileNumber, gender)) {
-                this.setVisible(false); // or maybe dispose 
+
                 //send to the next page 
+                LandingPage nextPage = new LandingPage();
+
+                this.dispose();
+
             }
 
         }

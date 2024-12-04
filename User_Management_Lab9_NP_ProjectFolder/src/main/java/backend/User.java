@@ -27,6 +27,8 @@ public class User {
     private String coverPhotoPath;
     private String bio;
 
+
+
     @JsonFormat(pattern = "yyyy-MM-dd") //used to specify how Jackson should serialize and deserialize the dateOfBirth
     private LocalDate dateOfBirth;
     private String status;

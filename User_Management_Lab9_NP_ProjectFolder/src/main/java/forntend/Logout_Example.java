@@ -4,6 +4,7 @@
  */
 package forntend;
 
+import backend.UserOperations;
 import javax.swing.JFrame;
 
 /**
@@ -11,6 +12,12 @@ import javax.swing.JFrame;
  * @author mikel
  */
 public class Logout_Example extends Window {
+
+    String email;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     /**
      * Creates new form MainWin
@@ -94,6 +101,14 @@ public class Logout_Example extends Window {
 
     private void LoginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbtnActionPerformed
         // TODO add your handling code here:
+
+        UserOperations.logout(email);
+        //send to the next page
+        LandingPage nextPage = new LandingPage();
+
+        this.dispose();
+
+        //}
     }//GEN-LAST:event_LoginbtnActionPerformed
 
     /**

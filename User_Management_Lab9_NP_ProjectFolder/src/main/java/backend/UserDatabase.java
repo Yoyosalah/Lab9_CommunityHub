@@ -6,26 +6,43 @@ package backend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import static constants.FileNames.USERS_FILENAME;
+import static constants.PlatformStatistics.setUsersNum;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
  *
  * @author mikel
  */
-
 public class UserDatabase {
 
     private ArrayList<User> users;
     private final String filename = USERS_FILENAME;
-    private static final ObjectMapper objectMapper = new ObjectMapper(); //used for for JSON serialization and deserialization
+    //private static final ObjectMapper objectMapper = new ObjectMapper(); //used for for JSON serialization and deserialization
+    private static final ObjectMapper objectMapper;
 
+    static { // static block is used to initialize the static variable without errors 
+
+        objectMapper = new ObjectMapper();
+        //trying to configure the date format
+        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+    }
+
+//    objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
     public UserDatabase() {
         this.users = new ArrayList<User>();
         readFromFile();
+        setUsersNum(users.size());
     }
 
     private void readFromFile() {

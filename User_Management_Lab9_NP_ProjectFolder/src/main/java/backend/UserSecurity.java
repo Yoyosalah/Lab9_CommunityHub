@@ -5,10 +5,8 @@
 package backend;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import org.apache.commons.codec.digest.DigestUtils;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.AddressException;
+import org.apache.commons.validator.routines.EmailValidator;
 
 /**
  *
@@ -26,23 +24,12 @@ public class UserSecurity {
     }
 
     public static boolean isValidEmail(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailAddr = new InternetAddress(email);
-            emailAddr.validate();
-        } catch (AddressException ex) {
-            result = false;
-        }
-        return result;
+        EmailValidator emailValidator = EmailValidator.getInstance(); 
+        return emailValidator.isValid(email); 
     }
 
-    public static boolean isValidDate(String date) {
-        try {
-            LocalDate parsedDate = LocalDate.parse(date);
-            return parsedDate.isBefore(LocalDate.now()); //to check if it's earlier than today
-        } catch (DateTimeParseException e) {
-            return false;
-        }
+    public static boolean isValidDate(LocalDate date) {
+        return date.isBefore(LocalDate.now()); //to check if it's earlier than today
     }
 
     public static boolean isInt(String str) {

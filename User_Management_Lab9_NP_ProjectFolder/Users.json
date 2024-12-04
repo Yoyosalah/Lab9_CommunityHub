@@ -1,0 +1,25 @@
+[ {
+  "userId" : 0,
+  "email" : "tst@gmail.com",
+  "username" : "t t",
+  "password" : "be0b9afe8d701e17283e1660b30563e2d20491ae2e5a21fde32ed5c2893995bf",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2024-12-01",
+  "status" : "offline",
+  "mobileNumbe" : "11"
+}, {
+  "userId" : 1,
+  "email" : "tst2@gmail.com",
+  "username" : "gg gg",
+  "password" : "0bb96939d6b89bc9dfb4782433b22eb411da3071d10087a3da1e297c96108ba5",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2024-12-01",
+  "status" : "offline",
+  "mobileNumbe" : "22"
+} ]
