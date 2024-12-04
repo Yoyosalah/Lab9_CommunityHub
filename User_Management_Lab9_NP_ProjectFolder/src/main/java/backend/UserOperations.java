@@ -71,7 +71,7 @@ public class UserOperations {
             return false;
         }
 
-        if (!UserSecurity.isInt(mobileNumber)) {
+        if (!UserSecurity.isNum(mobileNumber)) {
 //            System.out.println("Invalid number!");
             JOptionPane.showMessageDialog(
                     null, // to center the message
@@ -99,7 +99,7 @@ public class UserOperations {
         JOptionPane.showMessageDialog(
                 null, // to center the message
                 "User signed up successfully!",
-                "Warning",
+                "Success",
                 JOptionPane.INFORMATION_MESSAGE
         );
 
@@ -151,7 +151,7 @@ public class UserOperations {
         JOptionPane.showMessageDialog(
                 null, // to center the message
                 "User logged in successfully!",
-                "Warning",
+                "Success",
                 JOptionPane.INFORMATION_MESSAGE
         );
 
@@ -167,7 +167,7 @@ public class UserOperations {
             JOptionPane.showMessageDialog(
                     null, // to center the message
                     "User logged out successfully!",
-                    "Warning",
+                    "Success",
                     JOptionPane.INFORMATION_MESSAGE
             );
 

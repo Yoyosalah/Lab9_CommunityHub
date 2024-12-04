@@ -73,7 +73,7 @@ public class User {
         return status;
     }
 
-    public String getMobileNumbe() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
@@ -115,7 +115,7 @@ public class User {
         this.password = password;
     }
 
-    public void setMobileNumbe(String mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 

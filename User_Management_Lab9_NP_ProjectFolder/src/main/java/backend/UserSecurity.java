@@ -24,18 +24,22 @@ public class UserSecurity {
     }
 
     public static boolean isValidEmail(String email) {
-        EmailValidator emailValidator = EmailValidator.getInstance(); 
-        return emailValidator.isValid(email); 
+        EmailValidator emailValidator = EmailValidator.getInstance();
+        return emailValidator.isValid(email);
     }
 
     public static boolean isValidDate(LocalDate date) {
         return date.isBefore(LocalDate.now()); //to check if it's earlier than today
     }
 
-    public static boolean isInt(String str) {
+    public static boolean isNum(String str) {
         if (str == null || str.isEmpty()) {
             return false;
         }
+        if (str.length() != 11) {
+            return false;
+        }
+
         try {
             Integer.parseInt(str);
             return true;
