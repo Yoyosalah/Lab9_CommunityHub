@@ -26,12 +26,12 @@ public abstract class Window extends javax.swing.JFrame {
         
         //set background
         JPanel pane = (JPanel) this.getContentPane();
-        pane.setBackground(new Color(204, 204, 204));
+        pane.setBackground(new Color(230, 230, 240));
         
         for (Component comp : this.getContentPane().getComponents()) {
             if (comp instanceof JPanel) {
                 JPanel panel = (JPanel) comp;
-                panel.setBackground(new Color(204, 204, 204));  
+                panel.setBackground(new Color(230, 230, 240));  
                 break;  // Exit once the 1st panel is found and updated
             }
         }
@@ -56,8 +56,10 @@ public abstract class Window extends javax.swing.JFrame {
         //set buttons view
         if (element instanceof JButton) {
             element.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            ((JButton) element).setToolTipText("Click");
+            //((JButton) element).setToolTipText("Click");
 
+  //unify the button color and add hover effect          
+/*            
             ((JButton) element).setBackground(new Color(38, 38, 38));
             ((JButton) element).setForeground(Color.WHITE);
 
@@ -71,7 +73,7 @@ public abstract class Window extends javax.swing.JFrame {
                     ((JButton) element).setBackground(new Color(38, 38, 38));
                 }
             });
-
+*/
         }
 
         //recursive call for panels 

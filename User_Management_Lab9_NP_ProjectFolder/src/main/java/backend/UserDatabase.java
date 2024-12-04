@@ -24,7 +24,7 @@ public class UserDatabase {
     private static final ObjectMapper objectMapper = new ObjectMapper(); //used for for JSON serialization and deserialization
 
     public UserDatabase() {
-        this.users = new ArrayList<>();
+        this.users = new ArrayList<User>();
         readFromFile();
     }
 

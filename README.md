@@ -1,6 +1,8 @@
 # Jars Setup Guide
 
-you'll need to set up some dependencies manually by adding the required JAR files. Follow the instructions below to ensure everything is set up correctly. (if yoy need any help send me a message)
+you'll need to set up some dependencies manually by adding the required JAR files. Follow the instructions below to ensure everything is set up correctly. (if you need any help send me a message)
+
+Note : you will need the used-before JCalender also
 
 ## Required JARs
 

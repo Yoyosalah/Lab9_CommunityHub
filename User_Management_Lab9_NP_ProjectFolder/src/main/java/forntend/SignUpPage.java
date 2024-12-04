@@ -4,7 +4,12 @@
  */
 package forntend;
 
+import backend.UserOperations;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,23 +37,23 @@ public class SignUpPage extends Window {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Emailtxt = new javax.swing.JTextField();
-        Paswwordtxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Signinbtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        Emailtxt1 = new javax.swing.JTextField();
-        Paswwordtxt1 = new javax.swing.JTextField();
+        firstNameF = new javax.swing.JTextField();
+        surNameF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
-        Emailtxt2 = new javax.swing.JTextField();
+        mobileF = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        maleRB = new javax.swing.JRadioButton();
+        femaleRB = new javax.swing.JRadioButton();
+        Paswwordtxt2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +62,7 @@ public class SignUpPage extends Window {
         jLabel2.setText("Community Hub ");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 255, 255)));
 
         Emailtxt.setToolTipText("Enter the Email");
         Emailtxt.addActionListener(new java.awt.event.ActionListener() {
@@ -65,26 +71,29 @@ public class SignUpPage extends Window {
             }
         });
 
-        Paswwordtxt.setToolTipText("Enter the Password");
-
         jLabel3.setText("Email:");
 
         jLabel4.setText("Password:");
 
         Signinbtn.setText("Sign up");
+        Signinbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SigninbtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Creat New Account");
 
-        Emailtxt1.setToolTipText("Enter the First Name");
-        Emailtxt1.addActionListener(new java.awt.event.ActionListener() {
+        firstNameF.setToolTipText("Enter the First Name");
+        firstNameF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Emailtxt1ActionPerformed(evt);
+                firstNameFActionPerformed(evt);
             }
         });
 
-        Paswwordtxt1.setToolTipText("Enter the Surname");
+        surNameF.setToolTipText("Enter the Surname");
 
         jLabel5.setText("Surname: ");
 
@@ -94,10 +103,10 @@ public class SignUpPage extends Window {
 
         jLabel7.setText("Birthday Date:");
 
-        Emailtxt2.setToolTipText("Enter the Email");
-        Emailtxt2.addActionListener(new java.awt.event.ActionListener() {
+        mobileF.setToolTipText("Enter the Email");
+        mobileF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Emailtxt2ActionPerformed(evt);
+                mobileFActionPerformed(evt);
             }
         });
 
@@ -105,19 +114,25 @@ public class SignUpPage extends Window {
 
         jLabel9.setText("Gender:");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Male");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(maleRB);
+        maleRB.setText("Male");
+        maleRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                maleRBActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Female");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(femaleRB);
+        femaleRB.setText("Female");
+        femaleRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                femaleRBActionPerformed(evt);
+            }
+        });
+
+        Paswwordtxt2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Paswwordtxt2ActionPerformed(evt);
             }
         });
 
@@ -134,28 +149,16 @@ public class SignUpPage extends Window {
                         .addContainerGap()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Emailtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(firstNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Paswwordtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(surNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(jLabel4))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jLabel3)))
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Emailtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                    .addComponent(Paswwordtxt)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
@@ -165,10 +168,22 @@ public class SignUpPage extends Window {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
+                                        .addComponent(maleRB)
                                         .addGap(28, 28, 28)
-                                        .addComponent(jRadioButton2))
-                                    .addComponent(Emailtxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(femaleRB))
+                                    .addComponent(mobileF, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jLabel3))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel4)))
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Emailtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                    .addComponent(Paswwordtxt2)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(jLabel7)
@@ -180,7 +195,7 @@ public class SignUpPage extends Window {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Emailtxt1, Paswwordtxt1});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {firstNameF, surNameF});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,9 +205,9 @@ public class SignUpPage extends Window {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Emailtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(firstNameF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)
-                        .addComponent(Paswwordtxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(surNameF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,11 +221,11 @@ public class SignUpPage extends Window {
                         .addGap(32, 32, 32)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(maleRB)
+                    .addComponent(femaleRB))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Emailtxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mobileF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -218,14 +233,14 @@ public class SignUpPage extends Window {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Paswwordtxt)
+                    .addComponent(Paswwordtxt2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(Signinbtn)
                 .addGap(26, 26, 26))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Emailtxt, Emailtxt1, Emailtxt2, Paswwordtxt, Paswwordtxt1, jDateChooser1});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Emailtxt, Paswwordtxt2, firstNameF, jDateChooser1, mobileF, surNameF});
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -247,7 +262,7 @@ public class SignUpPage extends Window {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,21 +285,64 @@ public class SignUpPage extends Window {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailtxtActionPerformed
 
-    private void Emailtxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emailtxt1ActionPerformed
+    private void firstNameFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Emailtxt1ActionPerformed
+    }//GEN-LAST:event_firstNameFActionPerformed
 
-    private void Emailtxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emailtxt2ActionPerformed
+    private void mobileFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobileFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Emailtxt2ActionPerformed
+    }//GEN-LAST:event_mobileFActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void maleRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleRBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_maleRBActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void femaleRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleRBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_femaleRBActionPerformed
+
+    private void Paswwordtxt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Paswwordtxt2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Paswwordtxt2ActionPerformed
+
+    private void SigninbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SigninbtnActionPerformed
+        // TODO add your handling code here:
+        String email = Emailtxt.getText();
+        String mobileNumber = mobileF.getText();
+        String firstName = firstNameF.getText();
+        String surName = surNameF.getText();
+        String password = new String(Paswwordtxt2.getPassword());
+
+        String gender = "";
+
+        if (maleRB.isSelected()) {
+            gender = "male";
+        } else if (femaleRB.isSelected()) {
+            gender = "female";
+        }
+
+        if (email.isEmpty() || password.isEmpty() || mobileNumber.isEmpty() || firstName.isEmpty() || surName.isEmpty() || gender.isEmpty() || jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(
+                    null, // to center the message
+                    "Some fields are Empty!",
+                    "Warning",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        } else {
+            String username = firstName + " " + surName;
+
+            Date d = jDateChooser1.getDate();
+            LocalDate dateOfBirth = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            //String email, String username, String password, String dateOfBirth, String mobileNumber, String gender) 
+            if (UserOperations.signUp(email, username, password, dateOfBirth, mobileNumber, gender)) {
+                this.setVisible(false); // or maybe dispose 
+                //send to the next page 
+            }
+
+        }
+
+    }//GEN-LAST:event_SigninbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,12 +388,11 @@ public class SignUpPage extends Window {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Emailtxt;
-    private javax.swing.JTextField Emailtxt1;
-    private javax.swing.JTextField Emailtxt2;
-    private javax.swing.JTextField Paswwordtxt;
-    private javax.swing.JTextField Paswwordtxt1;
+    private javax.swing.JPasswordField Paswwordtxt2;
     private javax.swing.JButton Signinbtn;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton femaleRB;
+    private javax.swing.JTextField firstNameF;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -348,8 +405,9 @@ public class SignUpPage extends Window {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JRadioButton maleRB;
+    private javax.swing.JTextField mobileF;
+    private javax.swing.JTextField surNameF;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,18 +10,18 @@ package constants;
  */
 public class PlatformStatistics {
 
-    private  static int UsersNum = 0;
+    private static int UsersNum = 0;
 
     public static int getUsersNum() {
         return UsersNum;
     }
 
-    public static  void incrementUsers() {
+    public static void incrementUsers() {
         UsersNum++;
     }
 
-    public static  void decrementUsers() {
-        if (UsersNum > 0) { // Prevents the number of users from going below zero
+    public static void decrementUsers() {
+        if (UsersNum > 0) {
             UsersNum--;
         }
     }
