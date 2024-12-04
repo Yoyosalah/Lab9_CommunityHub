@@ -35,9 +35,13 @@ public class ProfileManager {
     
     List<Post> userPosts(){
         
+        return null;
+        
     }
     
     List<User> friends(){
+        
+        return null;
         
     }
     

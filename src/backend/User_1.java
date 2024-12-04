@@ -13,7 +13,7 @@ import static constants.PlatformStatistics.incrementUsers;
  *
  * @author mikel
  */
-public class User {
+public class User_1 {
 
     private int userId;
     private String email;
@@ -33,11 +33,11 @@ public class User {
     private LocalDate dateOfBirth;
     private String status;
 
-    public User() {
+    public User_1() {
         // default constructor required for Jackson library 
     }
 
-    public User(String email, String username, String password, LocalDate dateOfBirth, String status, String mobileNumber, String gender) {
+    public User_1(String email, String username, String password, LocalDate dateOfBirth, String status, String mobileNumber, String gender) {
         this.userId = getUsersNum();
         this.email = email;
         this.username = username;
