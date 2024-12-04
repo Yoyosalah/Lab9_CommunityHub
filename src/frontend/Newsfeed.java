@@ -13,8 +13,9 @@ import javax.swing.JDialog;
  * @author BLU-RAY
  */
 public class Newsfeed extends javax.swing.JFrame {
-    private static User user=new User();
-    private static ProfileManager profile;
+    private User user=new User();
+    private ProfileManager profile;//TO DO check if its correct when running whole code
+   
     public Newsfeed() {
         initComponents();
         this.setVisible(true);
@@ -76,7 +77,7 @@ public class Newsfeed extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String authorid = user.getUserId();
-        ArrayList<Content> contentlist = contentlist = new ArrayList<>();//profile.userPosts();
+        ArrayList<Content> contentlist = contentlist = new ArrayList<>();//profile.userPosts(); //this is for removing errors only not correct logic
         AddPost ap =new AddPost(contentlist, authorid);
         ap.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -84,7 +85,7 @@ public class Newsfeed extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String authorid = user.getUserId();
-        ArrayList<Content> contentlist = new ArrayList<>();//profile.userPosts();
+        ArrayList<Content> contentlist = new ArrayList<>();//profile.userPosts(); //this is for removing errors only not correct logic
         AddStory as= new AddStory(contentlist, authorid);
         as.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton2ActionPerformed
