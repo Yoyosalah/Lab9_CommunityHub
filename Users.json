@@ -23,15 +23,27 @@
   "dateOfBirth" : "1999-12-14",
   "status" : "offline"
 }, {
+  "userId" : 3,
+  "email" : "mos@mail.com",
+  "username" : "mos mos",
+  "password" : "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c",
+  "mobileNumber" : "01019011788",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "1980-12-11",
+  "status" : "online"
+}, {
   "userId" : 2,
   "email" : "momo@alexu.com",
   "username" : "momo bobo",
   "password" : "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
   "mobileNumber" : "01019011777",
   "gender" : "male",
-  "profilePhotoPath" : null,
-  "coverPhotoPath" : null,
-  "bio" : null,
+  "profilePhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass2\\Screenshot 2024-11-07 030813.png",
+  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass2\\Screenshot 2024-11-07 030813.png",
+  "bio" : "im him",
   "dateOfBirth" : "1980-07-17",
   "status" : "online"
 } ]

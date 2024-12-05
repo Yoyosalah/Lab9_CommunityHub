@@ -6,11 +6,12 @@ package Frontend;
 import backend.*;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import frontend.Window;
 /**
  *
  * @author Mustafa
  */
-public class Profile extends javax.swing.JFrame {
+public class Profile extends javax.swing.JFrame{
 
     /**
      * Creates new form Profile
@@ -20,9 +21,10 @@ public class Profile extends javax.swing.JFrame {
     
     public Profile(User user) {
         initComponents();
-        this.setVisible(true);
         this.user = user;
+        refresh();
         this.profileContent = new ProfileContent(user);
+        this.setVisible(true);
         
     }
 
@@ -40,6 +42,7 @@ public class Profile extends javax.swing.JFrame {
         bioLabel = new javax.swing.JLabel();
         editProfile = new javax.swing.JButton();
         friendsButton = new javax.swing.JButton();
+        username = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,41 +71,39 @@ public class Profile extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(coverPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 11, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editProfile)
-                                .addGap(35, 35, 35)))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(friendsButton)
-                .addGap(28, 28, 28))
+                                .addComponent(editProfile))
+                            .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addComponent(friendsButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(coverPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(coverPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addComponent(coverPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(editProfile)
-                        .addGap(8, 8, 8)))
-                .addGap(18, 18, 18)
-                .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(friendsButton)
-                .addGap(28, 28, 28))
+                    .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editProfile)
+                            .addComponent(friendsButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,19 +122,28 @@ public class Profile extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     protected void refresh(){
-        ImageIcon pfp = new ImageIcon(user.getProfilePhotoPath()); 
-        ImageIcon cvp = new ImageIcon(user.getCoverPhotoPath()); 
-        int pfpWidth = profilePhoto.getWidth();
-        int pfpHeight = profilePhoto.getHeight();
-        Image scaledPFP = pfp.getImage().getScaledInstance( //scale image to fit label in panel
-                pfpWidth, pfpHeight, Image.SCALE_SMOOTH);
-        profilePhoto.setIcon(new ImageIcon(scaledPFP)); //puts the pfp on the label
-        int cvpWidth = coverPhoto.getWidth();
-        int cvpHeight = coverPhoto.getHeight();
-        Image scaledCVP = cvp.getImage().getScaledInstance( //scale image to fit label in panel
-                cvpWidth, cvpHeight, Image.SCALE_SMOOTH);
-        coverPhoto.setIcon(new ImageIcon(scaledCVP)); //puts the cover photo on the label
+        if(user.getProfilePhotoPath() != null)
+        {
+            ImageIcon pfp = new ImageIcon(user.getProfilePhotoPath());
+            int pfpWidth = profilePhoto.getWidth();
+            int pfpHeight = profilePhoto.getHeight();
+            Image scaledPFP = pfp.getImage().getScaledInstance( //scale image to fit label in panel
+                    pfpWidth, pfpHeight, Image.SCALE_SMOOTH);
+            profilePhoto.setIcon(new ImageIcon(scaledPFP)); //puts the pfp on the label
+        } 
+        
+        if(user.getCoverPhotoPath() != null){
+            ImageIcon cvp = new ImageIcon(user.getCoverPhotoPath()); 
+            int cvpWidth = coverPhoto.getWidth();
+            int cvpHeight = coverPhoto.getHeight();
+            Image scaledCVP = cvp.getImage().getScaledInstance( //scale image to fit label in panel
+                    cvpWidth, cvpHeight, Image.SCALE_SMOOTH);
+            coverPhoto.setIcon(new ImageIcon(scaledCVP)); //puts the cover photo on the label
+        }
+        
         String bio = user.getBio();
+        String name = user.getUsername();
+        username.setText(name);
         bioLabel.setText(bio); 
     }
    
@@ -143,5 +153,6 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JButton editProfile;
     private javax.swing.JButton friendsButton;
     private javax.swing.JLabel profilePhoto;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

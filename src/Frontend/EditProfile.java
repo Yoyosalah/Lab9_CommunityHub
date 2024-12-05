@@ -43,6 +43,7 @@ public class EditProfile extends javax.swing.JFrame {
         oldCVP = user.getCoverPhotoPath();
         oldBio = user.getBio();
         oldPass = user.getPassword();
+        refresh();
     }
 
     /**
@@ -205,7 +206,7 @@ public class EditProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_discardButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        //editor.saveUserChanges(); //saves changes
+        editor.saveUserChanges(); //saves changes
         prev.refresh(); //Shows the new bio / profile photo / cover photo in the profile
         prev.setVisible(true);
         this.setVisible(false);
