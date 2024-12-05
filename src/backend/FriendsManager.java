@@ -5,6 +5,7 @@
 package backend;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,75 +14,59 @@ import java.util.Map;
  * @author Youss
  */
 public class FriendsManager {
-    private Map<User,List<User>> friends;
-    private Map<User,List<User>> sentRequests;
-    private Map<User,List<User>> recievedRequests;
-    private Map<User,List<User>> blockedUsers;
+    private Map<User, List<User>> friends;
+    private Map<User, List<User>> sentRequests;
+    private Map<User, List<User>> receivedRequests;
+    private Map<User, List<User>> blockedUsers;
 
-    public FriendsManager(Map<User, List<User>> friends, Map<User, List<User>> sentRequests, Map<User, List<User>> recievedRequests, Map<User, List<User>> blockedUsers) {
-        this.friends = friends;
-        this.sentRequests = sentRequests;
-        this.recievedRequests = recievedRequests;
-        this.blockedUsers = blockedUsers;
+    public FriendsManager() {
+        friends = new HashMap<>();
+        sentRequests = new HashMap<>();
+        receivedRequests = new HashMap<>();
+        blockedUsers = new HashMap<>();
     }
-    
-    
-    public boolean sendFriendRequest(User sender,User reciever){
-        boolean ableToSendRequest = !(friends.get(sender).contains(reciever))
-                && !(sentRequests.get(sender).contains(reciever))
-                && !(blockedUsers.get(sender).contains(reciever));
-        if(ableToSendRequest){
-            sentRequests.get(sender).add(reciever);
-            recievedRequests.get(reciever).add(sender);
-            return true; //successful
-        }
-        else
-            return false; //failed
+
+    // Ensures a user is initialized in all maps
+    public void initializeUser(User user) {
+        friends.putIfAbsent(user, new ArrayList<>());
+        sentRequests.putIfAbsent(user, new ArrayList<>());
+        receivedRequests.putIfAbsent(user, new ArrayList<>());
+        blockedUsers.putIfAbsent(user, new ArrayList<>());
     }
-    public boolean acceptFriendRequest(User reciever , User sender){
-        if(recievedRequests.get(reciever).contains(sender)){
-            friends.get(reciever).add(sender);
-            friends.get(sender).add(reciever);
-            sentRequests.get(sender).remove(reciever);
-            recievedRequests.get(reciever).remove(sender);
-            return true; //successful
-        }else
-            return false; //failed
+
+    public boolean isUserInitialized(User user) {
+        return friends.containsKey(user);
     }
-    public boolean declineFriendRequest(User reciever, User sender){
-        if(recievedRequests.get(reciever).contains(sender)){
-            sentRequests.get(sender).remove(reciever);
-            recievedRequests.get(reciever).remove(sender);
-            return true; //successful
-        }else
-            return false; //failed
-    }
-    public List<User> friendSuggestions(User user, List<User> users){
-        List<User> suggesstions = new ArrayList<>();
-        for(User u:users){
-            if(!(friends.get(user).contains(u))
-            &&!blockedUsers.get(user).contains(u)
-            &!user.equals(u)){
-                suggesstions.add(u);
+
+    //Friend suggestions method
+    public List<User> friendSuggestions(User user, List<User> users) {
+        initializeUser(user);
+
+        List<User> userFriends = friends.get(user);
+        List<User> userBlocked = blockedUsers.get(user);
+
+        List<User> suggestions = new ArrayList<>();
+        for (User u : users) {
+            if (!userFriends.contains(u) && !userBlocked.contains(u) && !user.equals(u)) {
+                suggestions.add(u);
             }
         }
-        return suggesstions;
+        return suggestions;
     }
-    public void blockUser(User user,User blockedUser){
-        if(friends.get(user).contains(blockedUser)){
-            friends.get(user).remove(blockedUser);
-            friends.get(blockedUser).remove(user);
-        }
-        blockedUsers.get(user).add(blockedUser);
-        blockedUsers.get(blockedUser).add(user);
+    //Getters
+    public Map<User, List<User>> getFriends() {
+        return friends;
     }
-    public boolean removeFriend(User user, User friend){
-        if(friends.get(user).contains(friend)){
-            friends.get(user).remove(friend);
-            friends.get(friend).remove(user);
-            return true; //successful
-        }else
-            return false; //failed
+
+    public Map<User, List<User>> getSentRequests() {
+        return sentRequests;
     }
-        
+
+    public Map<User, List<User>> getReceivedRequests() {
+        return receivedRequests;
+    }
+
+    public Map<User, List<User>> getBlockedUsers() {
+        return blockedUsers;
+    }
 }
