@@ -4,15 +4,22 @@
  */
 package frontend;
 
+import backend.*;
+import java.util.ArrayList;
+import javax.swing.JDialog;
+
 /**
  *
  * @author BLU-RAY
  */
 public class Newsfeed extends javax.swing.JFrame {
-
-    
+    private User user=new User();
+    private ProfileManager profile;//TO DO check if its correct when running whole code
+   
     public Newsfeed() {
         initComponents();
+        this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,6 +44,11 @@ public class Newsfeed extends javax.swing.JFrame {
         });
 
         jButton2.setText("Add Story");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -44,9 +56,9 @@ public class Newsfeed extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(308, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -64,8 +76,19 @@ public class Newsfeed extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        String authorid = user.getUserId();
+        ArrayList<Content> contentlist = contentlist = new ArrayList<>();//profile.userPosts(); //this is for removing errors only not correct logic
+        AddPost ap =new AddPost(contentlist, authorid);
+        ap.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String authorid = user.getUserId();
+        ArrayList<Content> contentlist = new ArrayList<>();//profile.userPosts(); //this is for removing errors only not correct logic
+        AddStory as= new AddStory(contentlist, authorid);
+        as.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

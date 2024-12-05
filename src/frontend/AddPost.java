@@ -4,19 +4,34 @@
  */
 package frontend;
 
-import backend.Post;
+import backend.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author BLU-RAY
  */
 public class AddPost extends javax.swing.JFrame {
-    
+
+    private ImgSelect imgs;
+    private ArrayList<Content> contentlist;
+    private String authorid;
+
     /**
      * Creates new form AddPost
      */
-    public AddPost() {
+    public AddPost(ArrayList<Content> contentlist, String authorid) {
         initComponents();
+        this.contentlist = contentlist;
+        this.authorid = authorid;
+        this.imgs = null;
+        this.setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -48,6 +63,11 @@ public class AddPost extends javax.swing.JFrame {
         jLabel2.setText("Add Image :");
 
         jButton1.setText("Select Image");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Post");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -112,19 +132,72 @@ public class AddPost extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //if()
-        //Post p =new Post()
+        ImageIcon img = null;
+        if (imgs != null) {
+            img = imgs.getimage();
+        }
+        String data = jTextField1.getText();
+        String contentid = null;
+        boolean isDuplicate = false;
+        if (data.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null, // to center the message
+                    "Empty Text!",
+                    "Warning",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        } else {
+            do {
+                // Generate a new content ID
+                contentid = UUID.randomUUID().toString();
+
+                // Check if the content ID already exists in the contentlist
+                isDuplicate = false;
+                for (Content content : contentlist) {
+                    if (content != null && content.getContentid() != null && content.getContentid().equals(contentid)) {
+                        isDuplicate = true;  // Mark as duplicate if content ID matches
+                        break;  // No need to continue checking once a match is found
+                    }
+                }
+            } while (isDuplicate);
+            Date timestamp = new Date();
+            if (img != null) {
+                // Create the Story with the generated contentid
+                Post p = new Post(data, contentid, authorid, timestamp);
+                JOptionPane.showMessageDialog(
+                        null, // to center the message
+                        "Post Added Succefully!",
+                        "Warning",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                this.setVisible(false);
+            } else {
+                Post p = new Post(data, contentid, authorid, timestamp, img);
+                JOptionPane.showMessageDialog(
+                        null, // to center the message
+                        "Post Added Succefully!",
+                        "Warning",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                this.setVisible(false);
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ImgSelect imgs = new ImgSelect();
+        this.imgs = imgs;
+        imgs.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    /*
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         *
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -143,13 +216,13 @@ public class AddPost extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPost().setVisible(true);
+                new AddPost(contentlist, authorid).setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -30,25 +30,6 @@ public class Post extends Content{
         this.image = null; //if no img selected 
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public String getContentid() {
-        return contentid;
-    }
-
-    public String getAuthorid() {
-        return authorid;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public ImageIcon getImage() {
-        return image;
-    }
     
     @Override
     public void storeContent(){

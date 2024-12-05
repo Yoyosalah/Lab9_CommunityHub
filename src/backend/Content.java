@@ -18,6 +18,47 @@ public abstract class Content {
     protected String authorid;
     protected Date timestamp;
     protected ImageIcon image;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getContentid() {
+        return contentid;
+    }
+
+    public void setContentid(String contentid) {
+        this.contentid = contentid;
+    }
+
+    public String getAuthorid() {
+        return authorid;
+    }
+
+    public void setAuthorid(String authorid) {
+        this.authorid = authorid;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public ImageIcon getImage() {
+        return image;
+    }
+
+    public void setImage(ImageIcon image) {
+        this.image = image;
+    }
+      
     
     public abstract void storeContent();
     
