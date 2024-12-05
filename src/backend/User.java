@@ -5,7 +5,7 @@
 package backend;
 
 import java.time.LocalDate;
-//import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import static constants.PlatformStatistics.getUsersNum;
 import static constants.PlatformStatistics.incrementUsers;
 
@@ -29,7 +29,7 @@ public class User {
 
 
 
-    //@JsonFormat(pattern = "yyyy-MM-dd") //used to specify how Jackson should serialize and deserialize the dateOfBirth
+    @JsonFormat(pattern = "yyyy-MM-dd") //used to specify how Jackson should serialize and deserialize the dateOfBirth
     private LocalDate dateOfBirth;
     private String status;
 

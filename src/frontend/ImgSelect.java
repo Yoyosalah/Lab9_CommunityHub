@@ -171,7 +171,6 @@ public class ImgSelect extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (view != null) {
             image = view;// store the img to take it from getter
-            imagePath = viewPath;
             JOptionPane.showMessageDialog(this, "Image Saved!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
         } else {
