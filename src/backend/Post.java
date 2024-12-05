@@ -29,7 +29,7 @@ public class Post extends Content{
         this.timestamp = timestamp;
         this.image = null; //if no img selected 
     }
-
+    
     
     @Override
     public void storeContent(){
