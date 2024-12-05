@@ -10,4 +10,28 @@
   "bio" : null,
   "dateOfBirth" : "2003-12-08",
   "status" : "offline"
+}, {
+  "userId" : 1,
+  "email" : "bombom@gmail.com",
+  "username" : "Mostafa elkassar",
+  "password" : "0aa6feb421c953edca7a10336a48b7f87e936754265df03589c747a88fdd8299",
+  "mobileNumber" : "01019011788",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "1999-12-14",
+  "status" : "offline"
+}, {
+  "userId" : 2,
+  "email" : "momo@alexu.com",
+  "username" : "momo bobo",
+  "password" : "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+  "mobileNumber" : "01019011777",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "1980-07-17",
+  "status" : "online"
 } ]

@@ -15,7 +15,7 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ProfileEditor extends ProfileManager{
 
-    //private static final UserDatabase database = new UserDatabase();
+    private static final UserDatabase database = new UserDatabase();
     public ProfileEditor(User user) {
         super(user);
     }
@@ -87,9 +87,9 @@ public class ProfileEditor extends ProfileManager{
         }
     }
     
-    /*public void saveUserChanges(){
+    public void saveUserChanges(){
         database.deleteUserByEmail(user.getEmail());
         database.insertUser(user);
         database.saveToFile();
-    }*/
+    }
 }
