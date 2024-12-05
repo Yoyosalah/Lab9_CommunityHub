@@ -19,6 +19,8 @@ public class ImgSelect extends javax.swing.JFrame {
 
     private ImageIcon image; // Store the selected image as ImageIcon to pass it to the content creator
     private ImageIcon view; // View the selected image before saving it
+    private String viewPath; //Takes the view image path before saving it
+    private String imagePath; //Store the path of the selected image
 
     /**
      * Creates new form ImgSelect
@@ -31,6 +33,10 @@ public class ImgSelect extends javax.swing.JFrame {
 
     public ImageIcon getimage() {
         return image;
+    }
+    
+    public String getPath(){
+        return imagePath;
     }
 
     /**
@@ -149,6 +155,7 @@ public class ImgSelect extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             view = new ImageIcon(selectedFile.getAbsolutePath());
+            viewPath =  selectedFile.getAbsolutePath();
             jLabel1.setIcon(view);
             int labelWidth = jLabel1.getWidth();
             int labelHeight = jLabel1.getHeight();
@@ -169,6 +176,7 @@ public class ImgSelect extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (view != null) {
             image = view;// store the img to take it from getter
+            imagePath = viewPath;
             JOptionPane.showMessageDialog(this, "Image Saved!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
         } else {

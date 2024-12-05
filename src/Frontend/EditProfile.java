@@ -4,8 +4,9 @@
  */
 package Frontend;
 
-import backend.ProfileManager;
+import backend.ProfileEditor;
 import backend.User;
+import frontend.ImgSelect;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -18,18 +19,24 @@ public class EditProfile extends javax.swing.JFrame {
     /**
      * Creates new form Profile
      */
-    private ProfileManager profileManager;
+    private ProfileEditor editor;
     private Profile prev;
     private User user;
+    private String oldPFP; //Stores old profile photo path if the user discards the changes
+    private String oldCVP; //Stores old cover photo path if the user discards the changes
+    private String oldBio; //Stores old bio if the user discards the changes
+    private String oldPass; //Stores old password if the user discards the changes
     
     public EditProfile(User user,Profile prev) {
         initComponents();
-        this.profileManager = new ProfileManager(user);
+        this.editor = new ProfileEditor(user);
         this.user = user;
         this.prev = prev;
         this.setVisible(true);
-        
-        
+        oldPFP = user.getCoverPhotoPath();
+        oldCVP = user.getCoverPhotoPath();
+        oldBio = user.getBio();
+        oldPass = user.getPassword();
     }
 
     /**
@@ -50,6 +57,7 @@ public class EditProfile extends javax.swing.JFrame {
         changeBio = new javax.swing.JButton();
         changePassword = new javax.swing.JButton();
         doneButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -87,10 +95,17 @@ public class EditProfile extends javax.swing.JFrame {
             }
         });
 
-        doneButton.setText("Done");
+        doneButton.setText("Discard changes");
         doneButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doneButtonActionPerformed(evt);
+                discardButtonActionPerformed(evt);
+            }
+        });
+
+        saveButton.setText("Save changes");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
             }
         });
 
@@ -118,10 +133,12 @@ public class EditProfile extends javax.swing.JFrame {
                         .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
                 .addComponent(doneButton)
-                .addGap(160, 160, 160))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,58 +159,67 @@ public class EditProfile extends javax.swing.JFrame {
                             .addComponent(changePassword))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(doneButton)
-                .addGap(41, 41, 41))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(doneButton)
+                    .addComponent(saveButton))
+                .addGap(42, 42, 42))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void changePFPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePFPActionPerformed
-        profileManager.updateProfilePhoto(new ImgSelect());
-        refresh();
+        ImgSelect imgs = new ImgSelect(); //select an image
+        if(imgs.getimage() != null){
+            String imgPath = imgs.getPath();   
+            editor.updateProfilePhoto(imgPath); //updates the profile photo
+            refresh(); //Previews the new profile photo
+        }
     }//GEN-LAST:event_changePFPActionPerformed
 
     private void changeBioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBioActionPerformed
-        String bio = JOptionPane.showInputDialog(this, "Enter bio:", "Change bio", JOptionPane.PLAIN_MESSAGE);
-        profileManager.updateBio(bio);
+        String bio = JOptionPane.showInputDialog(this, "Enter bio:", "Change bio", JOptionPane.PLAIN_MESSAGE); //takes new bio
+        editor.updateBio(bio); //updates bio
         refresh();
     }//GEN-LAST:event_changeBioActionPerformed
 
     private void changeCVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCVPActionPerformed
-        profileManager.updateCoverPhoto(new ImgSelect());
-        refresh();
+        ImgSelect imgs = new ImgSelect(); //select an image
+        if(imgs.getimage() != null){
+            String imgPath = imgs.getPath();   
+            editor.updateCoverPhoto(imgPath); //updates the cover photo
+            refresh(); //Previews the new cover photo
+        }
     }//GEN-LAST:event_changeCVPActionPerformed
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
-        String oldPassword = JOptionPane.showInputDialog(this, "Enter your password:", "Change password", JOptionPane.PLAIN_MESSAGE); //takes old password to change it
-        //hash oldPassword
-        String hashedOldPassword = "";
-        if(hashedOldPassword.equals(user.getHashedPassword())){ 
-            String newPassword = JOptionPane.showInputDialog(this, "Enter your new password:", "Change password", JOptionPane.PLAIN_MESSAGE);
-            //hash newPassword
-            String hashedNewPassword = "";
-            profileManager.changePassword(hashedNewPassword);
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Incorrect password", "Change password", JOptionPane.ERROR_MESSAGE);
-        }
+        editor.changePassword();
     }//GEN-LAST:event_changePasswordActionPerformed
 
-    private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneButtonActionPerformed
-        prev.refresh();
+    private void discardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discardButtonActionPerformed
+        user.setBio(oldBio); //resets bio if changed
+        user.setCoverPhotoPath(oldCVP); //resets cover photo path if changed
+        user.setProfilePhotoPath(oldPFP); //resets profile photo path if changed
+        user.setPassword(oldPass); //resets password if changed
         prev.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_doneButtonActionPerformed
+    }//GEN-LAST:event_discardButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        editor.saveUserChanges(); //saves changes
+        prev.refresh(); //Shows the new bio / profile photo / cover photo in the profile
+        prev.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     private void refresh(){
-        ImageIcon pfp = new ImageIcon(user.getProfilePhotoPath());
-        ImageIcon cvp = new ImageIcon(user.getCoverPhotoPath());
-        profilePhoto.setIcon(pfp);
-        coverPhoto.setIcon(cvp);
+        ImageIcon pfp = new ImageIcon(user.getProfilePhotoPath()); 
+        ImageIcon cvp = new ImageIcon(user.getCoverPhotoPath()); 
+        profilePhoto.setIcon(pfp); //previews the new PFP
+        coverPhoto.setIcon(cvp); //previews the new cover photo
         String bio = user.getBio();
-        bioLabel.setText(bio);
+        bioLabel.setText(bio); //previews the new bio
     }
     
 
@@ -207,5 +233,6 @@ public class EditProfile extends javax.swing.JFrame {
     private javax.swing.JButton doneButton;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel profilePhoto;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }
