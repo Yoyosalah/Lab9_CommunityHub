@@ -135,8 +135,8 @@ public class AddPost extends javax.swing.JFrame {
         if (imgs != null) {
             img = imgs.getimage();
         }
-        String data = jTextField1.getText();
-        if (data.isEmpty()) {
+        String text = jTextField1.getText();
+        if (text.isEmpty()) {
             JOptionPane.showMessageDialog(
                     null, // to center the message
                     "Empty Text!",
@@ -145,11 +145,11 @@ public class AddPost extends javax.swing.JFrame {
             );
         } else {
             // Create the Post using content factory
-            ContentFactory.createContent(data, contentlist, data, authorid, img);
+            ContentFactory.createContent("Post", contentlist, text, authorid, img);
             JOptionPane.showMessageDialog(
                     null, // to center the message
                     "Post Added Succefully!",
-                    "Warning",
+                    "Succefull",
                     JOptionPane.INFORMATION_MESSAGE
             );
             this.setVisible(false);

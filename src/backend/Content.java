@@ -13,18 +13,18 @@ import javax.swing.*;
  * @author BLU-RAY
  */
 public abstract class Content {
-    protected String content;
+    protected String text;
     protected String contentid;
     protected String authorid;
     protected Date timestamp;
     protected ImageIcon image;
 
-    public String getContent() {
-        return content;
+    public String getText() {
+        return text;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getContentid() {
