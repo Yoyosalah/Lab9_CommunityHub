@@ -38,12 +38,24 @@ public class UserDatabase {
 
     }
 
-//    objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
-    public UserDatabase() {
+    // using Singleton Design Pattern
+    private static UserDatabase instance = null;
+    
+    private UserDatabase(){
+        // to defeat instantiation
         this.users = new ArrayList<User>();
         readFromFile();
         setUsersNum(users.size());
     }
+    
+    public static UserDatabase getInstance() {
+        if(instance == null) {//1st time to be called
+            instance=new UserDatabase();
+        }
+       //already created before
+            return instance;
+    }
+    
 
     private void readFromFile() {
         try {

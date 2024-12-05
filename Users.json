@@ -1,13 +1,37 @@
 [ {
   "userId" : 0,
   "email" : "michael@gmail.com",
-  "username" : "michael matta",
+  "username" : "Michael Matta",
   "password" : "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
   "mobileNumber" : "01212345678",
   "gender" : "male",
   "profilePhotoPath" : null,
   "coverPhotoPath" : null,
   "bio" : null,
-  "dateOfBirth" : "2003-12-08",
+  "dateOfBirth" : "2003-12-02",
+  "status" : "offline"
+}, {
+  "userId" : 1,
+  "email" : "test@gmail.com",
+  "username" : "test testsur",
+  "password" : "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "mobileNumber" : "01279654123",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2024-12-01",
+  "status" : "offline"
+}, {
+  "userId" : 2,
+  "email" : "testAgain@yahoo.com",
+  "username" : "test2 testing ",
+  "password" : "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "mobileNumber" : "01234567895",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2024-12-02",
   "status" : "offline"
 } ]
