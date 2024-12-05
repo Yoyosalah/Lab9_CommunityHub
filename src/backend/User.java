@@ -138,6 +138,38 @@ public class User {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
+
+    public String getProfilePhotoPath() {
+        return profilePhotoPath;
+    }
+
+    public void setProfilePhotoPath(String profilePhotoPath) {
+        this.profilePhotoPath = profilePhotoPath;
+    }
+
+    public String getCoverPhotoPath() {
+        return coverPhotoPath;
+    }
+
+    public void setCoverPhotoPath(String coverPhotoPath) {
+        this.coverPhotoPath = coverPhotoPath;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
     
     
 }
