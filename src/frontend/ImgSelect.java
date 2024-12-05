@@ -19,8 +19,6 @@ public class ImgSelect extends javax.swing.JFrame {
 
     private ImageIcon image; // Store the selected image as ImageIcon to pass it to the content creator
     private ImageIcon view; // View the selected image before saving it
-    private String viewPath; //Takes the view image path before saving it
-    private String imagePath; //Store the path of the selected image
 
     /**
      * Creates new form ImgSelect
@@ -35,9 +33,7 @@ public class ImgSelect extends javax.swing.JFrame {
         return image;
     }
     
-    public String getPath(){
-        return imagePath;
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,7 +151,6 @@ public class ImgSelect extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             view = new ImageIcon(selectedFile.getAbsolutePath());
-            viewPath =  selectedFile.getAbsolutePath();
             jLabel1.setIcon(view);
             int labelWidth = jLabel1.getWidth();
             int labelHeight = jLabel1.getHeight();

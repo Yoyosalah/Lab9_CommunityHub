@@ -7,8 +7,12 @@ package Frontend;
 import backend.ProfileEditor;
 import backend.User;
 import frontend.ImgSelect;
+import java.awt.Image;
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -19,6 +23,7 @@ public class EditProfile extends javax.swing.JFrame {
     /**
      * Creates new form Profile
      */
+    private ImgSelect imgs;
     private ProfileEditor editor;
     private Profile prev;
     private User user;
@@ -32,6 +37,7 @@ public class EditProfile extends javax.swing.JFrame {
         this.editor = new ProfileEditor(user);
         this.user = user;
         this.prev = prev;
+        this.imgs = null;
         this.setVisible(true);
         oldPFP = user.getCoverPhotoPath();
         oldCVP = user.getCoverPhotoPath();
@@ -170,12 +176,8 @@ public class EditProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void changePFPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePFPActionPerformed
-        ImgSelect imgs = new ImgSelect(); //select an image
-        if(imgs.getimage() != null){
-            String imgPath = imgs.getPath();   
-            editor.updateProfilePhoto(imgPath); //updates the profile photo
-            refresh(); //Previews the new profile photo
-        }
+        editor.updateProfilePhoto();
+        refresh(); //Previews the new profile photo
     }//GEN-LAST:event_changePFPActionPerformed
 
     private void changeBioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBioActionPerformed
@@ -185,12 +187,8 @@ public class EditProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_changeBioActionPerformed
 
     private void changeCVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCVPActionPerformed
-        ImgSelect imgs = new ImgSelect(); //select an image
-        if(imgs.getimage() != null){
-            String imgPath = imgs.getPath();   
-            editor.updateCoverPhoto(imgPath); //updates the cover photo
-            refresh(); //Previews the new cover photo
-        }
+        editor.updateCoverPhoto(); //updates the cover photo
+        refresh(); //Previews the new cover photo
     }//GEN-LAST:event_changeCVPActionPerformed
 
     private void changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordActionPerformed
@@ -207,7 +205,7 @@ public class EditProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_discardButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        editor.saveUserChanges(); //saves changes
+        //editor.saveUserChanges(); //saves changes
         prev.refresh(); //Shows the new bio / profile photo / cover photo in the profile
         prev.setVisible(true);
         this.setVisible(false);
@@ -216,8 +214,16 @@ public class EditProfile extends javax.swing.JFrame {
     private void refresh(){
         ImageIcon pfp = new ImageIcon(user.getProfilePhotoPath()); 
         ImageIcon cvp = new ImageIcon(user.getCoverPhotoPath()); 
-        profilePhoto.setIcon(pfp); //previews the new PFP
-        coverPhoto.setIcon(cvp); //previews the new cover photo
+        int pfpWidth = profilePhoto.getWidth();
+        int pfpHeight = profilePhoto.getHeight();
+        Image scaledPFP = pfp.getImage().getScaledInstance( //scale image to fit label in panel
+                pfpWidth, pfpHeight, Image.SCALE_SMOOTH);
+        profilePhoto.setIcon(new ImageIcon(scaledPFP)); //previews the new PFP
+        int cvpWidth = coverPhoto.getWidth();
+        int cvpHeight = coverPhoto.getHeight();
+        Image scaledCVP = cvp.getImage().getScaledInstance( //scale image to fit label in panel
+                cvpWidth, cvpHeight, Image.SCALE_SMOOTH);
+        coverPhoto.setIcon(new ImageIcon(scaledCVP)); //previews the new cover photo
         String bio = user.getBio();
         bioLabel.setText(bio); //previews the new bio
     }

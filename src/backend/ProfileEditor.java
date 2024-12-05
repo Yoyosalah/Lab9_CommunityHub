@@ -4,7 +4,10 @@
  */
 package backend;
 
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -12,25 +15,63 @@ import javax.swing.JOptionPane;
  */
 public class ProfileEditor extends ProfileManager{
 
-    private UserDatabase database;
-    
-    public ProfileEditor(User user ,UserDatabase database) {
+    //private static final UserDatabase database = new UserDatabase();
+    public ProfileEditor(User user) {
         super(user);
-        this.database = database;
     }
     
-    public void updateProfilePhoto(String filePath){ 
+    public void updateProfilePhoto(){ 
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File file) { // choose imgs only mn el files
+                String fileName = file.getName().toLowerCase();
+                return file.isDirectory() || fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Image Files (*.png, *.jpg, *.jpeg)";
+            }
+        });
         
-        super.user.setProfilePhotoPath(filePath);
+        fileChooser.showDialog(null,"Select");
+        String path = fileChooser.getSelectedFile().getAbsolutePath();
+        if(path != null){   
+            user.setProfilePhotoPath(path); //updates the profile photo
+        }
+        else
+            JOptionPane.showInternalMessageDialog(null,"No image has been selected" , "Error", JOptionPane.ERROR_MESSAGE);
+
     }
     
-    public void updateCoverPhoto(String filePath){
+    public void updateCoverPhoto(){
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File file) { // choose imgs only mn el files
+                String fileName = file.getName().toLowerCase();
+                return file.isDirectory() || fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Image Files (*.png, *.jpg, *.jpeg)";
+            }
+        });
         
-        super.user.setCoverPhotoPath(filePath);
+        fileChooser.showDialog(null,"Select");
+        String path = fileChooser.getSelectedFile().getAbsolutePath();
+        if(path != null){   
+            user.setCoverPhotoPath(path); //updates the profile photo
+        }
+        else
+            JOptionPane.showInternalMessageDialog(null,"No image has been selected" , "Error", JOptionPane.ERROR_MESSAGE);
+
     }
     
     public void updateBio(String bio){
-        super.user.setBio(bio);
+        user.setBio(bio);
     }
     
     public void changePassword(){
@@ -46,8 +87,9 @@ public class ProfileEditor extends ProfileManager{
         }
     }
     
-    public void saveUserChanges(){
+    /*public void saveUserChanges(){
         database.deleteUserByEmail(user.getEmail());
         database.insertUser(user);
-    }
+        database.saveToFile();
+    }*/
 }

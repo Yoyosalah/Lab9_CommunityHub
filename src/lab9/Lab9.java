@@ -4,7 +4,10 @@
  */
 package lab9;
 
-import frontend.Newsfeed;
+import Frontend.Profile;
+import backend.*;
+import frontend.*;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,7 +20,10 @@ public class Lab9 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Newsfeed n = new Newsfeed();
+        //Newsfeed n = new Newsfeed();
+        LocalDate date = LocalDate.now();
+        User user = new User("","","",date,"","","");
+        Profile p = new Profile(user);
     }
     
 }
