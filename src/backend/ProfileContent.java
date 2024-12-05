@@ -4,10 +4,23 @@
  */
 package backend;
 
+import java.util.List;
+
 /**
  *
  * @author Mustafa
  */
-public class ProfileContent {
+public class ProfileContent extends ProfileManager{
+
+    public ProfileContent(User user) {
+        super(user);
+    }
     
+    public List<Content> userPosts(){
+        return null;
+    }
+    
+    public List<User> userFriends(){
+        return null;
+    }
 }

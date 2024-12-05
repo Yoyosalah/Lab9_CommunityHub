@@ -4,6 +4,7 @@
  */
 package Frontend;
 import backend.*;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 /**
  *
@@ -14,14 +15,14 @@ public class Profile extends javax.swing.JFrame {
     /**
      * Creates new form Profile
      */
-    private ProfileManager profileManager;
+    private ProfileContent profileContent;
     private User user;
     
     public Profile(User user) {
         initComponents();
         this.setVisible(true);
         this.user = user;
-        this.profileManager = new ProfileManager(user);
+        this.profileContent = new ProfileContent(user);
         
     }
 
@@ -38,6 +39,7 @@ public class Profile extends javax.swing.JFrame {
         profilePhoto = new javax.swing.JLabel();
         bioLabel = new javax.swing.JLabel();
         editProfile = new javax.swing.JButton();
+        friendsButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +51,13 @@ public class Profile extends javax.swing.JFrame {
         editProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editProfileActionPerformed(evt);
+            }
+        });
+
+        friendsButton.setText("Friends");
+        friendsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                friendsButtonActionPerformed(evt);
             }
         });
 
@@ -71,8 +80,12 @@ public class Profile extends javax.swing.JFrame {
                                 .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(editProfile)
-                                .addGap(68, 68, 68)))))
+                                .addGap(35, 35, 35)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(friendsButton)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,12 +95,14 @@ public class Profile extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(profilePhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(editProfile)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(editProfile)
+                        .addGap(8, 8, 8)))
                 .addGap(18, 18, 18)
                 .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(friendsButton)
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -95,24 +110,38 @@ public class Profile extends javax.swing.JFrame {
 
     private void editProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfileActionPerformed
         new EditProfile(user,this);
+        this.setVisible(false);
     }//GEN-LAST:event_editProfileActionPerformed
+
+    private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_friendsButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
     protected void refresh(){
-        ImageIcon pfp = new ImageIcon(user.getProfilePhotoPath());
-        ImageIcon cvp = new ImageIcon(user.getCoverPhotoPath());
-        profilePhoto.setIcon(pfp);
-        coverPhoto.setIcon(cvp);
+        ImageIcon pfp = new ImageIcon(user.getProfilePhotoPath()); 
+        ImageIcon cvp = new ImageIcon(user.getCoverPhotoPath()); 
+        int pfpWidth = profilePhoto.getWidth();
+        int pfpHeight = profilePhoto.getHeight();
+        Image scaledPFP = pfp.getImage().getScaledInstance( //scale image to fit label in panel
+                pfpWidth, pfpHeight, Image.SCALE_SMOOTH);
+        profilePhoto.setIcon(new ImageIcon(scaledPFP)); //puts the pfp on the label
+        int cvpWidth = coverPhoto.getWidth();
+        int cvpHeight = coverPhoto.getHeight();
+        Image scaledCVP = cvp.getImage().getScaledInstance( //scale image to fit label in panel
+                cvpWidth, cvpHeight, Image.SCALE_SMOOTH);
+        coverPhoto.setIcon(new ImageIcon(scaledCVP)); //puts the cover photo on the label
         String bio = user.getBio();
-        bioLabel.setText(bio);
+        bioLabel.setText(bio); 
     }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bioLabel;
     private javax.swing.JLabel coverPhoto;
     private javax.swing.JButton editProfile;
+    private javax.swing.JButton friendsButton;
     private javax.swing.JLabel profilePhoto;
     // End of variables declaration//GEN-END:variables
 }
