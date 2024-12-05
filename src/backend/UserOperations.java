@@ -84,6 +84,7 @@ public class UserOperations {
         }
         String hashedPassword = UserSecurity.hashPassword(password);
         
+        //uisng builder to creat a new user
         User newUser = new User.Builder()
                 .email(email)
                 .username(username)
