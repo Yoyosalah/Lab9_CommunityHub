@@ -23,7 +23,7 @@ public class User {
     private String bio;
 
     public User() {
-    }
+
     
     
     public User(String email, String username, String hashedPassword, Date dateOfBirth) {

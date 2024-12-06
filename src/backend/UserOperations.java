@@ -15,7 +15,7 @@ public class UserOperations {
 
     private static final UserDatabase databaseManager = UserDatabase.getInstance();
 
-    ;
+    
 
 
 
