@@ -33,6 +33,7 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     private HashMap<User,String> comboBoxMap;
     
     public FriendManagerGUI(User user , List<User> allUsers) {
+        this.comboBoxMap = new HashMap<>();
         initComponents();
         this.user = user;
         this.allUsers = allUsers;
