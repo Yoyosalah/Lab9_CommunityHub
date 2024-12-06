@@ -4,6 +4,8 @@
  */
 package lab9;
 
+import frontend.Newsfeed;
+
 /**
  *
  * @author Youss
@@ -15,6 +17,8 @@ public class Lab9 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Newsfeed nf = new Newsfeed();
+        //nf.setVisible(true);
     }
     
 }

@@ -20,6 +20,7 @@ public class ContentDatabase {
 
     public ContentDatabase() {
         this.contentlist = new ArrayList<>();
+        readFromFile();
     }
 
     public ArrayList<Content> getContentlist() {
