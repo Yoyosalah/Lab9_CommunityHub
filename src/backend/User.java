@@ -35,19 +35,7 @@ public class User {
         // default constructor required for Jackson library 
     }
 
-    /*
-    public User(String email, String username, String password, LocalDate dateOfBirth, String status, String mobileNumber, String gender) {
-                                      this.userId = getUsersNum();
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.dateOfBirth = dateOfBirth;
-        this.status = status;
-        this.mobileNumber = mobileNumber;
-        this.gender = gender;
-                                        incrementUsers();
-    }
-     */
+
     
     //applying Builder Design Pattern: 
     private User(Builder builder) {
