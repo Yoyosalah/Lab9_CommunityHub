@@ -26,6 +26,7 @@ public class RequestHandler {
         if (ableToSendRequest){
             manager.getSentRequests().get(sender).add(receiver);
             manager.getReceivedRequests().get(receiver).add(sender);
+            manager.saveChangesToJSON();
             return true; // Request sent successfully
         }else{
             return false; // Failed to send request
@@ -42,6 +43,7 @@ public class RequestHandler {
             manager.getFriends().get(sender).add(receiver);
             manager.getSentRequests().get(sender).remove(receiver);
             manager.getReceivedRequests().get(receiver).remove(sender);
+            manager.saveChangesToJSON();
             return true; // Request accepted successfully
         }else{
             return false; // Failed to accept request
@@ -55,6 +57,7 @@ public class RequestHandler {
         if (manager.getReceivedRequests().get(receiver).contains(sender)) {
             manager.getSentRequests().get(sender).remove(receiver);
             manager.getReceivedRequests().get(receiver).remove(sender);
+            manager.saveChangesToJSON();
             return true; // Request declined successfully
         } else {
             return false; // Failed to decline request

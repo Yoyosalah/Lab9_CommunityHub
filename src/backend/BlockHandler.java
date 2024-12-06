@@ -27,6 +27,7 @@ public class BlockHandler {
 
         // Add to blocked list
         manager.getBlockedUsers().get(user).add(blockedUser);
+        manager.saveChangesToJSON();
     }
 
     public boolean removeFriend(User user, User friend){
@@ -36,6 +37,7 @@ public class BlockHandler {
         if (manager.getFriends().get(user).contains(friend)){
             manager.getFriends().get(user).remove(friend);
             manager.getFriends().get(friend).remove(user);
+            manager.saveChangesToJSON();
             return true; // Friend removed successfully
         }else{
             return false; // Failed to remove friend

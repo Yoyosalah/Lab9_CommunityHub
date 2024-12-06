@@ -20,10 +20,17 @@ public class FriendsManager {
     private Map<User, List<User>> blockedUsers;
 
     public FriendsManager() {
-        friends = new HashMap<>();
-        sentRequests = new HashMap<>();
-        receivedRequests = new HashMap<>();
-        blockedUsers = new HashMap<>();
+        friends = FriendsDatabase.readFriends();
+        if (friends == null) friends = new HashMap<>();
+
+        sentRequests = FriendsDatabase.readSentRequests();
+        if (sentRequests == null) sentRequests = new HashMap<>();
+
+        receivedRequests = FriendsDatabase.readReceivedRequests();
+        if (receivedRequests == null) receivedRequests = new HashMap<>();
+
+        blockedUsers = FriendsDatabase.readBlockedUsers();
+        if (blockedUsers == null) blockedUsers = new HashMap<>();
     }
 
     // Ensures a user is initialized in all maps
@@ -37,7 +44,13 @@ public class FriendsManager {
     public boolean isUserInitialized(User user) {
         return friends.containsKey(user);
     }
-
+    
+    public void saveChangesToJSON(){
+        FriendsDatabase.saveFriends(friends);
+        FriendsDatabase.saveReceivedRequests(receivedRequests);
+        FriendsDatabase.saveSentRequests(sentRequests);
+        FriendsDatabase.saveBlockedUsers(blockedUsers);
+    }
     //Friend suggestions method
     public List<User> friendSuggestions(User user, List<User> users) {
         initializeUser(user);

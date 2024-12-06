@@ -68,16 +68,19 @@ public class FriendsDatabase {
 
     // Generic Methods for Reading and Writing
     private static <T> T readFromFile(String filename, TypeReference<T> typeReference) {
-        try {
-            File file = new File(filename);
-            if (file.exists()) {
-                return objectMapper.readValue(file, typeReference);
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading file: " + filename);
+    try {
+        File file = new File(filename);
+        if (file.exists()) {
+            return objectMapper.readValue(file, typeReference);
+        } else {//added: If the file doesn't exist, create it with an empty structure
+            saveToFile(filename, new HashMap<>());
+            return objectMapper.readValue(file, typeReference);
         }
+    } catch (IOException e) {
+        System.err.println("Error reading or initializing file: " + filename);
         return null;
     }
+}
 
     private static <T> void saveToFile(String filename, T data) {
         try {
