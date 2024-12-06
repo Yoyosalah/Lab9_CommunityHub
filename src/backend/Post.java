@@ -14,22 +14,22 @@ import javax.swing.*;
  */
 public class Post extends Content{
 
-    public Post(String content, String contentid, String authorid, Date timestamp, ImageIcon image) {
-        this.content = content;
+    public Post(String text, String contentid, String authorid, Date timestamp, ImageIcon image) {
+        this.text = text;
         this.contentid = contentid;
         this.authorid = authorid;
         this.timestamp = timestamp;
         this.image = image;
     }
 
-    public Post(String content, String contentid, String authorid, Date timestamp) { //two constructors one for w img and other wo img
-        this.content = content;
+    public Post(String text, String contentid, String authorid, Date timestamp) { //two constructors one for w img and other wo img
+        this.text = text;
         this.contentid = contentid;
         this.authorid = authorid;
         this.timestamp = timestamp;
         this.image = null; //if no img selected 
     }
-
+    
     
     @Override
     public void storeContent(){

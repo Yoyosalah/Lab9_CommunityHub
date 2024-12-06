@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 public class Story extends Content {
 
     public Story(String content, String contentid, String authorid, Date timestamp, ImageIcon image) {
-        this.content = content;
+        this.text = content;
         this.contentid = contentid;
         this.authorid = authorid;
         this.timestamp = timestamp;
@@ -24,7 +24,7 @@ public class Story extends Content {
     }
 
     public Story(String content, String contentid, String authorid, Date timestamp) { //two constructors one for w/ img and other w/o img
-        this.content = content;
+        this.text = content;
         this.contentid = contentid;
         this.authorid = authorid;
         this.timestamp = timestamp;

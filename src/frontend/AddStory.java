@@ -5,6 +5,7 @@
 package frontend;
 
 import backend.Content;
+import backend.ContentFactory;
 import backend.Story;
 import java.util.ArrayList;
 import java.util.Date;
@@ -137,8 +138,8 @@ public class AddStory extends javax.swing.JFrame {
         if (imgs != null) {
             img = imgs.getimage();
         }
-        String data = jTextField1.getText();
-        if (data.isEmpty()) {
+        String text = jTextField1.getText();
+        if (text.isEmpty()) {
             JOptionPane.showMessageDialog(
                     null, // to center the message
                     "Empty Text!",
@@ -146,42 +147,15 @@ public class AddStory extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE
             );
         } else {
-            String contentid = null;
-            boolean isDuplicate = false;
-
-            do {
-                // Generate a new content ID
-                contentid = UUID.randomUUID().toString();
-                // Check if the content ID already exists in the contentlist
-                isDuplicate = false;
-                for (Content content : contentlist) {
-                    if (content != null && content.getContentid() != null && content.getContentid().equals(contentid)) {
-                        isDuplicate = true;
-                        break;
-                    }
-                }
-            } while (isDuplicate);
             Date timestamp = new Date();
-            if (img != null) {
-                // Create the Story with the generated contentid
-                Story s = new Story(data, contentid, authorid, timestamp);
-                JOptionPane.showMessageDialog(
-                        null, // to center the message
-                        "Post Added Succefully!",
-                        "Warning",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                this.setVisible(false);
-            } else {
-                Story s = new Story(data, contentid, authorid, timestamp, img);
-                JOptionPane.showMessageDialog(
-                        null, // to center the message
-                        "Post Added Succefully!",
-                        "Warning",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-                this.setVisible(false);
-            }
+            ContentFactory.createContent("Story", contentlist, text, authorid, img);
+            JOptionPane.showMessageDialog(
+                    null, // to center the message
+                    "Story Added Succefully!",
+                    "Succefull",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            this.setVisible(false);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -198,11 +172,11 @@ public class AddStory extends javax.swing.JFrame {
     /*
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-/*        try {
+     */
+ /*        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -221,13 +195,13 @@ public class AddStory extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-       /* java.awt.EventQueue.invokeLater(new Runnable() {
+ /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddStory(contentlist, authorid).setVisible(true);
             }
         });
     }
-*/
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
