@@ -46,4 +46,16 @@
   "bio" : null,
   "dateOfBirth" : "2004-05-01",
   "status" : "offline"
+}, {
+  "userId" : 4,
+  "email" : "momo@mail.com",
+  "username" : "mostafa kassar",
+  "password" : "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+  "mobileNumber" : "01019011788",
+  "gender" : "male",
+  "profilePhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass2\\Screenshot 2024-11-07 023933.png",
+  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass1\\2-a.png",
+  "bio" : null,
+  "dateOfBirth" : "1990-12-06",
+  "status" : "online"
 } ]

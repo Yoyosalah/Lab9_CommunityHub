@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class UserOperations {
 
-    protected static final UserDatabase databaseManager = new UserDatabase();
+    protected static final UserDatabase databaseManager = UserDatabase.getInstance();
 
     ;
 

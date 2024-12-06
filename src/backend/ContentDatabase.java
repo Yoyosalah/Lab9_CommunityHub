@@ -18,7 +18,7 @@ import static constants.FileNames.CONTENT_FILENAME;
 public class ContentDatabase {
     private ArrayList<Content> contentlist;
 
-    public ContentDatabase(ArrayList<Content> contentlist) {
+    public ContentDatabase() {
         this.contentlist = new ArrayList<>();
     }
 

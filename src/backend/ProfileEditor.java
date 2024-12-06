@@ -15,7 +15,7 @@ import javax.swing.filechooser.FileFilter;
  */
 public class ProfileEditor extends ProfileManager{
 
-    private static final UserDatabase database = new UserDatabase();
+    private static final UserDatabase database = UserDatabase.getInstance();
     public ProfileEditor(User user) {
         super(user);
     }
