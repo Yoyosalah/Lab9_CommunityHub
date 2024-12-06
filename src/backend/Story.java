@@ -24,23 +24,5 @@ public class Story extends Content {
         this.image = image;
     }
 
-    public Story(String content, String contentid, String authorid, Date timestamp) { //two constructors one for w/ img and other w/o img
-        this.text = content;
-        this.contentid = contentid;
-        this.authorid = authorid;
-        this.timestamp = timestamp;
-        this.image = null; //if no img selected 
-    }
 
-    @Override
-    public void storeContent() {
-        LocalDate today = LocalDate.now();
-        LocalDate time = this.timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); // convert to localdate bec duration doesnt work with date
-        Duration duration = Duration.between(time, today);
-        if(duration.toHours()>= 24)
-            return ;
-        else{
-        
-        }
-    }
 }

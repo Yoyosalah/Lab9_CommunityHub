@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author BLU-RAY
  */
-public abstract class Content implements Serializable {
+public class Content implements Serializable {
     private static final long serialVersionUID = 1L;
     protected String text;
     protected String contentid;
@@ -60,9 +60,5 @@ public abstract class Content implements Serializable {
     public void setImage(ImageIcon image) {
         this.image = image;
     }
-      
-    
-    public abstract void storeContent();
-    
     
 }

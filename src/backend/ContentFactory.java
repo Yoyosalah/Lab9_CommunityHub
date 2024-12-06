@@ -16,20 +16,12 @@ import javax.swing.ImageIcon;
 public class ContentFactory {
 
     public static Content createContent(String type, ArrayList<Content> contentlist, String data, String authorid, ImageIcon image) {
-        String contentid=ContentIDGenerator.generateUniqueId(contentlist);
+        String contentid = ContentIDGenerator.generateUniqueId(contentlist);
         Date timestamp = new Date();
         if ("Post".equalsIgnoreCase(type)) { //to create post or story
-            if (image == null) { //to create w/ or wo/ img
-                return new Post(data, contentid, authorid, timestamp);
-            } else {
-                return new Post(data, contentid, authorid, timestamp, image);
-            }
+            return new Post(data, contentid, authorid, timestamp, image);
         } else if ("Story".equalsIgnoreCase(type)) {
-            if (image == null) {
-                return new Story(data, contentid, authorid, timestamp);
-            } else {
-                return new Story(data, contentid, authorid, timestamp, image);
-            }
+            return new Story(data, contentid, authorid, timestamp, image);
         } else {
             System.out.println("Error in argument pls fix");
             return null;
