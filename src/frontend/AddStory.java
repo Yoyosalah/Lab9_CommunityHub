@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author BLU-RAY
  */
-public class AddStory extends javax.swing.JFrame {
+public class AddStory extends Window {
 
     private ImgSelect imgs;
     private ArrayList<Content> contentlist;
@@ -29,11 +29,10 @@ public class AddStory extends javax.swing.JFrame {
      */
     public AddStory(ArrayList<Content> contentlist, String authorid) {
         initComponents();
+        prepare("Add Post");
         this.contentlist = contentlist;
         this.authorid = authorid;
         this.imgs = null;
-        this.setVisible(true);
-        setLocationRelativeTo(null);
     }
 
     /**

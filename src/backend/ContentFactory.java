@@ -19,9 +19,13 @@ public class ContentFactory {
         String contentid = ContentIDGenerator.generateUniqueId(contentlist);
         Date timestamp = new Date();
         if ("Post".equalsIgnoreCase(type)) { //to create post or story
-            return new Post(data, contentid, authorid, timestamp, image);
+            Post p = new Post(data, contentid, authorid, timestamp, image);
+            contentlist.add(p);
+            return p;
         } else if ("Story".equalsIgnoreCase(type)) {
-            return new Story(data, contentid, authorid, timestamp, image);
+            Story s = new Story(data, contentid, authorid, timestamp, image);
+            contentlist.add(s);
+            return s;
         } else {
             System.out.println("Error in argument pls fix");
             return null;

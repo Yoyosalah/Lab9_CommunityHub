@@ -35,51 +35,15 @@
   "dateOfBirth" : "2024-12-02",
   "status" : "offline"
 }, {
-  "userId" : 1,
-  "email" : "bombom@gmail.com",
-  "username" : "Mostafa elkassar",
-  "password" : "0aa6feb421c953edca7a10336a48b7f87e936754265df03589c747a88fdd8299",
-  "mobileNumber" : "01019011788",
-  "gender" : "male",
-  "profilePhotoPath" : null,
-  "coverPhotoPath" : null,
-  "bio" : null,
-  "dateOfBirth" : "1999-12-14",
-  "status" : "offline"
-}, {
   "userId" : 3,
-  "email" : "mos@mail.com",
-  "username" : "mos mos",
-  "password" : "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c",
-  "mobileNumber" : "01019011788",
+  "email" : "youssefhelmy@gmail.com",
+  "username" : "Youssef Helmy",
+  "password" : "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+  "mobileNumber" : "01206870238",
   "gender" : "male",
   "profilePhotoPath" : null,
   "coverPhotoPath" : null,
   "bio" : null,
-  "dateOfBirth" : "1980-12-11",
-  "status" : "online"
-}, {
-  "userId" : 2,
-  "email" : "momo@alexu.com",
-  "username" : "momo bobo",
-  "password" : "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
-  "mobileNumber" : "01019011777",
-  "gender" : "male",
-  "profilePhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass2\\Screenshot 2024-11-07 030813.png",
-  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab1\\Screenshot 2024-10-25 234122.png",
-  "bio" : "7000",
-  "dateOfBirth" : "1980-07-17",
-  "status" : "online"
-}, {
-  "userId" : 4,
-  "email" : "ramadan@icloud.com",
-  "username" : "kkkk aaaa",
-  "password" : "1604034c5b08259a2d60ed7de80cd9e0b629f2ece761ed228b11bc5097b60b87",
-  "mobileNumber" : "01019111877",
-  "gender" : "female",
-  "profilePhotoPath" : null,
-  "coverPhotoPath" : null,
-  "bio" : null,
-  "dateOfBirth" : "1900-12-07",
-  "status" : "online"
+  "dateOfBirth" : "2004-05-01",
+  "status" : "offline"
 } ]
