@@ -22,7 +22,7 @@ public class Newsfeed extends javax.swing.JFrame {
     private User user;
     private FriendsManager friendManager;
     private RequestHandler requestHandler;
-    private ProfileManager profile;
+    private ProfileContent profile;
     private ContentDatabase contentDatabase;
     private ArrayList<Content> contentList;
     private int currentIndex;
@@ -32,7 +32,7 @@ public class Newsfeed extends javax.swing.JFrame {
         this.user = user;
         this.friendManager = new FriendsManager();
         this.requestHandler = new RequestHandler(friendManager);
-        this.profile = new ProfileManager(user);
+        this.profile = new ProfileContent(user);
         this.comboBoxMap = new HashMap<>();
         this.contentDatabase = new ContentDatabase();
         this.contentList = contentDatabase.getContentlist();
@@ -289,6 +289,7 @@ public class Newsfeed extends javax.swing.JFrame {
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         // TODO add your handling code here:
+        new Profile(user).setVisible(true);
     }//GEN-LAST:event_profileButtonActionPerformed
 
     private void addFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendButtonActionPerformed

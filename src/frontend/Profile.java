@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package frontend;
 import backend.*;
 import frontend.AddPost;
 import java.awt.Image;
@@ -183,6 +183,7 @@ public class Profile extends javax.swing.JFrame{
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     /**

@@ -9,7 +9,7 @@ import backend.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import Frontend.Profile;
+
 
 /**
  *
@@ -221,7 +221,8 @@ public class LandingPage extends Window {
                 //send to the next page
                 //Logout_Example nextPage = new Logout_Example();
                 //nextPage.setEmail(email);
-                new Profile(database.getUserByEmail(email));
+                //new Profile(database.getUserByEmail(email));
+                new Newsfeed(database.getUserByEmail(email));
                 this.setVisible(false); // or maybe dispose 
                 
             }
