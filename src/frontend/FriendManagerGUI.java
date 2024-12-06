@@ -67,7 +67,7 @@ public class FriendManagerGUI extends javax.swing.JFrame {
         declineButton = new javax.swing.JButton();
         unFriendButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -240,6 +240,7 @@ public class FriendManagerGUI extends javax.swing.JFrame {
         this.addButton.setVisible(true);
         this.acceptButton.setVisible(true);
         this.declineButton.setVisible(true);
+        this.unFriendButton.setVisible(false);
         this.blockButton.setVisible(true);
     }//GEN-LAST:event_suggestionsButtonActionPerformed
 
