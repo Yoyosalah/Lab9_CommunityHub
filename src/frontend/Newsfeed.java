@@ -76,16 +76,26 @@ public class Newsfeed extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
         String authorid = user.getUserId();
         ArrayList<Content> contentlist = contentlist = new ArrayList<>();//profile.userPosts(); //this is for removing errors only not correct logic
+=======
+        String authorid = String.valueOf(user.getUserId());
+        ArrayList<Content> contentlist = contentlist =profile.userPosts();
+>>>>>>> Stashed changes
         AddPost ap =new AddPost(contentlist, authorid);
         ap.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
         String authorid = user.getUserId();
         ArrayList<Content> contentlist = new ArrayList<>();//profile.userPosts(); //this is for removing errors only not correct logic
+=======
+        String authorid = String.valueOf(user.getUserId());
+        ArrayList<Content> contentlist =profile.userPosts();
+>>>>>>> Stashed changes
         AddStory as= new AddStory(contentlist, authorid);
         as.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton2ActionPerformed
