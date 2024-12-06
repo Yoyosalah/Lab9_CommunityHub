@@ -34,8 +34,8 @@ public class Newsfeed extends javax.swing.JFrame {
         this.requestHandler = new RequestHandler(friendManager);
         this.profile = new ProfileManager(user);
         this.comboBoxMap = new HashMap<>();
-        this.contentDatabase = new ContentDatabase(new ArrayList<>());
-        this.contentList = new ArrayList<>();
+        this.contentDatabase = new ContentDatabase();
+        this.contentList = contentDatabase.getContentlist();
         this.currentIndex = 0;
 
         initComponents();
@@ -255,16 +255,14 @@ public class Newsfeed extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String authorid = String.valueOf(user.getUserId());
-        ArrayList<Content> contentlist = contentlist = profile.userPosts();
-        AddPost ap =new AddPost(contentlist, authorid);
+        AddPost ap =new AddPost(contentList, authorid);
         ap.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String authorid = String.valueOf(user.getUserId());
-        ArrayList<Content> contentlist =profile.userPosts();
-        AddStory as= new AddStory(contentlist, authorid);
+        AddStory as= new AddStory(contentList, authorid);
         as.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton2ActionPerformed
     
