@@ -32,6 +32,8 @@ public class ImgSelect extends javax.swing.JFrame {
     public ImageIcon getimage() {
         return image;
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.

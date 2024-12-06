@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
  */
 public class UserOperations {
 
-    private static final UserDatabase databaseManager = UserDatabase.getInstance();
+    protected static final UserDatabase databaseManager = new UserDatabase();
 
-    
+    ;
 
 
 
@@ -75,7 +75,7 @@ public class UserOperations {
 //            System.out.println("Invalid number!");
             JOptionPane.showMessageDialog(
                     null, // to center the message
-                    "Invalid Mobile Number!",
+                    "Invalid number!",
                     "Warning",
                     JOptionPane.ERROR_MESSAGE
             );
@@ -83,18 +83,15 @@ public class UserOperations {
             return false;
         }
         String hashedPassword = UserSecurity.hashPassword(password);
-        
-        //uisng builder to creat a new user
-        User newUser = new User.Builder()
-                .email(email)
-                .username(username)
-                .password(hashedPassword)
-                .dateOfBirth(dateOfBirth)
-                .status("offline")
-                .mobileNumber(mobileNumber)
-                .gender(gender)
-                .build();
-
+        User newUser = new User(
+                email,
+                username,
+                hashedPassword,
+                dateOfBirth,
+                "offline",
+                mobileNumber,
+                gender
+        );
         System.out.println(dateOfBirth);
 
         databaseManager.insertUser(newUser);

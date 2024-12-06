@@ -6,7 +6,8 @@ package backend;
 
 import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import static constants.PlatformStatistics.*;
+import static constants.PlatformStatistics.getUsersNum;
+import static constants.PlatformStatistics.incrementUsers;
 
 /**
  *
@@ -26,105 +27,26 @@ public class User {
     private String coverPhotoPath;
     private String bio;
 
+
+
     @JsonFormat(pattern = "yyyy-MM-dd") //used to specify how Jackson should serialize and deserialize the dateOfBirth
     private LocalDate dateOfBirth;
     private String status;
 
     public User() {
-        // default constructor required for Jackson library
+        // default constructor required for Jackson library 
     }
 
-
-
-    //applying Builder Design Pattern:
-    private User(Builder builder) {
-        this.userId = builder.userId;
-        this.email = builder.email;
-        this.username = builder.username;
-        this.password = builder.password;
-        this.mobileNumber = builder.mobileNumber;
-        this.gender = builder.gender;
-        this.dateOfBirth = builder.dateOfBirth;
-        this.status = builder.status;
-
-        this.profilePhotoPath = builder.profilePhotoPath;
-        this.coverPhotoPath = builder.coverPhotoPath;
-        this.bio = builder.bio;
-    }
-
-    public static class Builder {
-
-        private int userId;
-        private String email;
-        private String username;
-        private String password;
-        private String mobileNumber;
-        private String gender;
-        private LocalDate dateOfBirth;
-        private String status;
-
-        private String profilePhotoPath;
-        private String coverPhotoPath;
-        private String bio;
-
-        public Builder() {
-            this.userId = getUsersNum(); // give unique Id
-            incrementUsers(); // increase user count
-        }
-
-        public Builder email(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder username(String username) {
-            this.username = username;
-            return this;
-        }
-
-        public Builder password(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public Builder dateOfBirth(LocalDate dateOfBirth) {
-            this.dateOfBirth = dateOfBirth;
-            return this;
-        }
-
-        public Builder status(String status) {
-            this.status = status;
-            return this;
-        }
-
-        public Builder mobileNumber(String mobileNumber) {
-            this.mobileNumber = mobileNumber;
-            return this;
-        }
-
-        public Builder gender(String gender) {
-            this.gender = gender;
-            return this;
-        }
-
-        public Builder profilePhotoPath(String profilePhotoPath) {
-            this.profilePhotoPath = profilePhotoPath;
-            return this;
-        }
-
-        public Builder coverPhotoPath(String coverPhotoPath) {
-            this.coverPhotoPath = coverPhotoPath;
-            return this;
-        }
-
-        public Builder bio(String bio) {
-            this.bio = bio;
-            return this;
-        }
-
-        public User build() {
-            return new User(this);
-        }
+    public User(String email, String username, String password, LocalDate dateOfBirth, String status, String mobileNumber, String gender) {
+        this.userId = getUsersNum();
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.status = status;
+        this.mobileNumber = mobileNumber;
+        this.gender = gender;
+        incrementUsers();
     }
 
     public int getUserId() {
@@ -171,6 +93,8 @@ public class User {
         return bio;
     }
 
+    
+    
     public void setStatus(String status) {
         this.status = status;
     }
@@ -214,5 +138,4 @@ public class User {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
 }

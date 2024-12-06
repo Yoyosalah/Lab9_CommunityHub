@@ -5,17 +5,22 @@
 package backend;
 
 import java.util.List;
-import javax.swing.JFileChooser;
 
 /**
  *
  * @author Mustafa
  */
-public class ProfileManager {
-    protected User user;
-    
-    public ProfileManager(User user){
-        this.user = user;
+public class ProfileContent extends ProfileManager{
+
+    public ProfileContent(User user) {
+        super(user);
     }
     
+    public List<Content> userPosts(){
+        return null;
+    }
+    
+    public List<User> userFriends(){
+        return null;
+    }
 }
