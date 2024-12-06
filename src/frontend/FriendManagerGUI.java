@@ -31,6 +31,7 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     private List<User> allUsers;
     private User user;
     private HashMap<User,String> comboBoxMap;
+    
     public FriendManagerGUI(User user , List<User> allUsers) {
         initComponents();
         this.user = user;
@@ -253,34 +254,70 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        if (jComboBox1.getItemCount() != 0){
-            requestHandler.sendFriendRequest(user,getSelectedUser());
-        }else {
-            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        if (jComboBox1.getItemCount() > 0) {
+            User selectedUser = getSelectedUser();
+            if (selectedUser != null) {
+                boolean success = requestHandler.sendFriendRequest(user, selectedUser);
+                if (success) {
+                    JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No users in the list.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
-        if (jComboBox1.getItemCount() != 0){
-            requestHandler.acceptFriendRequest(user,getSelectedUser());
-        }else {
-            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        if (jComboBox1.getItemCount() > 0) {
+            User selectedUser = getSelectedUser();
+            if (selectedUser != null) {
+                boolean success = requestHandler.acceptFriendRequest(user, selectedUser);
+                if (success) {
+                    JOptionPane.showMessageDialog(this, "Friend request from " + selectedUser.getUsername()+ " accepted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to accept the friend request. It might not exist anymore.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No friend requests to accept.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_acceptButtonActionPerformed
 
     private void declineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineButtonActionPerformed
-        if (jComboBox1.getItemCount() != 0){
-            requestHandler.declineFriendRequest(user,getSelectedUser());
-        }else {
-            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        if (jComboBox1.getItemCount() > 0) {
+            User selectedUser = getSelectedUser();
+            if (selectedUser != null) {
+                boolean success = requestHandler.declineFriendRequest(user, selectedUser);
+                if (success) {
+                    JOptionPane.showMessageDialog(this, "Friend request from " + selectedUser.getUsername()+ " declined.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to decline the friend request. It might not exist anymore.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No friend requests to decline.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_declineButtonActionPerformed
 
     private void unFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unFriendButtonActionPerformed
-        if (jComboBox1.getItemCount() != 0){
-            blockHandler.removeFriend(user,getSelectedUser());
-        }else {
-            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        if (jComboBox1.getItemCount() != 0) {
+            User selectedUser = getSelectedUser();
+            if (selectedUser != null) {
+                blockHandler.removeFriend(user, selectedUser);
+                JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No Users in List", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_unFriendButtonActionPerformed
     
@@ -307,38 +344,38 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FriendManagerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FriendManagerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FriendManagerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FriendManagerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FriendManagerGUI().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(FriendManagerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(FriendManagerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(FriendManagerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(FriendManagerGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new FriendManagerGUI().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptButton;
