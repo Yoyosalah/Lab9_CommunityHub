@@ -148,8 +148,8 @@ public class AddPost extends javax.swing.JFrame {
             ContentFactory.createContent("Post", contentlist, text, authorid, img);
             JOptionPane.showMessageDialog(
                     null, // to center the message
-                    "Post Added Succefully!",
-                    "Succefull",
+                    "Post Added Successfully!",
+                    "Successful",
                     JOptionPane.INFORMATION_MESSAGE
             );
             this.setVisible(false);

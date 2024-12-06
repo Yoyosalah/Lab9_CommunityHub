@@ -13,6 +13,7 @@ import javax.swing.*;
  * @author BLU-RAY
  */
 public class Post extends Content{
+    private static final long serialVersionUID = 1L;
 
     public Post(String text, String contentid, String authorid, Date timestamp, ImageIcon image) {
         this.text = text;

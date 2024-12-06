@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
  * @author BLU-RAY
  */
 public class Story extends Content {
+    private static final long serialVersionUID = 1L;
 
     public Story(String content, String contentid, String authorid, Date timestamp, ImageIcon image) {
         this.text = content;
