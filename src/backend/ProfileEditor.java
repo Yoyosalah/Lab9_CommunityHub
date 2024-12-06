@@ -39,6 +39,7 @@ public class ProfileEditor extends ProfileManager{
         String path = fileChooser.getSelectedFile().getAbsolutePath();
         if(path != null){   
             user.setProfilePhotoPath(path); //updates the profile photo
+            database.getUserByEmail(user.getEmail()).setProfilePhotoPath(path);
         }
         else
             JOptionPane.showInternalMessageDialog(null,"No image has been selected" , "Error", JOptionPane.ERROR_MESSAGE);
@@ -64,6 +65,7 @@ public class ProfileEditor extends ProfileManager{
         String path = fileChooser.getSelectedFile().getAbsolutePath();
         if(path != null){   
             user.setCoverPhotoPath(path); //updates the profile photo
+            database.getUserByEmail(user.getEmail()).setCoverPhotoPath(path);
         }
         else
             JOptionPane.showInternalMessageDialog(null,"No image has been selected" , "Error", JOptionPane.ERROR_MESSAGE);
@@ -72,6 +74,7 @@ public class ProfileEditor extends ProfileManager{
     
     public void updateBio(String bio){
         user.setBio(bio);
+        database.getUserByEmail(user.getEmail()).setBio(bio);
     }
     
     public void changePassword(){
@@ -81,6 +84,7 @@ public class ProfileEditor extends ProfileManager{
             //hash newPassword
             String hashedNewPassword = UserSecurity.hashPassword(newPassword);
             user.setPassword(hashedNewPassword);
+            database.getUserByEmail(user.getEmail()).setPassword(hashedNewPassword);
         }
         else{
             JOptionPane.showMessageDialog(null, "Incorrect password", "Change password", JOptionPane.ERROR_MESSAGE);
@@ -88,8 +92,6 @@ public class ProfileEditor extends ProfileManager{
     }
     
     public void saveUserChanges(){
-        database.deleteUserByEmail(user.getEmail());
-        database.insertUser(user);
         database.saveToFile();
     }
 }

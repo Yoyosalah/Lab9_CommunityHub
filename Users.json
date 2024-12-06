@@ -42,8 +42,20 @@
   "mobileNumber" : "01019011777",
   "gender" : "male",
   "profilePhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass2\\Screenshot 2024-11-07 030813.png",
-  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass2\\Screenshot 2024-11-07 030813.png",
-  "bio" : "im him",
+  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab1\\Screenshot 2024-10-25 234122.png",
+  "bio" : "7000",
   "dateOfBirth" : "1980-07-17",
+  "status" : "online"
+}, {
+  "userId" : 4,
+  "email" : "ramadan@icloud.com",
+  "username" : "kkkk aaaa",
+  "password" : "1604034c5b08259a2d60ed7de80cd9e0b629f2ece761ed228b11bc5097b60b87",
+  "mobileNumber" : "01019111877",
+  "gender" : "female",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "1900-12-07",
   "status" : "online"
 } ]

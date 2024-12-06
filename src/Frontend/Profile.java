@@ -35,7 +35,7 @@ public class Profile extends javax.swing.JFrame{
         this.user = user;
         this.profileContent = new ProfileContent(user);
         this.setVisible(true);
-        renderPosts(jPanel3);
+        //renderPosts(jPanel3);
         refresh();
         
     }
