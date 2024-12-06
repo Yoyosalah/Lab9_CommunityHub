@@ -22,7 +22,7 @@ public class User {
     private String coverPhotoPath;
     private String bio;
 
-    public User() {
+    public User() {}
 
     
     

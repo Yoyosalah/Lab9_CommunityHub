@@ -5,7 +5,11 @@
 package backend;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.time.*;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static constants.FileNames.CONTENT_FILENAME;
 
 /**
  *
@@ -26,23 +30,33 @@ public class ContentDatabase {
         this.contentlist = contentlist;
     }
 
-    public void writeToFile(String filename) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-            oos.writeObject(contentlist);
-            System.out.println("Content written to file successfully!");
+    public void writeToFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CONTENT_FILENAME))) {
+            long currentTime = System.currentTimeMillis();
+            List<Content> filteredContent = contentlist.stream()
+                    .filter(content -> !(content instanceof Story) || currentTime - content.getTimestamp().getTime() <= 24 * 60 * 60 * 1000) // only add stories that are not expired
+                    .collect(Collectors.toList());
+
+            oos.writeObject(filteredContent);
         } catch (IOException e) {
-            System.err.println("Error writing to file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    public void readFromFile(String filename) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-            contentlist = (ArrayList<Content>) ois.readObject();
-            System.out.println("Content read from file successfully!");
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error reading from file: " + e.getMessage());
+
+    public void readFromFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CONTENT_FILENAME))) {
+            long currentTime = System.currentTimeMillis();
+            List<Content> filteredContent = contentlist.stream()
+                    .filter(content -> !(content instanceof Story) || currentTime - content.getTimestamp().getTime() <= 24 * 60 * 60 * 1000)//only take non expired stories
+                    .collect(Collectors.toList());
+
+            oos.writeObject(filteredContent);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
     public void addContent(Content content) {
         contentlist.add(content);
