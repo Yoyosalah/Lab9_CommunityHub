@@ -4,7 +4,12 @@
  */
 package backend;
 
-import java.util.ArrayList;
+import java.io.*;
+import java.time.*;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static constants.FileNames.CONTENT_FILENAME;
 
 /**
  *
@@ -24,5 +29,36 @@ public class ContentDatabase {
     public void setContentlist(ArrayList<Content> contentlist) {
         this.contentlist = contentlist;
     }
-    
+
+    public void writeToFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CONTENT_FILENAME))) {
+            long currentTime = System.currentTimeMillis();
+            List<Content> filteredContent = contentlist.stream()
+                    .filter(content -> !(content instanceof Story) || currentTime - content.getTimestamp().getTime() <= 24 * 60 * 60 * 1000) // only add stories that are not expired
+                    .collect(Collectors.toList());
+
+            oos.writeObject(filteredContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void readFromFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CONTENT_FILENAME))) {
+            long currentTime = System.currentTimeMillis();
+            List<Content> filteredContent = contentlist.stream()
+                    .filter(content -> !(content instanceof Story) || currentTime - content.getTimestamp().getTime() <= 24 * 60 * 60 * 1000)//only take non expired stories
+                    .collect(Collectors.toList());
+
+            oos.writeObject(filteredContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void addContent(Content content) {
+        contentlist.add(content);
+    }
 }

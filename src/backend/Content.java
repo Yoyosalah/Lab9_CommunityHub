@@ -5,6 +5,7 @@
 package backend;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Date;
 import javax.swing.*;
 
@@ -12,7 +13,8 @@ import javax.swing.*;
  *
  * @author BLU-RAY
  */
-public abstract class Content {
+public class Content implements Serializable {
+    private static final long serialVersionUID = 1L;
     protected String text;
     protected String contentid;
     protected String authorid;
@@ -58,9 +60,5 @@ public abstract class Content {
     public void setImage(ImageIcon image) {
         this.image = image;
     }
-      
-    
-    public abstract void storeContent();
-    
     
 }

@@ -4,7 +4,6 @@
  */
 package frontend;
 
-import backend.User;
 import backend.UserDatabase;
 import backend.*;
 import java.util.ArrayList;
