@@ -13,7 +13,11 @@ import javax.swing.JOptionPane;
  */
 public class UserOperations {
 
+<<<<<<< Updated upstream
     private static final UserDatabase databaseManager = UserDatabase.getInstance();
+=======
+    protected static final UserDatabase databaseManager = UserDatabase.getInstance();
+>>>>>>> Stashed changes
 
     
 

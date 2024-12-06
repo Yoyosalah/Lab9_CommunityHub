@@ -5,7 +5,6 @@
 package backend;
 
 import java.io.*;
-import java.time.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,7 +17,7 @@ import static constants.FileNames.CONTENT_FILENAME;
 public class ContentDatabase {
     private ArrayList<Content> contentlist;
 
-    public ContentDatabase(ArrayList<Content> contentlist) {
+    public ContentDatabase() {
         this.contentlist = new ArrayList<>();
     }
 

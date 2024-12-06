@@ -15,9 +15,11 @@ import javax.swing.JDialog;
 public class Newsfeed extends javax.swing.JFrame {
     private User user=new User();
     private ProfileManager profile;
-   
+    private ContentDatabase contentdb = new ContentDatabase();
+
     public Newsfeed() {
         initComponents();
+        contentdb.readFromFile();
         this.setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -77,7 +79,7 @@ public class Newsfeed extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String authorid = String.valueOf(user.getUserId());
-        ArrayList<Content> contentlist = contentlist =profile.userPosts();
+        ArrayList<Content> contentlist = contentlist =contentdb.getContentlist();
         AddPost ap =new AddPost(contentlist, authorid);
         ap.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -85,7 +87,7 @@ public class Newsfeed extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String authorid = String.valueOf(user.getUserId());
-        ArrayList<Content> contentlist =profile.userPosts();
+        ArrayList<Content> contentlist =contentdb.getContentlist();
         AddStory as= new AddStory(contentlist, authorid);
         as.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton2ActionPerformed
