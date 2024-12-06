@@ -4,7 +4,16 @@
  */
 package frontend;
 
+import backend.BlockHandler;
+import backend.FriendsManager;
+import backend.RequestHandler;
 import backend.User;
+import java.awt.Image;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,10 +24,23 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     /**
      * Creates new form FriendManager
      */
+    private FriendsManager friendsManager = new FriendsManager();
+    private RequestHandler requestHandler = new RequestHandler(friendsManager);
+    private BlockHandler blockHandler = new BlockHandler(friendsManager);
+    
+    private List<User> allUsers;
     private User user;
-    public FriendManagerGUI(User user) {
+    private HashMap<User,String> comboBoxMap;
+    public FriendManagerGUI(User user , List<User> allUsers) {
         initComponents();
         this.user = user;
+        this.allUsers = allUsers;
+        updateComboBox(friendsManager.getFriends().get(user));
+        this.addButton.setVisible(false);
+        this.acceptButton.setVisible(false);
+        this.declineButton.setVisible(false);
+        this.unFriendButton.setVisible(true);
+        this.blockButton.setVisible(true);
     }
 
     /**
@@ -34,13 +56,14 @@ public class FriendManagerGUI extends javax.swing.JFrame {
         friendsButton = new javax.swing.JButton();
         suggestionsButton = new javax.swing.JButton();
         profilePic = new javax.swing.JLabel();
-        RequestsButton = new javax.swing.JButton();
+        requestsButton = new javax.swing.JButton();
         status = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        BlockButton = new javax.swing.JButton();
-        AddButton = new javax.swing.JButton();
-        AcceptButton = new javax.swing.JButton();
-        DeclineButton = new javax.swing.JButton();
+        blockButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        acceptButton = new javax.swing.JButton();
+        declineButton = new javax.swing.JButton();
+        unFriendButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,10 +90,10 @@ public class FriendManagerGUI extends javax.swing.JFrame {
 
         profilePic.setText("profilePic");
 
-        RequestsButton.setText("Requests");
-        RequestsButton.addActionListener(new java.awt.event.ActionListener() {
+        requestsButton.setText("Requests");
+        requestsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RequestsButtonActionPerformed(evt);
+                requestsButtonActionPerformed(evt);
             }
         });
 
@@ -78,31 +101,38 @@ public class FriendManagerGUI extends javax.swing.JFrame {
 
         jLabel3.setText("Select User");
 
-        BlockButton.setText("Block");
-        BlockButton.addActionListener(new java.awt.event.ActionListener() {
+        blockButton.setText("Block");
+        blockButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BlockButtonActionPerformed(evt);
+                blockButtonActionPerformed(evt);
             }
         });
 
-        AddButton.setText("Add");
-        AddButton.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddButtonActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
-        AcceptButton.setText("Accept");
-        AcceptButton.addActionListener(new java.awt.event.ActionListener() {
+        acceptButton.setText("Accept");
+        acceptButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcceptButtonActionPerformed(evt);
+                acceptButtonActionPerformed(evt);
             }
         });
 
-        DeclineButton.setText("Decline");
-        DeclineButton.addActionListener(new java.awt.event.ActionListener() {
+        declineButton.setText("Decline");
+        declineButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeclineButtonActionPerformed(evt);
+                declineButtonActionPerformed(evt);
+            }
+        });
+
+        unFriendButton.setText("UnFriend");
+        unFriendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unFriendButtonActionPerformed(evt);
             }
         });
 
@@ -112,29 +142,32 @@ public class FriendManagerGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(friendsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(suggestionsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RequestsButton))
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(profilePic, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(friendsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(suggestionsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(requestsButton))
+                            .addComponent(jLabel3)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profilePic, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+                        .addGap(52, 52, 52))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AcceptButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DeclineButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(AddButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BlockButton)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(blockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(acceptButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                                .addComponent(declineButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(unFriendButton))))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +178,7 @@ public class FriendManagerGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(friendsButton)
                             .addComponent(suggestionsButton)
-                            .addComponent(RequestsButton))
+                            .addComponent(requestsButton))
                         .addGap(8, 8, 8)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,51 +188,121 @@ public class FriendManagerGUI extends javax.swing.JFrame {
                         .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(status)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddButton)
-                            .addComponent(BlockButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(addButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AcceptButton)
-                            .addComponent(DeclineButton))
-                        .addGap(29, 29, 29))))
+                        .addComponent(acceptButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(declineButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(unFriendButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(blockButton)
+                        .addGap(15, 15, 15))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
-        // TODO add your handling code here:
+       List<User> friends =  friendsManager.getFriends().get(user);
+        updateComboBox(friends);
+        this.addButton.setVisible(false);
+        this.acceptButton.setVisible(false);
+        this.declineButton.setVisible(false);
+        this.unFriendButton.setVisible(true);
+        this.blockButton.setVisible(true);
     }//GEN-LAST:event_friendsButtonActionPerformed
 
-    private void RequestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestsButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RequestsButtonActionPerformed
+    private void requestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsButtonActionPerformed
+        List<User> requests = friendsManager.getReceivedRequests().get(user);
+        updateComboBox(requests);
+        this.addButton.setVisible(false);
+        this.acceptButton.setVisible(true);
+        this.declineButton.setVisible(true);
+        this.unFriendButton.setVisible(false);
+        this.blockButton.setVisible(true);
+    }//GEN-LAST:event_requestsButtonActionPerformed
 
-    private void BlockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlockButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BlockButtonActionPerformed
+    private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
+        if (jComboBox1.getItemCount() != 0){
+            blockHandler.blockUser(user,getSelectedUser());
+        }else {
+            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_blockButtonActionPerformed
 
     private void suggestionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionsButtonActionPerformed
-        // TODO add your handling code here:
+        List<User> suggestions = friendsManager.friendSuggestions(user, allUsers);
+        updateComboBox(suggestions);
+        this.addButton.setVisible(true);
+        this.acceptButton.setVisible(true);
+        this.declineButton.setVisible(true);
+        this.blockButton.setVisible(true);
     }//GEN-LAST:event_suggestionsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        User selectedUser = getSelectedUser();
+        if (selectedUser != null) {
+            String profilePhotoPath = selectedUser.getProfilePhotoPath();
+            ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
+            Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
+            profilePic.setIcon(new ImageIcon(scaledImage));
+            status.setText(selectedUser.getStatus());
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddButtonActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        if (jComboBox1.getItemCount() != 0){
+            requestHandler.sendFriendRequest(user,getSelectedUser());
+        }else {
+            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
 
-    private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AcceptButtonActionPerformed
+    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
+        if (jComboBox1.getItemCount() != 0){
+            requestHandler.acceptFriendRequest(user,getSelectedUser());
+        }else {
+            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_acceptButtonActionPerformed
 
-    private void DeclineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeclineButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DeclineButtonActionPerformed
+    private void declineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineButtonActionPerformed
+        if (jComboBox1.getItemCount() != 0){
+            requestHandler.declineFriendRequest(user,getSelectedUser());
+        }else {
+            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_declineButtonActionPerformed
+
+    private void unFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unFriendButtonActionPerformed
+        if (jComboBox1.getItemCount() != 0){
+            blockHandler.removeFriend(user,getSelectedUser());
+        }else {
+            JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_unFriendButtonActionPerformed
+    
+    private User getSelectedUser(){
+        String selectedUsername = (String) jComboBox1.getSelectedItem();
+        for (Map.Entry<User, String> entry : comboBoxMap.entrySet()) {
+            if (entry.getValue().equals(selectedUsername)) {
+                return entry.getKey();
+            }
+        }
+        return null; // No match found
+    }
+    
+    private void updateComboBox(List<User> users) {
+        comboBoxMap.clear();
+        jComboBox1.removeAllItems();
+        for (User user : users) {
+            comboBoxMap.put(user, user.getUsername());
+            jComboBox1.addItem(user.getUsername());
+        }
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -238,16 +341,17 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AcceptButton;
-    private javax.swing.JButton AddButton;
-    private javax.swing.JButton BlockButton;
-    private javax.swing.JButton DeclineButton;
-    private javax.swing.JButton RequestsButton;
+    private javax.swing.JButton acceptButton;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton blockButton;
+    private javax.swing.JButton declineButton;
     private javax.swing.JButton friendsButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel profilePic;
+    private javax.swing.JButton requestsButton;
     private javax.swing.JLabel status;
     private javax.swing.JButton suggestionsButton;
+    private javax.swing.JButton unFriendButton;
     // End of variables declaration//GEN-END:variables
 }
