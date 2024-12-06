@@ -4,6 +4,7 @@
  */
 package lab9;
 
+import frontend.LandingPage;
 import frontend.Newsfeed;
 
 /**
@@ -17,7 +18,7 @@ public class Lab9 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Newsfeed n = new Newsfeed();
+        LandingPage lp = new LandingPage();
     }
     
 }
