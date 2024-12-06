@@ -27,7 +27,6 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     private FriendsManager friendsManager = new FriendsManager();
     private RequestHandler requestHandler = new RequestHandler(friendsManager);
     private BlockHandler blockHandler = new BlockHandler(friendsManager);
-    
     private List<User> allUsers;
     private User user;
     private HashMap<User,String> comboBoxMap;

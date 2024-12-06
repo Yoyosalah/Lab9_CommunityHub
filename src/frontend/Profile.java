@@ -6,18 +6,13 @@ package frontend;
 import backend.*;
 import frontend.AddPost;
 import java.awt.Image;
-import javax.swing.ImageIcon;
+import javax.swing.*;
+
 import frontend.Window;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
+
 /**
  *
  * @author Mustafa
@@ -35,6 +30,7 @@ public class Profile extends javax.swing.JFrame{
         this.user = user;
         this.profileContent = new ProfileContent(user);
         this.setVisible(true);
+
         renderPosts(jPanel3);
         refresh();
         
@@ -183,7 +179,8 @@ public class Profile extends javax.swing.JFrame{
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
         // TODO add your handling code here:
-
+        FriendManagerGUI f =new FriendManagerGUI(user,UserDatabase.getInstance().returnAllUsers());
+        f.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     /**

@@ -1,1 +1,13 @@
-{ }
+{
+  "backend.User@37ec270f" : [ ],
+  "backend.User@428ec3f5" : [ {
+    "userId" : 3,
+    "email" : "youssefhelmy@gmail.com",
+    "username" : "Youssef Helmy",
+    "password" : "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+    "mobileNumber" : "01206870238",
+    "gender" : "male",
+    "profilePhotoPath" : null,
+    "coverPhotoPath" : null,
+    "bio" : null,
+    "dateOfBirth"
