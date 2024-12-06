@@ -4,6 +4,7 @@
  */
 package backend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,15 +13,13 @@ import java.util.List;
  */
 public class ProfileContent extends ProfileManager{
 
+    ContentDatabase contentDatabase = new ContentDatabase();
+
     public ProfileContent(User user) {
         super(user);
     }
     
-    public List<Content> userPosts(){
-        return null;
-    }
-    
-    public List<User> userFriends(){
-        return null;
+    public ArrayList<Content> userPosts(){
+        return contentDatabase.getContentlist();
     }
 }

@@ -35,7 +35,7 @@ public class Profile extends javax.swing.JFrame{
         this.user = user;
         this.profileContent = new ProfileContent(user);
         this.setVisible(true);
-        //renderPosts(jPanel3);
+        renderPosts(jPanel3);
         refresh();
         
     }
@@ -150,7 +150,7 @@ public class Profile extends javax.swing.JFrame{
                                     .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(40, 40, 40)
                                 .addComponent(friendsButton)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(9, 9, 9)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -168,8 +168,8 @@ public class Profile extends javax.swing.JFrame{
                             .addComponent(friendsButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

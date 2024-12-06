@@ -14,7 +14,7 @@ import javax.swing.JDialog;
  */
 public class Newsfeed extends javax.swing.JFrame {
     private User user=new User();
-    private ProfileManager profile;
+    private ProfileContent profile;
    
     public Newsfeed() {
         initComponents();
@@ -77,7 +77,7 @@ public class Newsfeed extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String authorid = String.valueOf(user.getUserId());
-        ArrayList<Content> contentlist = contentlist =profile.userPosts();
+        ArrayList<Content> contentlist = profile.userPosts();
         AddPost ap =new AddPost(contentlist, authorid);
         ap.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
