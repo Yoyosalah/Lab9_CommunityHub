@@ -13,10 +13,11 @@ import java.util.List;
  */
 public class ProfileContent extends ProfileManager{
 
-    ContentDatabase contentDatabase = new ContentDatabase();
+    ContentDatabase contentDatabase;// = new ContentDatabase();
 
-    public ProfileContent(User user) {
+    public ProfileContent(User user,ContentDatabase contentDatabase) {
         super(user);
+        this.contentDatabase = contentDatabase;
     }
     
     public ArrayList<Content> userPosts(){

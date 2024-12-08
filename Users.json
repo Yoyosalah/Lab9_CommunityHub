@@ -41,7 +41,7 @@
   "password" : "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
   "mobileNumber" : "01206870238",
   "gender" : "male",
-  "profilePhotoPath" : null,
+  "profilePhotoPath" : "C:\\Users\\BLU-RAY\\Pictures\\Samsung Gallery Downloads\\Assassins Creed.jpg",
   "coverPhotoPath" : null,
   "bio" : null,
   "dateOfBirth" : "2004-05-01",
@@ -57,5 +57,17 @@
   "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass1\\2-a.png",
   "bio" : null,
   "dateOfBirth" : "1990-12-06",
+  "status" : "online"
+}, {
+  "userId" : 5,
+  "email" : "mos@mail.com",
+  "username" : "os dsad",
+  "password" : "f6e0a1e2ac41945a9aa7ff8a8aaa0cebc12a3bcc981a929ad5cf810a090e11ae",
+  "mobileNumber" : "01019011788",
+  "gender" : "male",
+  "profilePhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab1\\Screenshot 2024-10-25 233943.png",
+  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab1\\Screenshot 2024-10-25 234734.png",
+  "bio" : "kjasdkasd",
+  "dateOfBirth" : "2017-12-07",
   "status" : "online"
 } ]

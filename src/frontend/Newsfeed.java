@@ -32,7 +32,7 @@ public class Newsfeed extends javax.swing.JFrame {
         this.user = user;
         this.friendManager = new FriendsManager();
         this.requestHandler = new RequestHandler(friendManager);
-        this.profile = new ProfileContent(user);
+        this.profile = new ProfileContent(user,contentDatabase);
         this.comboBoxMap = new HashMap<>();
         this.contentDatabase = new ContentDatabase();
         this.contentList = contentDatabase.getContentlist();
@@ -285,12 +285,16 @@ public class Newsfeed extends javax.swing.JFrame {
         if(!contentList.isEmpty()){
             displayContent(0);//display first content
         }
+        else
+            System.out.println("empty list");
+        contentDatabase.writeToFile();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         // TODO add your handling code here:
-        Profile p =new Profile(user);
+        Profile p =new Profile(user,contentDatabase);
         p.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        contentDatabase.writeToFile();
     }//GEN-LAST:event_profileButtonActionPerformed
 
     private void addFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendButtonActionPerformed

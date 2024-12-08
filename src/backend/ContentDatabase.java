@@ -7,6 +7,7 @@ package backend;
 import java.io.*;
 import java.time.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static constants.FileNames.CONTENT_FILENAME;
@@ -37,29 +38,38 @@ public class ContentDatabase {
             List<Content> filteredContent = contentlist.stream()
                     .filter(content -> !(content instanceof Story) || currentTime - content.getTimestamp().getTime() <= 24 * 60 * 60 * 1000) // only add stories that are not expired
                     .collect(Collectors.toList());
-
             oos.writeObject(filteredContent);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private void filterOldStories() {
+        long ONE_DAY_MILLIS = TimeUnit.HOURS.toMillis(24);
+        long currentTime = System.currentTimeMillis();
+        contentlist = (ArrayList<Content>) contentlist.stream()
+                .filter(content -> !(content instanceof Story) || currentTime - content.getTimestamp().getTime() <= ONE_DAY_MILLIS)
+                .collect(Collectors.toList());
+    }
 
     public void readFromFile() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CONTENT_FILENAME))) {
-            long currentTime = System.currentTimeMillis();
-            List<Content> filteredContent = contentlist.stream()
-                    .filter(content -> !(content instanceof Story) || currentTime - content.getTimestamp().getTime() <= 24 * 60 * 60 * 1000)//only take non expired stories
-                    .collect(Collectors.toList());
-
-            oos.writeObject(filteredContent);
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CONTENT_FILENAME))) {
+            Object object = ois.readObject();
+            if (object instanceof ArrayList) {
+                contentlist = (ArrayList<Content>) object;
+                filterOldStories();
+            }
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
 
-    public void addContent(Content content) {
+        public void addContent(Content content) {
         contentlist.add(content);
     }
 }
