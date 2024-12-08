@@ -24,11 +24,11 @@ public class Profile extends javax.swing.JFrame{
      */
     private ProfileContent profileContent;
     private User user;
-    
-    public Profile(User user) {
+    private ContentDatabase contentDatabase;
+    public Profile(User user,ContentDatabase contentDatabase) {
         initComponents();
         this.user = user;
-        this.profileContent = new ProfileContent(user);
+        this.profileContent = new ProfileContent(user,contentDatabase);
         this.setVisible(true);
 
         renderPosts(jPanel3);
