@@ -41,7 +41,7 @@ public class UserDatabase {
     // using Singleton Design Pattern
     private static UserDatabase instance = null;
 
-    private UserDatabase(){
+    private UserDatabase() {
         // to defeat instantiation
         this.users = new ArrayList<User>();
         readFromFile();
@@ -49,13 +49,12 @@ public class UserDatabase {
     }
 
     public static UserDatabase getInstance() {
-        if(instance == null) {//1st time to be called
-            instance=new UserDatabase();
+        if (instance == null) {//1st time to be called
+            instance = new UserDatabase();
         }
         //already created before
         return instance;
     }
-
 
     private void readFromFile() {
         try {
@@ -101,6 +100,15 @@ public class UserDatabase {
     public User getUserByEmail(String email) {
         for (User user : users) {
             if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User getUserById(int userId) {
+        for (User user : users) {
+            if (user.getUserId() == userId) {
                 return user;
             }
         }

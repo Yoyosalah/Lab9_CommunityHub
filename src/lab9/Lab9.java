@@ -18,8 +18,10 @@ public class Lab9 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //DO NOT USE IT 
+        
         // TODO code application logic here
-        LandingPage lp = new LandingPage();
+        //LandingPage lp = new LandingPage();
         //nf.setVisible(true);
     }
     
