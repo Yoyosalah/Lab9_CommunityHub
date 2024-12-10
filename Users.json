@@ -77,8 +77,8 @@
   "password" : "e9058ab198f6908f702111b0c0fb5b36f99d00554521886c40e2891b349dc7a1",
   "mobileNumber" : "01111111111",
   "gender" : "male",
-  "profilePhotoPath" : null,
-  "coverPhotoPath" : null,
+  "profilePhotoPath" : "C:\\Users\\Youss\\OneDrive\\Pictures\\10-dof-imu-sensor-d-1.png",
+  "coverPhotoPath" : "C:\\Users\\Youss\\OneDrive\\Pictures\\asus.jpg",
   "bio" : null,
   "dateOfBirth" : "2024-12-01",
   "status" : "online"
