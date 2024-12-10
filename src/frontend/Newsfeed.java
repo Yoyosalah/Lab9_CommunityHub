@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,6 +46,8 @@ public class Newsfeed extends javax.swing.JFrame {
         displayProfilePicture(); //user's profile pic
         updateComboBox(); //Friends suggestion 
         loadContent(); //loading posts and stories
+        displayContent(this.currentIndex);
+        fillJTable(); // Fills table with user's friends and their status
 
         if (!contentList.isEmpty()) {
             displayContent(0); //Display the first content
@@ -282,12 +285,15 @@ public class Newsfeed extends javax.swing.JFrame {
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         loadContent();
+        fillJTable();
         if(!contentList.isEmpty()){
-            displayContent(0);//display first content
+            currentIndex=0;
+            displayContent(currentIndex);//display first content
         }
         else
             System.out.println("empty list");
-        contentDatabase.writeToFile();
+        updateComboBox();
+        displayProfilePicture();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
@@ -342,13 +348,13 @@ public class Newsfeed extends javax.swing.JFrame {
     private void loadContent(){
         ArrayList<Content> allContent = contentDatabase.getContentlist();
         ArrayList<Content> filteredContent = new ArrayList<>();
-        ArrayList<User> friends = (ArrayList<User>) friendManager.getFriends().get(user);
+        ArrayList<User> friends = (ArrayList<User>) friendManager.getFriendsConverted().get(user);
         
         if (contentList != null){
             contentList.clear();
         }else{
             contentList = new ArrayList<>();
-    }
+        }
         for(Content c: allContent){
             for(User f:friends){
                 if(String.valueOf(f.getUserId()).equals(c.getAuthorid())){
@@ -382,7 +388,19 @@ public class Newsfeed extends javax.swing.JFrame {
             jComboBox1.addItem(suggestion.getUsername());
         }
     }
-    
+    private void fillJTable(){
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.setRowCount(0);//empty table first
+        tableModel.addColumn("Username");
+        tableModel.addColumn("Status");
+
+        List<User> friends = friendManager.getFriendsConverted().get(user);
+
+        for (User friend : friends) {
+            tableModel.addRow(new Object[]{friend.getUsername(), friend.getStatus()});
+        }
+        jTable1.setModel(tableModel);
+    }
     private User getSelectedUser(){
         String selectedUsername = (String) jComboBox1.getSelectedItem();
         for (Map.Entry<User, String> entry : comboBoxMap.entrySet()) {

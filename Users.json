@@ -70,4 +70,28 @@
   "bio" : "kjasdkasd",
   "dateOfBirth" : "2017-12-07",
   "status" : "online"
+}, {
+  "userId" : 6,
+  "email" : "y@gmail.com",
+  "username" : "yo yo",
+  "password" : "e9058ab198f6908f702111b0c0fb5b36f99d00554521886c40e2891b349dc7a1",
+  "mobileNumber" : "01111111111",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2024-12-01",
+  "status" : "online"
+}, {
+  "userId" : 7,
+  "email" : "oy@gmail.com",
+  "username" : "oy oy",
+  "password" : "c45439e874c4bed7bcbd5a785cb79b55a6a71e35e988147245a729bee438c9fa",
+  "mobileNumber" : "01111111111",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2024-12-01",
+  "status" : "online"
 } ]

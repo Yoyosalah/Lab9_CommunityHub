@@ -55,7 +55,7 @@ public class ContentDatabase {
     public void readFromFile() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CONTENT_FILENAME))) {
             Object object = ois.readObject();
-            if (object instanceof ArrayList) {
+            if (object instanceof List) {
                 contentlist = (ArrayList<Content>) object;
                 filterOldStories();
             }

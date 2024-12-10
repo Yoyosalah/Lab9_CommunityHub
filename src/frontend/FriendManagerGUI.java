@@ -32,11 +32,12 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     private HashMap<User,String> comboBoxMap;
     
     public FriendManagerGUI(User user , List<User> allUsers) {
+        this.setVisible(true);
         this.comboBoxMap = new HashMap<>();
         initComponents();
         this.user = user;
         this.allUsers = allUsers;
-        updateComboBox(friendsManager.getFriends().get(user));
+        updateComboBox(friendsManager.getFriendsConverted().get(user));
         this.addButton.setVisible(false);
         this.acceptButton.setVisible(false);
         this.declineButton.setVisible(false);
@@ -206,7 +207,7 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
-       List<User> friends =  friendsManager.getFriends().get(user);
+       List<User> friends =  friendsManager.getFriendsConverted().get(user);
         updateComboBox(friends);
         this.addButton.setVisible(false);
         this.acceptButton.setVisible(false);
@@ -216,7 +217,8 @@ public class FriendManagerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     private void requestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsButtonActionPerformed
-        List<User> requests = friendsManager.getReceivedRequests().get(user);
+        List<User> requests = friendsManager.getReceivedRequestsConverted().get(user);
+        System.out.println(requests);
         updateComboBox(requests);
         this.addButton.setVisible(false);
         this.acceptButton.setVisible(true);
