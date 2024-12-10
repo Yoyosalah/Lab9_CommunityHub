@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Youss
  */
-public class FriendManagerGUI extends javax.swing.JFrame {
+public class FriendManagerGUI extends Window {
 
     /**
      * Creates new form FriendManager

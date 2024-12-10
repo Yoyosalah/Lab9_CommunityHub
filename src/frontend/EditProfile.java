@@ -19,7 +19,7 @@ import javax.swing.filechooser.FileFilter;
  *
  * @author Mustafa
  */
-public class EditProfile extends javax.swing.JFrame {
+public class EditProfile extends Window {
 
     /**
      * Creates new form Profile

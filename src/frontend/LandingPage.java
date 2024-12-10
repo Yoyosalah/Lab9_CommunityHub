@@ -222,8 +222,9 @@ public class LandingPage extends Window {
                 //Logout_Example nextPage = new Logout_Example();
                 //nextPage.setEmail(email);
                 //new Profile(database.getUserByEmail(email));
-                new Newsfeed(database.getUserByEmail(email));
-                this.setVisible(false); // or maybe dispose 
+                Newsfeed newsfeed = new Newsfeed(database.getUserByEmail(email));
+                newsfeed.setEmail(email);
+                this.dispose(); 
                 
             }
 
