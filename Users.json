@@ -81,7 +81,7 @@
   "coverPhotoPath" : "C:\\Users\\Youss\\OneDrive\\Pictures\\asus.jpg",
   "bio" : null,
   "dateOfBirth" : "2024-12-01",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "userId" : 7,
   "email" : "oy@gmail.com",
@@ -93,5 +93,5 @@
   "coverPhotoPath" : null,
   "bio" : null,
   "dateOfBirth" : "2024-12-01",
-  "status" : "online"
+  "status" : "offline"
 } ]

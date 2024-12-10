@@ -67,7 +67,9 @@ public class RequestHandler {
 
             // Remove the sender from the receiver's received requests list and vice versa
             receivedList.remove(Integer.valueOf(sender.getUserId()));
+            receivedList.remove(Integer.valueOf(receiver.getUserId()));
             sentList.remove(Integer.valueOf(receiver.getUserId()));
+            sentList.remove(Integer.valueOf(sender.getUserId()));
 
             manager.saveChangesToJSON();
             return true; // Request accepted successfully

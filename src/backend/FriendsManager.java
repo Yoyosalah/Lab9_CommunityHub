@@ -61,11 +61,12 @@ public class FriendsManager {
         List<Integer> userFriends = friends.get(userId);
         List<Integer> userBlocked = blockedUsers.get(userId);
         List<Integer> userSentRequests = sentRequests.get(userId);
+        List<Integer> userRecievedRequests = receivedRequests.get(userId);
 
         List<User> suggestions = new ArrayList<>();
         for (User u : users) {
             int uId = u.getUserId();
-            if (!userFriends.contains(uId) && !userBlocked.contains(uId) && !userSentRequests.contains(uId) && userId != uId) {
+            if (!userFriends.contains(uId) && !userBlocked.contains(uId) && !userSentRequests.contains(uId) && !userRecievedRequests.contains(uId) && userId != uId) {
                 suggestions.add(u);
             }
         }

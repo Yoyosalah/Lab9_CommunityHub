@@ -30,6 +30,7 @@ public class FriendManagerGUI extends Window {
     private List<User> allUsers;
     private User user;
     private HashMap<User,String> comboBoxMap;
+    private int listIndicator;
     
     public FriendManagerGUI(User user , List<User> allUsers) {
         this.setVisible(true);
@@ -43,6 +44,7 @@ public class FriendManagerGUI extends Window {
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(true);
         this.blockButton.setVisible(true);
+        this.listIndicator = 0;
     }
 
     /**
@@ -89,8 +91,6 @@ public class FriendManagerGUI extends Window {
                 suggestionsButtonActionPerformed(evt);
             }
         });
-
-        profilePic.setText("profilePic");
 
         requestsButton.setText("Requests");
         requestsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -204,6 +204,7 @@ public class FriendManagerGUI extends Window {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
@@ -214,6 +215,7 @@ public class FriendManagerGUI extends Window {
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(true);
         this.blockButton.setVisible(true);
+        this.listIndicator = 0; // indicator that we're at friends list
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     private void requestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsButtonActionPerformed
@@ -225,11 +227,13 @@ public class FriendManagerGUI extends Window {
         this.declineButton.setVisible(true);
         this.unFriendButton.setVisible(false);
         this.blockButton.setVisible(true);
+        this.listIndicator = 1; // indicator that we're at requests list
     }//GEN-LAST:event_requestsButtonActionPerformed
 
     private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
         if (jComboBox1.getItemCount() != 0){
             blockHandler.blockUser(user,getSelectedUser());
+            updateComboBox(ListAccordingToIndicator(listIndicator));
         }else {
             JOptionPane.showMessageDialog(this, "No Users in List","Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -239,14 +243,17 @@ public class FriendManagerGUI extends Window {
         List<User> suggestions = friendsManager.friendSuggestions(user, allUsers);
         updateComboBox(suggestions);
         this.addButton.setVisible(true);
-        this.acceptButton.setVisible(true);
-        this.declineButton.setVisible(true);
+        this.acceptButton.setVisible(false);
+        this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(false);
         this.blockButton.setVisible(true);
+        this.listIndicator = 2; // indicator that we're at suggestions list
     }//GEN-LAST:event_suggestionsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         User selectedUser = getSelectedUser();
+        profilePic.setIcon(null);  // Clear the profile picture
+        status.setText("");        // Clear the status text
         if (selectedUser != null) {
             String profilePhotoPath = selectedUser.getProfilePhotoPath();
             ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
@@ -263,6 +270,7 @@ public class FriendManagerGUI extends Window {
                 boolean success = requestHandler.sendFriendRequest(user, selectedUser);
                 if (success) {
                     JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                    updateComboBox(ListAccordingToIndicator(listIndicator));
                 } else {
                     JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -281,6 +289,7 @@ public class FriendManagerGUI extends Window {
                 boolean success = requestHandler.acceptFriendRequest(user, selectedUser);
                 if (success) {
                     JOptionPane.showMessageDialog(this, "Friend request from " + selectedUser.getUsername()+ " accepted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    updateComboBox(ListAccordingToIndicator(listIndicator));
                 } else {
                     JOptionPane.showMessageDialog(this, "Failed to accept the friend request. It might not exist anymore.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -299,6 +308,7 @@ public class FriendManagerGUI extends Window {
                 boolean success = requestHandler.declineFriendRequest(user, selectedUser);
                 if (success) {
                     JOptionPane.showMessageDialog(this, "Friend request from " + selectedUser.getUsername()+ " declined.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    updateComboBox(ListAccordingToIndicator(listIndicator));
                 } else {
                     JOptionPane.showMessageDialog(this, "Failed to decline the friend request. It might not exist anymore.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -316,6 +326,7 @@ public class FriendManagerGUI extends Window {
             if (selectedUser != null) {
                 blockHandler.removeFriend(user, selectedUser);
                 JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                updateComboBox(ListAccordingToIndicator(listIndicator));
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -333,13 +344,20 @@ public class FriendManagerGUI extends Window {
         }
         return null; // No match found
     }
-    
+    private List<User> ListAccordingToIndicator(int indicator){
+        if(listIndicator==0)
+            return friendsManager.getFriendsConverted().get(user);
+        else if(listIndicator==1)
+            return friendsManager.getReceivedRequestsConverted().get(user);
+        else
+            return friendsManager.friendSuggestions(user, allUsers);
+    }
     private void updateComboBox(List<User> users) {
         comboBoxMap.clear();
         jComboBox1.removeAllItems();
-        for (User user : users) {
-            comboBoxMap.put(user, user.getUsername());
-            jComboBox1.addItem(user.getUsername());
+        for (User u : users) {
+            comboBoxMap.put(u, u.getUsername());
+            jComboBox1.addItem(u.getUsername());
         }
     }
     

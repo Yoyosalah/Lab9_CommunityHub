@@ -372,6 +372,11 @@ public class Newsfeed extends Window {
     }//GEN-LAST:event_LogoutbtnActionPerformed
 
     private void displayContent(int index) {
+        textArea.setText(""); // Clear text area
+        AuthorArea.setText(""); // Clear author area
+        dateArea.setText(""); // Clear date area
+        photoArea.setIcon(null); // Clear image in photo area
+        contentTypeArea.setText(""); // Clear content type area
         if (index >= 0 && index < contentList.size()) {
             Content content = contentList.get(index);
             textArea.setText(content.getText());
@@ -417,6 +422,8 @@ public class Newsfeed extends Window {
     }
 
     private void displayProfilePicture() {//display users profile picture and resizing it to fit the jlabel
+        profilePic.setIcon(null);
+        
         String profilePicPath = user.getProfilePhotoPath();
 
         if (profilePicPath != null && !profilePicPath.isEmpty()) {
