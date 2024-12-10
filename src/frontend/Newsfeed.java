@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author BLU-RAY
  */
 public class Newsfeed extends Window {
+
     //for logout 
     String email;
 
@@ -50,7 +51,6 @@ public class Newsfeed extends Window {
 
         //setTitle("Newsfeed");
         prepare("Newsfeed");
-        setLocationRelativeTo(null);
         displayProfilePicture(); //user's profile pic
         updateComboBox(); //Friends suggestion 
         loadContent(); //loading posts and stories
@@ -61,7 +61,6 @@ public class Newsfeed extends Window {
             displayContent(0); //Display the first content
         }
 
-        setVisible(true);
     }
 
     /**
@@ -318,6 +317,9 @@ public class Newsfeed extends Window {
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        this.friendManager = new FriendsManager();
+        this.requestHandler = new RequestHandler(friendManager);
+        this.profile = new ProfileContent(user, contentDatabase);
         loadContent();
         fillJTable();
         if (!contentList.isEmpty()) {
@@ -366,7 +368,7 @@ public class Newsfeed extends Window {
 
         this.dispose();
 
-        //}
+
     }//GEN-LAST:event_LogoutbtnActionPerformed
 
     private void displayContent(int index) {
