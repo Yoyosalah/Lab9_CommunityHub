@@ -32,7 +32,7 @@ public class FriendManagerGUI extends Window {
     public void setPrevPage(Window prevPage) {
         this.prevPage = prevPage;
     }
-    
+
     private UserDatabase userDatabase = UserDatabase.getInstance();
 
     private FriendsManager friendsManager = new FriendsManager();
@@ -57,6 +57,11 @@ public class FriendManagerGUI extends Window {
         this.unFriendButton.setVisible(true);
         this.blockButton.setVisible(true);
         this.listIndicator = 0;
+        this.searchBar.setVisible(false);
+        this.jScrollPane1.setVisible(false);
+        this.jComboBox1.setVisible(true);
+        this.status.setVisible(true);
+        this.jLabel3.setVisible(true);
     }
 
     /**
@@ -252,16 +257,16 @@ public class FriendManagerGUI extends Window {
                             .addComponent(suggestionsButton)
                             .addComponent(requestsButton)
                             .addComponent(SearchButton))
-                        .addGap(17, 17, 17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(status))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(2, 2, 2)
                         .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
+                        .addGap(98, 98, 98)
                         .addComponent(Back)
                         .addContainerGap())))
         );
@@ -284,6 +289,12 @@ public class FriendManagerGUI extends Window {
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
         List<User> friends = friendsManager.getFriendsConverted().get(user);
         updateComboBox(friends);
+        this.searchBar.setVisible(false);
+        this.jScrollPane1.setVisible(false);
+        this.jComboBox1.setVisible(true);
+        this.status.setVisible(true);
+        this.jLabel3.setVisible(true);
+
         this.addButton.setVisible(false);
         this.acceptButton.setVisible(false);
         this.declineButton.setVisible(false);
@@ -294,7 +305,12 @@ public class FriendManagerGUI extends Window {
 
     private void requestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsButtonActionPerformed
         List<User> requests = friendsManager.getReceivedRequestsConverted().get(user);
-        System.out.println(requests);
+        this.searchBar.setVisible(false);
+        this.jComboBox1.setVisible(true);
+        this.status.setVisible(true);
+        this.jLabel3.setVisible(true);
+        this.jScrollPane1.setVisible(false);
+//        System.out.println(requests);
         updateComboBox(requests);
         this.addButton.setVisible(false);
         this.acceptButton.setVisible(true);
@@ -315,6 +331,11 @@ public class FriendManagerGUI extends Window {
 
     private void suggestionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionsButtonActionPerformed
         List<User> suggestions = friendsManager.friendSuggestions(user, allUsers);
+        this.searchBar.setVisible(false);
+        this.jScrollPane1.setVisible(false);
+        this.jComboBox1.setVisible(true);
+        this.status.setVisible(true);
+        this.jLabel3.setVisible(true);
         updateComboBox(suggestions);
         this.addButton.setVisible(true);
         this.acceptButton.setVisible(false);
@@ -413,6 +434,7 @@ public class FriendManagerGUI extends Window {
         // TODO add your handling code here:
         List<User> test = userDatabase.returnAllUsers();
         updateComboBox(test);
+        this.jScrollPane1.setVisible(true);
 
         this.searchBar.setVisible(true);
         this.SearchOutput.setVisible(true);
@@ -461,8 +483,6 @@ public class FriendManagerGUI extends Window {
         //add filtred users 
         this.SearchOutput.setListData(filteredUsers.toArray(new String[0])); //new String[0] is used to specify the type of array
 
-        
-        
         // If there is exactly one result, you can automatically select it or show the add button
         if (filteredUsers.size() == 1) {
             // Automatically select the first (and only) user in the list

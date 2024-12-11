@@ -26,12 +26,12 @@ public abstract class Window extends javax.swing.JFrame {
         
         //set background
         JPanel pane = (JPanel) this.getContentPane();
-        pane.setBackground(new Color(195, 230, 240));
+        pane.setBackground(new Color(203, 230, 240));
         
         for (Component comp : this.getContentPane().getComponents()) {
             if (comp instanceof JPanel) {
                 JPanel panel = (JPanel) comp;
-                panel.setBackground(new Color(195, 230, 240));  
+                panel.setBackground(new Color(203, 230, 240));  
                 break;  // Exit once the 1st panel is found and updated
             }
         }
