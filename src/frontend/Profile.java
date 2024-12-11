@@ -19,7 +19,11 @@ import java.util.ArrayList;
  * @author Mustafa
  */
 public class Profile extends Window {
+    private Window prevPage;
 
+    public void setPrevPage(Window prevPage) {
+        this.prevPage = prevPage;
+    }
     /**
      * Creates new form Profile
      */
@@ -210,13 +214,13 @@ public class Profile extends Window {
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
         // TODO add your handling code here:
         FriendManagerGUI f = new FriendManagerGUI(user, UserDatabase.getInstance().returnAllUsers());
-        f.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        f.setPrevPage(this);
+        this.setVisible(false);
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-        Newsfeed newsfeed = new Newsfeed(user, contentDatabase);
-        newsfeed.setEmail(user.getEmail());
+        prevPage.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_BackActionPerformed

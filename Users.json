@@ -57,7 +57,7 @@
   "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass1\\2-a.png",
   "bio" : null,
   "dateOfBirth" : "1990-12-06",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "userId" : 5,
   "email" : "mos@mail.com",
@@ -69,7 +69,7 @@
   "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab1\\Screenshot 2024-10-25 234734.png",
   "bio" : "kjasdkasd",
   "dateOfBirth" : "2017-12-07",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "userId" : 6,
   "email" : "y@gmail.com",

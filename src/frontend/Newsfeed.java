@@ -335,9 +335,8 @@ public class Newsfeed extends Window {
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         // TODO add your handling code here:
         Profile p = new Profile(user, contentDatabase);
-        p.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-
-        this.dispose();
+        p.setPrevPage(this);
+        this.setVisible(false);
     }//GEN-LAST:event_profileButtonActionPerformed
 
     private void addFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFriendButtonActionPerformed
