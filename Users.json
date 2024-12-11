@@ -9,7 +9,7 @@
   "coverPhotoPath" : null,
   "bio" : null,
   "dateOfBirth" : "2003-12-02",
-  "status" : "offline"
+  "status" : "online"
 }, {
   "userId" : 1,
   "email" : "test@gmail.com",
