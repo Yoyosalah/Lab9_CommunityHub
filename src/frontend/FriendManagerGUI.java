@@ -35,6 +35,8 @@ public class FriendManagerGUI extends Window {
 
     private UserDatabase userDatabase = UserDatabase.getInstance();
 
+    private ContentDatabase contentDatabase = new ContentDatabase();
+
     private FriendsManager friendsManager = new FriendsManager();
     private RequestHandler requestHandler = new RequestHandler(friendsManager);
     private BlockHandler blockHandler = new BlockHandler(friendsManager);
@@ -66,6 +68,7 @@ public class FriendManagerGUI extends Window {
         this.jLabel3.setVisible(true);
         this.SelectedUserTxt.setVisible(false);
         this.infoPanel.setVisible(false);
+        this.ViewProfilebtn.setVisible(false);
 
     }
 
@@ -103,6 +106,7 @@ public class FriendManagerGUI extends Window {
         dateOfBirth = new javax.swing.JLabel();
         bio = new javax.swing.JLabel();
         statusInfo = new javax.swing.JLabel();
+        ViewProfilebtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -235,19 +239,20 @@ public class FriendManagerGUI extends Window {
         infoPanelLayout.setHorizontalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(email)
-                    .addComponent(mobile)
-                    .addComponent(Gender)
-                    .addComponent(dateOfBirth)
-                    .addComponent(bio)
-                    .addComponent(statusInfo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(79, 79, 79))
+                    .addGroup(infoPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(email)
+                            .addComponent(mobile)
+                            .addComponent(Gender)
+                            .addComponent(dateOfBirth)
+                            .addComponent(bio)
+                            .addComponent(statusInfo)))
+                    .addGroup(infoPanelLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jLabel1)))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         infoPanelLayout.setVerticalGroup(
             infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,55 +274,70 @@ public class FriendManagerGUI extends Window {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        ViewProfilebtn.setText("View Profile");
+        ViewProfilebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewProfilebtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(friendsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(suggestionsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(requestsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchButton)
-                        .addGap(90, 90, 90))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SelectedUserTxt)
-                                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(blockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(acceptButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(declineButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(unFriendButton))
-                        .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(friendsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(suggestionsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(requestsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SearchButton)
+                                .addGap(90, 90, 90))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(SelectedUserTxt)
+                                                .addGap(60, 60, 60)
+                                                .addComponent(ViewProfilebtn))
+                                            .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(blockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(acceptButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(declineButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(unFriendButton))
+                                .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {acceptButton, addButton, blockButton, declineButton, unFriendButton});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -349,7 +369,8 @@ public class FriendManagerGUI extends Window {
                 .addGap(2, 2, 2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SelectedUserTxt))
+                    .addComponent(SelectedUserTxt)
+                    .addComponent(ViewProfilebtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -359,11 +380,13 @@ public class FriendManagerGUI extends Window {
                 .addContainerGap())
         );
 
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {acceptButton, addButton, blockButton, declineButton, unFriendButton});
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,10 +397,104 @@ public class FriendManagerGUI extends Window {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ViewProfilebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProfilebtnActionPerformed
+        // TODO add your handling code here:
+        Profile p = new Profile(selectedUser, contentDatabase);
+        p.setPrevPage(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_ViewProfilebtnActionPerformed
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+        prevPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void SearchOutputValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_SearchOutputValueChanged
+        // TODO add your handling code here:
+        String selectedUsername = SearchOutput.getSelectedValue();
+
+        if (selectedUsername != null && !selectedUsername.isEmpty()) {
+            // set the search bar text
+            searchBar.setText(selectedUsername);
+
+            ArrayList<User> allUsers = userDatabase.returnAllUsers();
+            selectedUser = null;
+
+            for (User user : allUsers) {
+                if (user.getUsername().equals(selectedUsername)) {
+                    selectedUser = user;
+                    break;
+                }
+            }
+            SelectedUserTxt.setText("Selected User: " + selectedUser.getUsername());
+            email.setText("Email: " + selectedUser.getEmail());
+            mobile.setText("Mobile: " + selectedUser.getMobileNumber());
+            Gender.setText("Gender: " + selectedUser.getGender());
+            bio.setText("Bio: " + selectedUser.getBio());
+            dateOfBirth.setText("Birthday: " + selectedUser.getDateOfBirth());
+            statusInfo.setText("Status: " + selectedUser.getStatus());
+
+            // Check if the selected user is a friend
+            if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
+                // System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                this.addButton.setVisible(true);
+            } else {
+                //   System.out.println("ggggggggggggggggggggggggggggggggggg");
+                this.unFriendButton.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_SearchOutputValueChanged
+
+    private void suggestionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionsButtonActionPerformed
+        this.listIndicator = 2; // indicator that we're at suggestions list
+        List<User> suggestions = friendsManager.friendSuggestions(user, allUsers);
+        this.SelectedUserTxt.setVisible(false);
+        this.infoPanel.setVisible(false);
+        this.ViewProfilebtn.setVisible(false);
+        this.searchBar.setVisible(false);
+        this.jScrollPane1.setVisible(false);
+        this.jComboBox1.setVisible(true);
+        this.status.setVisible(true);
+        this.jLabel3.setVisible(true);
+        if (listIndicator != 99) {
+            updateComboBox(suggestions);
+        }
+        this.addButton.setVisible(true);
+        this.acceptButton.setVisible(false);
+        this.declineButton.setVisible(false);
+        this.unFriendButton.setVisible(false);
+        this.blockButton.setVisible(true);
+    }//GEN-LAST:event_suggestionsButtonActionPerformed
+
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+        // TODO add your handling code here:
+        this.listIndicator = 99; // another state
+
+        this.jScrollPane1.setVisible(true);
+        this.SelectedUserTxt.setVisible(true);
+        this.ViewProfilebtn.setVisible(true);
+        this.infoPanel.setVisible(true);
+        this.searchBar.setVisible(true);
+        this.SearchOutput.setVisible(true);
+        this.SearchOutput.setListData(new String[0]);
+        this.searchBar.setText("");
+
+        this.declineButton.setVisible(false);
+        this.jComboBox1.setVisible(false);
+        this.status.setVisible(false);
+        this.jLabel3.setVisible(false);
+        this.blockButton.setVisible(true);
+        this.unFriendButton.setVisible(false);
+
+        //using my new added method
+    }//GEN-LAST:event_SearchButtonActionPerformed
+
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
         this.listIndicator = 0; // indicator that we're at friends list
         List<User> friends = friendsManager.getFriendsConverted().get(user);
         this.infoPanel.setVisible(false);
+        this.ViewProfilebtn.setVisible(false);
         this.SelectedUserTxt.setVisible(false);
         this.searchBar.setVisible(false);
         this.jComboBox1.setVisible(true);
@@ -392,64 +509,26 @@ public class FriendManagerGUI extends Window {
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(true);
         this.blockButton.setVisible(true);
-
     }//GEN-LAST:event_friendsButtonActionPerformed
 
-    private void requestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsButtonActionPerformed
-        this.listIndicator = 1; // indicator that we're at requests list
-        List<User> requests = friendsManager.getReceivedRequestsConverted().get(user);
-        this.SelectedUserTxt.setVisible(false);
-        this.infoPanel.setVisible(false);
-
-        this.searchBar.setVisible(false);
-        this.jComboBox1.setVisible(true);
-        this.status.setVisible(true);
-        this.jLabel3.setVisible(true);
-        this.jScrollPane1.setVisible(false);
-//        System.out.println(requests);
-        if (listIndicator != 99) {
-            updateComboBox(requests);
-        }
-        this.addButton.setVisible(false);
-        this.acceptButton.setVisible(true);
-        this.declineButton.setVisible(true);
-        this.unFriendButton.setVisible(false);
-        this.blockButton.setVisible(true);
-
-    }//GEN-LAST:event_requestsButtonActionPerformed
-
-    private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
+    private void unFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unFriendButtonActionPerformed
         if (jComboBox1.getItemCount() != 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
-            blockHandler.blockUser(user, getSelectedUser());
             if (listIndicator != 99) {
-                updateComboBox(ListAccordingToIndicator(listIndicator));
+                selectedUser = getSelectedUser();
+            }
+            if (selectedUser != null) {
+                blockHandler.removeFriend(user, selectedUser);
+                JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                if (listIndicator != 99) {
+                    updateComboBox(ListAccordingToIndicator(listIndicator));
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "No Users in List", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_blockButtonActionPerformed
-
-    private void suggestionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionsButtonActionPerformed
-        this.listIndicator = 2; // indicator that we're at suggestions list
-        List<User> suggestions = friendsManager.friendSuggestions(user, allUsers);
-        this.SelectedUserTxt.setVisible(false);
-        this.infoPanel.setVisible(false);
-
-        this.searchBar.setVisible(false);
-        this.jScrollPane1.setVisible(false);
-        this.jComboBox1.setVisible(true);
-        this.status.setVisible(true);
-        this.jLabel3.setVisible(true);
-        if (listIndicator != 99) {
-            updateComboBox(suggestions);
-        }
-        this.addButton.setVisible(true);
-        this.acceptButton.setVisible(false);
-        this.declineButton.setVisible(false);
-        this.unFriendButton.setVisible(false);
-        this.blockButton.setVisible(true);
-
-    }//GEN-LAST:event_suggestionsButtonActionPerformed
+    }//GEN-LAST:event_unFriendButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         if (listIndicator != 99) {
@@ -465,54 +544,6 @@ public class FriendManagerGUI extends Window {
             status.setText(selectedUser.getStatus());
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        if (jComboBox1.getItemCount() > 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
-            if (listIndicator != 99) {
-                selectedUser = getSelectedUser();
-            }
-//            System.out.println(selectedUser.getUsername());
-//            System.out.println("test");
-            if (selectedUser != null) {
-                boolean success = requestHandler.sendFriendRequest(user, selectedUser);
-                if (success) {
-                    JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
-                    if (listIndicator != 99) {
-                        updateComboBox(ListAccordingToIndicator(listIndicator));
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No users in the list.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_addButtonActionPerformed
-
-    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
-        if (jComboBox1.getItemCount() > 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
-            if (listIndicator != 99) {
-                selectedUser = getSelectedUser();
-            }
-            if (selectedUser != null) {
-                boolean success = requestHandler.acceptFriendRequest(user, selectedUser);
-                if (success) {
-                    JOptionPane.showMessageDialog(this, "Friend request from " + selectedUser.getUsername() + " accepted.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    if (listIndicator != 99) {
-                        updateComboBox(ListAccordingToIndicator(listIndicator));
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Failed to accept the friend request. It might not exist anymore.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No friend requests to accept.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_acceptButtonActionPerformed
 
     private void declineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineButtonActionPerformed
         if (jComboBox1.getItemCount() > 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
@@ -537,53 +568,64 @@ public class FriendManagerGUI extends Window {
         }
     }//GEN-LAST:event_declineButtonActionPerformed
 
-    private void unFriendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unFriendButtonActionPerformed
-        if (jComboBox1.getItemCount() != 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
+    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
+        if (jComboBox1.getItemCount() > 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
             if (listIndicator != 99) {
                 selectedUser = getSelectedUser();
             }
             if (selectedUser != null) {
-                blockHandler.removeFriend(user, selectedUser);
-                JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
-                if (listIndicator != 99) {
-                    updateComboBox(ListAccordingToIndicator(listIndicator));
+                boolean success = requestHandler.acceptFriendRequest(user, selectedUser);
+                if (success) {
+                    JOptionPane.showMessageDialog(this, "Friend request from " + selectedUser.getUsername() + " accepted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    if (listIndicator != 99) {
+                        updateComboBox(ListAccordingToIndicator(listIndicator));
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to accept the friend request. It might not exist anymore.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
+            JOptionPane.showMessageDialog(this, "No friend requests to accept.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_acceptButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        if (jComboBox1.getItemCount() > 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
+            if (listIndicator != 99) {
+                selectedUser = getSelectedUser();
+            }
+            //            System.out.println(selectedUser.getUsername());
+            //            System.out.println("test");
+            if (selectedUser != null) {
+                boolean success = requestHandler.sendFriendRequest(user, selectedUser);
+                if (success) {
+                    JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                    if (listIndicator != 99) {
+                        updateComboBox(ListAccordingToIndicator(listIndicator));
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No users in the list.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
+        if (jComboBox1.getItemCount() != 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
+            blockHandler.blockUser(user, getSelectedUser());
+            if (listIndicator != 99) {
+                updateComboBox(ListAccordingToIndicator(listIndicator));
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "No Users in List", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_unFriendButtonActionPerformed
-
-    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        // TODO add your handling code here:
-        this.listIndicator = 99; // another state 
-
-        this.jScrollPane1.setVisible(true);
-        this.SelectedUserTxt.setVisible(true);
-
-        this.infoPanel.setVisible(true);
-        this.searchBar.setVisible(true);
-        this.SearchOutput.setVisible(true);
-        this.SearchOutput.setListData(new String[0]);
-        this.searchBar.setText("");
-
-        this.declineButton.setVisible(false);
-        this.jComboBox1.setVisible(false);
-        this.status.setVisible(false);
-        this.jLabel3.setVisible(false);
-        this.blockButton.setVisible(true);
-        this.unFriendButton.setVisible(false);
-
-        //using my new added method
-
-    }//GEN-LAST:event_SearchButtonActionPerformed
-
-    private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_searchBarActionPerformed
+    }//GEN-LAST:event_blockButtonActionPerformed
 
     private void searchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBarKeyReleased
         // TODO add your handling code here:
@@ -605,7 +647,7 @@ public class FriendManagerGUI extends Window {
             }
         }
 
-        //add filtred users 
+        //add filtred users
         this.SearchOutput.setListData(filteredUsers.toArray(new String[0])); //new String[0] is used to specify the type of array
 
         // if there is one result, you can automatically select it
@@ -636,51 +678,33 @@ public class FriendManagerGUI extends Window {
             }
 
         }
-
     }//GEN-LAST:event_searchBarKeyReleased
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+    private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
         // TODO add your handling code here:
-        prevPage.setVisible(true);
-        this.dispose();
+    }//GEN-LAST:event_searchBarActionPerformed
 
-    }//GEN-LAST:event_BackActionPerformed
-
-    private void SearchOutputValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_SearchOutputValueChanged
-        // TODO add your handling code here:
-        String selectedUsername = SearchOutput.getSelectedValue();
-
-        if (selectedUsername != null && !selectedUsername.isEmpty()) {
-            // set the search bar text 
-            searchBar.setText(selectedUsername);
-
-            ArrayList<User> allUsers = userDatabase.returnAllUsers();
-            selectedUser = null;
-
-            for (User user : allUsers) {
-                if (user.getUsername().equals(selectedUsername)) {
-                    selectedUser = user;
-                    break;
-                }
-            }
-            SelectedUserTxt.setText("Selected User: " + selectedUser.getUsername());
-            email.setText("Email: " + selectedUser.getEmail());
-            mobile.setText("Mobile: " + selectedUser.getMobileNumber());
-            Gender.setText("Gender: " + selectedUser.getGender());
-            bio.setText("Bio: " + selectedUser.getBio());
-            dateOfBirth.setText("Birthday: " + selectedUser.getDateOfBirth());
-            statusInfo.setText("Status: " + selectedUser.getStatus());
-
-            // Check if the selected user is a friend
-            if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
-                // System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-                this.addButton.setVisible(true);
-            } else {
-                //   System.out.println("ggggggggggggggggggggggggggggggggggg");
-                this.unFriendButton.setVisible(true);
-            }
+    private void requestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsButtonActionPerformed
+        this.listIndicator = 1; // indicator that we're at requests list
+        List<User> requests = friendsManager.getReceivedRequestsConverted().get(user);
+        this.SelectedUserTxt.setVisible(false);
+        this.infoPanel.setVisible(false);
+        this.ViewProfilebtn.setVisible(false);
+        this.searchBar.setVisible(false);
+        this.jComboBox1.setVisible(true);
+        this.status.setVisible(true);
+        this.jLabel3.setVisible(true);
+        this.jScrollPane1.setVisible(false);
+        //        System.out.println(requests);
+        if (listIndicator != 99) {
+            updateComboBox(requests);
         }
-    }//GEN-LAST:event_SearchOutputValueChanged
+        this.addButton.setVisible(false);
+        this.acceptButton.setVisible(true);
+        this.declineButton.setVisible(true);
+        this.unFriendButton.setVisible(false);
+        this.blockButton.setVisible(true);
+    }//GEN-LAST:event_requestsButtonActionPerformed
 
     private User getSelectedUser() {
         String selectedUsername = (String) jComboBox1.getSelectedItem();
@@ -762,6 +786,7 @@ public class FriendManagerGUI extends Window {
     private javax.swing.JButton SearchButton;
     private javax.swing.JList<String> SearchOutput;
     private javax.swing.JLabel SelectedUserTxt;
+    private javax.swing.JButton ViewProfilebtn;
     private javax.swing.JButton acceptButton;
     private javax.swing.JButton addButton;
     private javax.swing.JLabel bio;
