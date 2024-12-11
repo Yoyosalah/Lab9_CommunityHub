@@ -488,6 +488,7 @@ public class FriendManagerGUI extends Window {
         this.jLabel3.setVisible(false);
         this.blockButton.setVisible(true);
         this.listIndicator = 99; // another state 
+        this.unFriendButton.setVisible(false);
 
         //using my new added method
 
@@ -535,12 +536,13 @@ public class FriendManagerGUI extends Window {
 
             // Check if the selected user is a friend
             if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
+               // System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
                 this.addButton.setVisible(true);
             } else {
-                this.addButton.setVisible(false);
+               // System.out.println("ggggggggggggggggggggggggggggggggggg");
+                this.unFriendButton.setVisible(true);
             }
-        } else {
-            this.addButton.setVisible(false);
+
         }
 
     }//GEN-LAST:event_searchBarKeyReleased
@@ -572,9 +574,11 @@ public class FriendManagerGUI extends Window {
             SelectedUserTxt.setText(selectedUser.getUsername());
             // Check if the selected user is a friend
             if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
+               // System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
                 this.addButton.setVisible(true);
             } else {
-                this.addButton.setVisible(false);
+             //   System.out.println("ggggggggggggggggggggggggggggggggggg");
+                this.unFriendButton.setVisible(true);
             }
         }
     }//GEN-LAST:event_SearchOutputValueChanged

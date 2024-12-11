@@ -14,6 +14,7 @@ import java.util.Map;
  * @author Youss
  */
 public class FriendsManager {
+
     private Map<Integer, List<Integer>> friends;
     private Map<Integer, List<Integer>> sentRequests;
     private Map<Integer, List<Integer>> receivedRequests;
@@ -24,16 +25,24 @@ public class FriendsManager {
         userDatabase = UserDatabase.getInstance();
 
         friends = FriendsDatabase.readFriends();
-        if (friends == null) friends = new HashMap<>();
+        if (friends == null) {
+            friends = new HashMap<>();
+        }
 
         sentRequests = FriendsDatabase.readSentRequests();
-        if (sentRequests == null) sentRequests = new HashMap<>();
+        if (sentRequests == null) {
+            sentRequests = new HashMap<>();
+        }
 
         receivedRequests = FriendsDatabase.readReceivedRequests();
-        if (receivedRequests == null) receivedRequests = new HashMap<>();
+        if (receivedRequests == null) {
+            receivedRequests = new HashMap<>();
+        }
 
         blockedUsers = FriendsDatabase.readBlockedUsers();
-        if (blockedUsers == null) blockedUsers = new HashMap<>();
+        if (blockedUsers == null) {
+            blockedUsers = new HashMap<>();
+        }
     }
 
     public void initializeUser(User user) {
@@ -92,9 +101,8 @@ public class FriendsManager {
     public UserDatabase getUserDatabase() {
         return userDatabase;
     }
-    
+
     // Converted from Integer to User
-    
     public Map<User, List<User>> getFriendsConverted() {
         return convertMapToUsers(friends);
     }
@@ -110,25 +118,29 @@ public class FriendsManager {
     public Map<User, List<User>> getBlockedUsersConverted() {
         return convertMapToUsers(blockedUsers);
     }
-    
+
     private Map<User, List<User>> convertMapToUsers(Map<Integer, List<Integer>> map) {
-    Map<User, List<User>> convertedMap = new HashMap<>();
-    for (Integer uId : map.keySet()) {
-        List<User> userList = new ArrayList<>();
-        for (Integer u : map.get(uId)) {
-            userList.add(userDatabase.getUserById(u));
+        Map<User, List<User>> convertedMap = new HashMap<>();
+        for (Integer uId : map.keySet()) {
+            List<User> userList = new ArrayList<>();
+            for (Integer u : map.get(uId)) {
+                userList.add(userDatabase.getUserById(u));
+            }
+            convertedMap.put(userDatabase.getUserById(uId), userList);
         }
-        convertedMap.put(userDatabase.getUserById(uId), userList);
+
+        return convertedMap;
     }
-    
-    return convertedMap;
-}
-    
+
     public boolean areFriends(int userId1, int userId2) {
-    List<Integer> friendsList1 = friends.get(userId1);
-    if (friendsList1 == null) return false; // No friends list for userId1
-    return friendsList1.contains(userId2);
-}
+        List<Integer> friendsList1 = getFriends().get(userId1);
+        if (friendsList1 == null) {
+            return false;
+        }
+        System.out.println(friendsList1.contains(userId2));
+        System.out.println(getFriends().get(userId1).toArray());
+        return friendsList1.contains(userId2);
+    }
 
 //    private Map<User, List<User>> convertMapToUsers(Map<Integer, List<Integer>> map) {
 //        Map<User, List<User>> userMap = new HashMap<>();
