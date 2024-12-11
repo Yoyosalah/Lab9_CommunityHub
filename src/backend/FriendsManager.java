@@ -138,7 +138,7 @@ public class FriendsManager {
             return false;
         }
         //System.out.println(friendsList1.contains(userId2));
-        System.out.println(getFriends().get(userId1).toArray());
+        //System.out.println(getFriends().get(userId1).toArray());
         return friendsList1.contains(userId2);
     }
 
