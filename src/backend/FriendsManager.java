@@ -123,6 +123,13 @@ public class FriendsManager {
     
     return convertedMap;
 }
+    
+    public boolean areFriends(int userId1, int userId2) {
+    List<Integer> friendsList1 = friends.get(userId1);
+    if (friendsList1 == null) return false; // No friends list for userId1
+    return friendsList1.contains(userId2);
+}
+
 //    private Map<User, List<User>> convertMapToUsers(Map<Integer, List<Integer>> map) {
 //        Map<User, List<User>> userMap = new HashMap<>();
 //        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
