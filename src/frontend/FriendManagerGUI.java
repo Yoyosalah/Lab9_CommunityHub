@@ -45,6 +45,7 @@ public class FriendManagerGUI extends Window {
     User selectedUser = null;
 
     public FriendManagerGUI(User user, List<User> allUsers) {
+        this.listIndicator = 0;
         this.setVisible(true);
         this.comboBoxMap = new HashMap<>();
         initComponents();
@@ -57,7 +58,7 @@ public class FriendManagerGUI extends Window {
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(true);
         this.blockButton.setVisible(true);
-        this.listIndicator = 0;
+        
         this.searchBar.setVisible(false);
         this.jScrollPane1.setVisible(false);
         this.jComboBox1.setVisible(true);
@@ -306,24 +307,26 @@ public class FriendManagerGUI extends Window {
     }// </editor-fold>//GEN-END:initComponents
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
+        this.listIndicator = 0; // indicator that we're at friends list
         List<User> friends = friendsManager.getFriendsConverted().get(user);
-        updateComboBox(friends);
         this.SelectedUserTxt.setVisible(false);
         this.searchBar.setVisible(false);
-        this.jScrollPane1.setVisible(false);
         this.jComboBox1.setVisible(true);
         this.status.setVisible(true);
         this.jLabel3.setVisible(true);
+        this.jScrollPane1.setVisible(false);
+        updateComboBox(friends);
 
         this.addButton.setVisible(false);
         this.acceptButton.setVisible(false);
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(true);
         this.blockButton.setVisible(true);
-        this.listIndicator = 0; // indicator that we're at friends list
+        
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     private void requestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsButtonActionPerformed
+        this.listIndicator = 1; // indicator that we're at requests list
         List<User> requests = friendsManager.getReceivedRequestsConverted().get(user);
         this.SelectedUserTxt.setVisible(false);
 
@@ -339,7 +342,7 @@ public class FriendManagerGUI extends Window {
         this.declineButton.setVisible(true);
         this.unFriendButton.setVisible(false);
         this.blockButton.setVisible(true);
-        this.listIndicator = 1; // indicator that we're at requests list
+        
     }//GEN-LAST:event_requestsButtonActionPerformed
 
     private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
@@ -352,6 +355,7 @@ public class FriendManagerGUI extends Window {
     }//GEN-LAST:event_blockButtonActionPerformed
 
     private void suggestionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionsButtonActionPerformed
+        this.listIndicator = 2; // indicator that we're at suggestions list
         List<User> suggestions = friendsManager.friendSuggestions(user, allUsers);
         this.SelectedUserTxt.setVisible(false);
 
@@ -366,7 +370,7 @@ public class FriendManagerGUI extends Window {
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(false);
         this.blockButton.setVisible(true);
-        this.listIndicator = 2; // indicator that we're at suggestions list
+        
     }//GEN-LAST:event_suggestionsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -474,6 +478,8 @@ public class FriendManagerGUI extends Window {
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         // TODO add your handling code here:
+        this.listIndicator = 99; // another state 
+
         this.jScrollPane1.setVisible(true);
         this.SelectedUserTxt.setVisible(true);
 
@@ -487,7 +493,6 @@ public class FriendManagerGUI extends Window {
         this.status.setVisible(false);
         this.jLabel3.setVisible(false);
         this.blockButton.setVisible(true);
-        this.listIndicator = 99; // another state 
         this.unFriendButton.setVisible(false);
 
         //using my new added method
@@ -536,10 +541,10 @@ public class FriendManagerGUI extends Window {
 
             // Check if the selected user is a friend
             if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
-               // System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                // System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
                 this.addButton.setVisible(true);
             } else {
-               // System.out.println("ggggggggggggggggggggggggggggggggggg");
+                // System.out.println("ggggggggggggggggggggggggggggggggggg");
                 this.unFriendButton.setVisible(true);
             }
 
@@ -574,10 +579,10 @@ public class FriendManagerGUI extends Window {
             SelectedUserTxt.setText(selectedUser.getUsername());
             // Check if the selected user is a friend
             if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
-               // System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                // System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
                 this.addButton.setVisible(true);
             } else {
-             //   System.out.println("ggggggggggggggggggggggggggggggggggg");
+                //   System.out.println("ggggggggggggggggggggggggggggggggggg");
                 this.unFriendButton.setVisible(true);
             }
         }
@@ -607,11 +612,13 @@ public class FriendManagerGUI extends Window {
     }
 
     private void updateComboBox(List<User> users) {
-        comboBoxMap.clear();
-        jComboBox1.removeAllItems();
-        for (User u : users) {
-            comboBoxMap.put(u, u.getUsername());
-            jComboBox1.addItem(u.getUsername());
+        if (listIndicator != 99) {
+            comboBoxMap.clear();
+            jComboBox1.removeAllItems();
+            for (User u : users) {
+                comboBoxMap.put(u, u.getUsername());
+                jComboBox1.addItem(u.getUsername());
+            }
         }
     }
 
