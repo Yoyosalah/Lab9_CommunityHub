@@ -369,7 +369,7 @@ public class FriendManagerGUI extends Window {
         this.jComboBox1.setVisible(true);
         this.status.setVisible(true);
         this.jLabel3.setVisible(true);
-        if(listIndicator != 99 ){
+        if (listIndicator != 99) {
             updateComboBox(suggestions);
         }
         this.addButton.setVisible(true);
@@ -474,8 +474,8 @@ public class FriendManagerGUI extends Window {
             if (selectedUser != null) {
                 blockHandler.removeFriend(user, selectedUser);
                 JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
-                if(listIndicator != 99 ){
-                updateComboBox(ListAccordingToIndicator(listIndicator));
+                if (listIndicator != 99) {
+                    updateComboBox(ListAccordingToIndicator(listIndicator));
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -621,6 +621,10 @@ public class FriendManagerGUI extends Window {
     }
 
     private void updateComboBox(List<User> users) {
+        if (users == null) {
+            //System.err.println("Error: Cannot update combo box because users is null.");
+            return; // Exit early
+        }
         if (listIndicator != 99) {
             comboBoxMap.clear();
             jComboBox1.removeAllItems();
