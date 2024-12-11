@@ -58,7 +58,7 @@ public class FriendManagerGUI extends Window {
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(true);
         this.blockButton.setVisible(true);
-        
+
         this.searchBar.setVisible(false);
         this.jScrollPane1.setVisible(false);
         this.jComboBox1.setVisible(true);
@@ -315,14 +315,15 @@ public class FriendManagerGUI extends Window {
         this.status.setVisible(true);
         this.jLabel3.setVisible(true);
         this.jScrollPane1.setVisible(false);
-        updateComboBox(friends);
-
+        if (listIndicator != 99) {
+            updateComboBox(friends);
+        }
         this.addButton.setVisible(false);
         this.acceptButton.setVisible(false);
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(true);
         this.blockButton.setVisible(true);
-        
+
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     private void requestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsButtonActionPerformed
@@ -336,19 +337,23 @@ public class FriendManagerGUI extends Window {
         this.jLabel3.setVisible(true);
         this.jScrollPane1.setVisible(false);
 //        System.out.println(requests);
-        updateComboBox(requests);
+        if (listIndicator != 99) {
+            updateComboBox(requests);
+        }
         this.addButton.setVisible(false);
         this.acceptButton.setVisible(true);
         this.declineButton.setVisible(true);
         this.unFriendButton.setVisible(false);
         this.blockButton.setVisible(true);
-        
+
     }//GEN-LAST:event_requestsButtonActionPerformed
 
     private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
         if (jComboBox1.getItemCount() != 0 || (listIndicator == 99 && SearchOutput.getModel().getSize() > 0)) {
             blockHandler.blockUser(user, getSelectedUser());
-            updateComboBox(ListAccordingToIndicator(listIndicator));
+            if (listIndicator != 99) {
+                updateComboBox(ListAccordingToIndicator(listIndicator));
+            }
         } else {
             JOptionPane.showMessageDialog(this, "No Users in List", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -364,13 +369,15 @@ public class FriendManagerGUI extends Window {
         this.jComboBox1.setVisible(true);
         this.status.setVisible(true);
         this.jLabel3.setVisible(true);
-        updateComboBox(suggestions);
+        if(listIndicator != 99 ){
+            updateComboBox(suggestions);
+        }
         this.addButton.setVisible(true);
         this.acceptButton.setVisible(false);
         this.declineButton.setVisible(false);
         this.unFriendButton.setVisible(false);
         this.blockButton.setVisible(true);
-        
+
     }//GEN-LAST:event_suggestionsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -467,7 +474,9 @@ public class FriendManagerGUI extends Window {
             if (selectedUser != null) {
                 blockHandler.removeFriend(user, selectedUser);
                 JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                if(listIndicator != 99 ){
                 updateComboBox(ListAccordingToIndicator(listIndicator));
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
             }
