@@ -32,6 +32,7 @@ public class Profile extends Window {
         prepare("Profile");
         this.user = user;
         this.profileContent = new ProfileContent(user, contentDatabase);
+        this.contentDatabase = contentDatabase;
         this.setVisible(true);
 
         renderPosts(jPanel3);
@@ -214,15 +215,15 @@ public class Profile extends Window {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-        Newsfeed newsfeed = new Newsfeed(user); 
+        Newsfeed newsfeed = new Newsfeed(user, contentDatabase);
         newsfeed.setEmail(user.getEmail());
         this.dispose();
         
     }//GEN-LAST:event_BackActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+//    /**
+//     * @param args the command line arguments
+//     */
     protected void refresh() {
         if (user.getProfilePhotoPath() != null) {
             ImageIcon pfp = new ImageIcon(user.getProfilePhotoPath());

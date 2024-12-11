@@ -37,13 +37,13 @@ public class Newsfeed extends Window {
     private int currentIndex;
     private HashMap<User, String> comboBoxMap;
 
-    public Newsfeed(User user) {
+    public Newsfeed(User user,ContentDatabase contentDatabase) {
         this.user = user;
         this.friendManager = new FriendsManager();
         this.requestHandler = new RequestHandler(friendManager);
         this.profile = new ProfileContent(user, contentDatabase);
         this.comboBoxMap = new HashMap<>();
-        this.contentDatabase = new ContentDatabase();
+        this.contentDatabase = contentDatabase;
         this.contentList = contentDatabase.getContentlist();
         this.currentIndex = 0;
 
@@ -336,7 +336,7 @@ public class Newsfeed extends Window {
         // TODO add your handling code here:
         Profile p = new Profile(user, contentDatabase);
         p.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        contentDatabase.writeToFile();
+
         this.dispose();
     }//GEN-LAST:event_profileButtonActionPerformed
 
@@ -361,7 +361,7 @@ public class Newsfeed extends Window {
 
     private void LogoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutbtnActionPerformed
         // TODO add your handling code here:
-
+        contentDatabase.writeToFile();
         UserOperations.logout(email);
         //send to the next page
         LandingPage nextPage = new LandingPage();
@@ -405,11 +405,11 @@ public class Newsfeed extends Window {
         ArrayList<Content> filteredContent = new ArrayList<>();
         ArrayList<User> friends = (ArrayList<User>) friendManager.getFriendsConverted().get(user);
 
-        if (contentList != null) {
-            contentList.clear();
-        } else {
-            contentList = new ArrayList<>();
-        }
+//        if (contentList != null) {
+//            contentList.clear();
+//        } else {
+//            contentList = new ArrayList<>();
+//        }
         for (Content c : allContent) {
             for (User f : friends) {
                 if (String.valueOf(f.getUserId()).equals(c.getAuthorid())) {
@@ -475,11 +475,12 @@ public class Newsfeed extends Window {
     /**
      * @param args the command line arguments
      */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -502,7 +503,7 @@ public class Newsfeed extends Window {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Newsfeed(new User()).setVisible(true);
+                new Newsfeed(new User(),new ContentDatabase()).setVisible(true);
             }
         });
     }

@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 import static constants.FileNames.CONTENT_FILENAME;
 
 /**
- *
  * @author BLU-RAY
  */
 public class ContentDatabase {
@@ -53,23 +52,29 @@ public class ContentDatabase {
     }
 
     public void readFromFile() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CONTENT_FILENAME))) {
-            Object object = ois.readObject();
-            if (object instanceof List) {
-                contentlist = (ArrayList<Content>) object;
-                filterOldStories();
+        String filePath = CONTENT_FILENAME;
+        File file = new File(filePath);
+        if (!file.exists()||file.length()==0) {
+            return;
+        } else {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CONTENT_FILENAME))) {
+                Object object = ois.readObject();
+                if (object instanceof List) {
+                    contentlist = (ArrayList<Content>) object;
+                    filterOldStories();
+                }
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
 
-        public void addContent(Content content) {
+    public void addContent(Content content) {
         contentlist.add(content);
     }
 }
