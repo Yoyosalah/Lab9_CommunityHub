@@ -30,57 +30,52 @@ public class FriendsDatabase {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-    // Methods for Friends
-    public static Map<User, List<User>> readFriends() {
-        return readFromFile(FRIENDS_FILE, new TypeReference<Map<User, List<User>>>() {});
+    public static Map<Integer, List<Integer>> readFriends() {
+        return readFromFile(FRIENDS_FILE, new TypeReference<>() {});
     }
 
-    public static void saveFriends(Map<User, List<User>> friends) {
+    public static void saveFriends(Map<Integer, List<Integer>> friends) {
         saveToFile(FRIENDS_FILE, friends);
     }
 
-    // Methods for Sent Requests
-    public static Map<User, List<User>> readSentRequests() {
-        return readFromFile(SENT_REQUESTS_FILE, new TypeReference<Map<User, List<User>>>() {});
+    public static Map<Integer, List<Integer>> readSentRequests() {
+        return readFromFile(SENT_REQUESTS_FILE, new TypeReference<>() {});
     }
 
-    public static void saveSentRequests(Map<User, List<User>> sentRequests) {
+    public static void saveSentRequests(Map<Integer, List<Integer>> sentRequests) {
         saveToFile(SENT_REQUESTS_FILE, sentRequests);
     }
 
-    // Methods for Received Requests
-    public static Map<User, List<User>> readReceivedRequests() {
-        return readFromFile(RECEIVED_REQUESTS_FILE, new TypeReference<Map<User, List<User>>>() {});
+    public static Map<Integer, List<Integer>> readReceivedRequests() {
+        return readFromFile(RECEIVED_REQUESTS_FILE, new TypeReference<>() {});
     }
 
-    public static void saveReceivedRequests(Map<User, List<User>> receivedRequests) {
+    public static void saveReceivedRequests(Map<Integer, List<Integer>> receivedRequests) {
         saveToFile(RECEIVED_REQUESTS_FILE, receivedRequests);
     }
 
-    // Methods for Blocked Users
-    public static Map<User, List<User>> readBlockedUsers() {
-        return readFromFile(BLOCKED_FILE, new TypeReference<Map<User, List<User>>>() {});
+    public static Map<Integer, List<Integer>> readBlockedUsers() {
+        return readFromFile(BLOCKED_FILE, new TypeReference<>() {});
     }
 
-    public static void saveBlockedUsers(Map<User, List<User>> blockedUsers) {
+    public static void saveBlockedUsers(Map<Integer, List<Integer>> blockedUsers) {
         saveToFile(BLOCKED_FILE, blockedUsers);
     }
 
-    // Generic Methods for Reading and Writing
     private static <T> T readFromFile(String filename, TypeReference<T> typeReference) {
-    try {
-        File file = new File(filename);
-        if (file.exists()) {
-            return objectMapper.readValue(file, typeReference);
-        } else {//added: If the file doesn't exist, create it with an empty structure
-            saveToFile(filename, new HashMap<>());
-            return objectMapper.readValue(file, typeReference);
+        try {
+            File file = new File(filename);
+            if (file.exists()) {
+                return objectMapper.readValue(file, typeReference);
+            } else {
+                saveToFile(filename, new HashMap<>());
+                return objectMapper.readValue(file, typeReference);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading or initializing file: " + filename);
+            return null;
         }
-    } catch (IOException e) {
-        System.err.println("Error reading or initializing file: " + filename);
-        return null;
     }
-}
 
     private static <T> void saveToFile(String filename, T data) {
         try {

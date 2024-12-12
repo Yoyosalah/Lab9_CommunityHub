@@ -11,5 +11,5 @@ package constants;
 public interface FileNames {
 
     String USERS_FILENAME = "Users.json";
-    String CONTENT_FILENAME = "Content.dat";
+    String CONTENT_FILENAME = "Content.ser";
 }

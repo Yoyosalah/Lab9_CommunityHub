@@ -5,7 +5,11 @@
 package frontend;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
+import backend.UserDatabase;
+import backend.UserOperations;
 
 /**
  *
@@ -13,29 +17,46 @@ import javax.swing.*;
  */
 public abstract class Window extends javax.swing.JFrame {
 
+    protected String exitEmail = null;
+
     //static JPanel pan = new JPanel();
     public void prepare(String title) {
         this.setTitle(title);
 
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //this.setUndecorated(true);
 
-        
+        //logout on exit
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // to prevent default behavior
+        this.addWindowListener(new WindowAdapter() {//WindowAdapter provides default implementations for WindowListener and i override the needed one
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (exitEmail != null) {
+                    UserOperations.logout(exitEmail);
+                    dispose();
+                    System.exit(0);
+                }
+                else{
+                    dispose();
+                }
+            }
+        });
+
         //set background
         JPanel pane = (JPanel) this.getContentPane();
-        pane.setBackground(new Color(230, 230, 240));
-        
+        pane.setBackground(new Color(203, 230, 240));
+
         for (Component comp : this.getContentPane().getComponents()) {
             if (comp instanceof JPanel) {
                 JPanel panel = (JPanel) comp;
-                panel.setBackground(new Color(230, 230, 240));  
+                panel.setBackground(new Color(203, 230, 240));
                 break;  // Exit once the 1st panel is found and updated
             }
         }
-         
+
         this.setLayout(new GridBagLayout());
         setFonts(this);
         //JPanel panel = (JPanel) this.getContentPane();
@@ -58,9 +79,8 @@ public abstract class Window extends javax.swing.JFrame {
             element.setCursor(new Cursor(Cursor.HAND_CURSOR));
             //((JButton) element).setToolTipText("Click");
 
-  //unify the button color and add hover effect          
-/*            
-            ((JButton) element).setBackground(new Color(38, 38, 38));
+            //unify the button color and add hover effect          
+            ((JButton) element).setBackground(new Color(10, 100, 100));
             ((JButton) element).setForeground(Color.WHITE);
 
             //apply effect when mouse hover 
@@ -70,10 +90,10 @@ public abstract class Window extends javax.swing.JFrame {
                 }
 
                 public void mouseExited(java.awt.event.MouseEvent evt) {
-                    ((JButton) element).setBackground(new Color(38, 38, 38));
+                    ((JButton) element).setBackground(new Color(10, 100, 100));
                 }
             });
-*/
+
         }
 
         //recursive call for panels 

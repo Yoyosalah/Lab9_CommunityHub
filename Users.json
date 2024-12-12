@@ -9,7 +9,7 @@
   "coverPhotoPath" : null,
   "bio" : null,
   "dateOfBirth" : "2003-12-02",
-  "status" : "offline"
+  "status" : "online"
 }, {
   "userId" : 1,
   "email" : "test@gmail.com",
@@ -41,11 +41,11 @@
   "password" : "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
   "mobileNumber" : "01206870238",
   "gender" : "male",
-  "profilePhotoPath" : null,
+  "profilePhotoPath" : "C:\\Users\\BLU-RAY\\Pictures\\Samsung Gallery Downloads\\Assassins Creed.jpg",
   "coverPhotoPath" : null,
   "bio" : null,
   "dateOfBirth" : "2004-05-01",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "userId" : 4,
   "email" : "momo@mail.com",
@@ -57,7 +57,7 @@
   "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass1\\2-a.png",
   "bio" : null,
   "dateOfBirth" : "1990-12-06",
-  "status" : "online"
+  "status" : "offline"
 }, {
   "userId" : 5,
   "email" : "mos@mail.com",
@@ -69,5 +69,41 @@
   "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab1\\Screenshot 2024-10-25 234734.png",
   "bio" : "kjasdkasd",
   "dateOfBirth" : "2017-12-07",
-  "status" : "online"
+  "status" : "offline"
+}, {
+  "userId" : 6,
+  "email" : "y@gmail.com",
+  "username" : "yo yo",
+  "password" : "e9058ab198f6908f702111b0c0fb5b36f99d00554521886c40e2891b349dc7a1",
+  "mobileNumber" : "01111111111",
+  "gender" : "male",
+  "profilePhotoPath" : "C:\\Users\\Youss\\OneDrive\\Pictures\\10-dof-imu-sensor-d-1.png",
+  "coverPhotoPath" : "C:\\Users\\Youss\\OneDrive\\Pictures\\asus.jpg",
+  "bio" : null,
+  "dateOfBirth" : "2024-12-01",
+  "status" : "offline"
+}, {
+  "userId" : 7,
+  "email" : "oy@gmail.com",
+  "username" : "oy oy",
+  "password" : "c45439e874c4bed7bcbd5a785cb79b55a6a71e35e988147245a729bee438c9fa",
+  "mobileNumber" : "01111111111",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2024-12-01",
+  "status" : "offline"
+}, {
+  "userId" : 8,
+  "email" : "mostafa@gmail.com",
+  "username" : "Mostafa elkassar",
+  "password" : "6161b2838ffa6ce17b84db3b45b4f8437855ecf43e75de2d1ad0008eaae91aa0",
+  "mobileNumber" : "01019011788",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2004-09-06",
+  "status" : "offline"
 } ]

@@ -92,7 +92,7 @@ public class UserOperations {
                 mobileNumber,
                 gender
         );
-        System.out.println(dateOfBirth);
+        //System.out.println(dateOfBirth);
 
         databaseManager.insertUser(newUser);
 //        System.out.println("User signed up successfully!");
