@@ -19,7 +19,7 @@ public class SecondaryAdminRole {
     }
     
     public void removeMember(User user){
-        if(group.getSecondaryAdmins().contains(user) || group.getPrimaryAdmin().getUserId == user.getUserId){  //a secondary admin cant remove another secondary or the primary admin
+        if(group.getSecondaryAdmins().contains(user) || group.getPrimaryAdmin().getUserId() == user.getUserId()){  //a secondary admin cant remove another secondary or the primary admin
             JOptionPane.showMessageDialog(null, "You can't remove an admin", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{

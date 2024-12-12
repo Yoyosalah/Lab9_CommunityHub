@@ -36,7 +36,7 @@ public class Group {
     }
     
     
-    public static class GroupBuilder{
+    public static class GroupBuilder{ //Builder class for groups
         private int groupId;
         private String name;
         private User primaryAdmin;
@@ -60,7 +60,11 @@ public class Group {
         }
         
         private void increamentNumOfGroups(){
-            this.numOfGroups++;
+            numOfGroups++;
+        }
+        
+        public static void decreamentNumberOfGroups(){
+            numOfGroups--;
         }
         
         public Group build(){
