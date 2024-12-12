@@ -94,4 +94,16 @@
   "bio" : null,
   "dateOfBirth" : "2024-12-01",
   "status" : "offline"
+}, {
+  "userId" : 8,
+  "email" : "mostafa@gmail.com",
+  "username" : "Mostafa elkassar",
+  "password" : "6161b2838ffa6ce17b84db3b45b4f8437855ecf43e75de2d1ad0008eaae91aa0",
+  "mobileNumber" : "01019011788",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2004-09-06",
+  "status" : "offline"
 } ]

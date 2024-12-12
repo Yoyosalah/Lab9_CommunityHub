@@ -273,7 +273,7 @@ public class Profile extends Window {
         }
 
         for (Content post : profileContent.userPosts()) {
-            if (post instanceof Post /*&& user.getUserId() == Integer.parseInt(post.getAuthorid())*/) {
+            if (post instanceof Post && user.getUserId() == Integer.parseInt(post.getAuthorid())) {
                 //creats panel for each post
                 JPanel singlePost = new JPanel();
                 singlePost.setLayout(new BorderLayout());
