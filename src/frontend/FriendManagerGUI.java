@@ -33,6 +33,10 @@ public class FriendManagerGUI extends Window {
         this.prevPage = prevPage;
     }
 
+    public void setEmail(String email) {
+        this.exitEmail = email;
+    }
+
     private UserDatabase userDatabase = UserDatabase.getInstance();
 
     private ContentDatabase contentDatabase = new ContentDatabase();
@@ -48,7 +52,7 @@ public class FriendManagerGUI extends Window {
 
     public FriendManagerGUI(User user, List<User> allUsers) {
         this.listIndicator = 0;
-        this.setVisible(true);
+        setEmail(user.getEmail());
         this.comboBoxMap = new HashMap<>();
         initComponents();
         prepare("Friends Manager");

@@ -19,7 +19,13 @@ import java.util.ArrayList;
  * @author Mustafa
  */
 public class Profile extends Window {
+
     private Window prevPage;
+
+    public void setEmail(String email) {
+        // this.email = email;
+        this.exitEmail = email;
+    }
 
     public void setPrevPage(Window prevPage) {
         this.prevPage = prevPage;
@@ -35,6 +41,7 @@ public class Profile extends Window {
         initComponents();
         prepare("Profile");
         this.user = user;
+        setEmail(user.getEmail());
         this.profileContent = new ProfileContent(user, contentDatabase);
         this.contentDatabase = contentDatabase;
         this.setVisible(true);
@@ -222,7 +229,7 @@ public class Profile extends Window {
         // TODO add your handling code here:
         prevPage.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_BackActionPerformed
 
 //    /**

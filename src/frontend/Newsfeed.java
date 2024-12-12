@@ -22,10 +22,11 @@ import javax.swing.table.DefaultTableModel;
 public class Newsfeed extends Window {
 
     //for logout 
-    String email;
-
+    //String email;
+    
     public void setEmail(String email) {
-        this.email = email;
+       // this.email = email;
+        this.exitEmail = email;
     }
 
     private User user;
@@ -361,7 +362,7 @@ public class Newsfeed extends Window {
     private void LogoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutbtnActionPerformed
         // TODO add your handling code here:
         contentDatabase.writeToFile();
-        UserOperations.logout(email);
+        UserOperations.logout(exitEmail);
         //send to the next page
         LandingPage nextPage = new LandingPage();
 

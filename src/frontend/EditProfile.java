@@ -35,6 +35,7 @@ public class EditProfile extends Window {
     
     public EditProfile(User user,Profile prev) {
         initComponents();
+        //prepare("Edit Profle");
         this.editor = new ProfileEditor(user);
         this.user = user;
         this.prev = prev;
