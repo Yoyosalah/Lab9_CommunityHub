@@ -36,7 +36,7 @@ public class Profile extends Window {
     private ProfileContent profileContent;
     private User user;
     private ContentDatabase contentDatabase;
-
+    
     public Profile(User user, ContentDatabase contentDatabase) {
         initComponents();
         prepare("Profile");
@@ -72,6 +72,7 @@ public class Profile extends Window {
         coverPhoto = new javax.swing.JLabel();
         profilePhoto = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
+        NotificationsButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,6 +146,13 @@ public class Profile extends Window {
             }
         });
 
+        NotificationsButton.setText("Notifications");
+        NotificationsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NotificationsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -168,6 +176,8 @@ public class Profile extends Window {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(NotificationsButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(editProfile)
                                         .addGap(27, 27, 27)
                                         .addComponent(friendsButton)))))))
@@ -186,7 +196,8 @@ public class Profile extends Window {
                             .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(editProfile)
-                                .addComponent(friendsButton)))
+                                .addComponent(friendsButton)
+                                .addComponent(NotificationsButton)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -231,6 +242,12 @@ public class Profile extends Window {
         this.dispose();
 
     }//GEN-LAST:event_BackActionPerformed
+
+    private void NotificationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationsButtonActionPerformed
+        // TODO add your handling code here:
+        NotificationsPanel np = new NotificationsPanel();
+        np.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_NotificationsButtonActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -317,6 +334,7 @@ public class Profile extends Window {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JButton NotificationsButton;
     private javax.swing.JLabel bioLabel;
     private javax.swing.JLabel coverPhoto;
     private javax.swing.JButton editProfile;

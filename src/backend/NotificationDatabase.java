@@ -56,4 +56,9 @@ public class NotificationDatabase {
         }
     }
 
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
+    
 }
