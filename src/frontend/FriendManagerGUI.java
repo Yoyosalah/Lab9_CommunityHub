@@ -333,7 +333,7 @@ public class FriendManagerGUI extends Window {
                                     .addComponent(unFriendButton)
                                     .addComponent(blockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(15, 15, 15)))
-                        .addContainerGap(40, Short.MAX_VALUE))
+                        .addContainerGap(10, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -343,11 +343,12 @@ public class FriendManagerGUI extends Window {
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -381,7 +382,7 @@ public class FriendManagerGUI extends Window {
                             .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
                         .addGap(36, 36, 36)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
                 .addComponent(Back)
                 .addContainerGap())
         );
@@ -392,7 +393,7 @@ public class FriendManagerGUI extends Window {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,7 +447,10 @@ public class FriendManagerGUI extends Window {
             ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
             Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
             profilePic.setIcon(new ImageIcon(scaledImage));
-            
+
+            this.blockButton.setVisible(true);
+            this.infoPanel.setVisible(true);
+
             // Check if the selected user is a friend
             if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
                 this.addButton.setVisible(true);
@@ -487,7 +491,7 @@ public class FriendManagerGUI extends Window {
         this.jScrollPane1.setVisible(true);
         this.SelectedUserTxt.setVisible(true);
         this.ViewProfilebtn.setVisible(true);
-        this.infoPanel.setVisible(true);
+        this.infoPanel.setVisible(false);
         this.searchBar.setVisible(true);
         this.SearchOutput.setVisible(true);
         this.SearchOutput.setListData(new String[0]);
@@ -497,7 +501,8 @@ public class FriendManagerGUI extends Window {
         this.jComboBox1.setVisible(false);
         this.status.setVisible(false);
         this.jLabel3.setVisible(false);
-        this.blockButton.setVisible(true);
+        this.blockButton.setVisible(false);
+        this.acceptButton.setVisible(false);
         this.unFriendButton.setVisible(false);
 
         //using my new added method
@@ -642,13 +647,17 @@ public class FriendManagerGUI extends Window {
 
     private void searchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBarKeyReleased
         // TODO add your handling code here:
+
+
+        System.out.println("text ava");
         String searchKey = searchBar.getText().trim();
         if (searchKey.isEmpty()) {
             this.SearchOutput.setListData(new String[0]);
             this.addButton.setVisible(false);
+            System.out.println("no text");
+
             return;
         }
-
         // get all users to be filtered based on the search key
         ArrayList<User> allUsers = userDatabase.returnAllUsers();
         ArrayList<String> filteredUsers = new ArrayList<>();
@@ -686,6 +695,10 @@ public class FriendManagerGUI extends Window {
             ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
             Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
             profilePic.setIcon(new ImageIcon(scaledImage));
+
+            this.blockButton.setVisible(true);
+            this.infoPanel.setVisible(true);
+
             // Check if the selected user is a friend
             if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
                 this.addButton.setVisible(true);
