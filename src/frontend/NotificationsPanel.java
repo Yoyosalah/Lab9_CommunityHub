@@ -5,21 +5,63 @@
 package frontend;
 
 import backend.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 /**
  *
  * @author BLU-RAY
  */
 public class NotificationsPanel extends javax.swing.JFrame {
     private NotificationDatabase notifictaionDB = new NotificationDatabase();
-    private Notifications = notifictaionDB.g
-
+    private ArrayList<Notification> Notifications = notifictaionDB.getNotifications();
+    private User user;
     /**
      * Creates new form NotificationsPanel
      */
-    public NotificationsPanel() {
+    public NotificationsPanel(User user) {
         initComponents();
+        this.user = user;
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        populateNotifications();
+        //jPanel1.add();
     }
 
+    private void populateNotifications() {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (Notification notification : Notifications) {
+            String displayText = String.format("[%s] %s: %s",
+                    notification.getTimestamp(),
+                    notification.getType(),
+                    notification.getText()
+            );
+            listModel.addElement(displayText);
+        }
+
+        JList<String> notificationList = new JList<>(listModel);
+        notificationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        notificationList.setVisibleRowCount(10); // Adjust based on your requirement
+
+        JScrollPane scrollPane = new JScrollPane(notificationList);
+        jPanel1.setLayout(new BorderLayout());
+        jPanel1.add(scrollPane, BorderLayout.CENTER);
+
+        // Ensure the panel is updated
+        jPanel1.revalidate();
+        jPanel1.repaint();
+        notificationList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedIndex = notificationList.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    Notifications.get(selectedIndex).MarkAsRead(user);
+                    // You can optionally refresh the list to reflect updates
+                    populateNotifications();
+                }
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,7 +136,7 @@ public class NotificationsPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NotificationsPanel().setVisible(true);
+                new NotificationsPanel(new User()).setVisible(true);
             }
         });
     }

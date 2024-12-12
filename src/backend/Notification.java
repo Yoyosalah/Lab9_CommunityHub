@@ -48,4 +48,8 @@ public class Notification {
     public void setIsRead(HashMap<User, Boolean> isRead) {
         this.isRead = isRead;
     }
+
+    public void MarkAsRead(User user){
+        isRead.put(user, true);
+    }
 }
