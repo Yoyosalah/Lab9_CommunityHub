@@ -12,4 +12,5 @@ public interface FileNames {
 
     String USERS_FILENAME = "Users.json";
     String CONTENT_FILENAME = "Content.ser";
+    String NOTIFICATION_FILENAME = "Notifications.json";
 }
