@@ -26,7 +26,7 @@ public class Group {
     @JsonIgnore
     private static UserDatabase userDatabase = UserDatabase.getInstance();
     @JsonIgnore
-    private static ContentDatabase contentDatabase = new ContentDatabase();
+    private static ContentDatabase contentDatabase = ContentDatabase.getInstance();
     @JsonIgnore
     private static GroupDatabase groupDatabase = GroupDatabase.getInstance();
 //    @JsonIgnore

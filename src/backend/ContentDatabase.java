@@ -15,13 +15,30 @@ import static constants.FileNames.CONTENT_FILENAME;
 /**
  * @author BLU-RAY
  */
+
 public class ContentDatabase {
+
+    private static ContentDatabase instance;
     private ArrayList<Content> contentlist;
 
-    public ContentDatabase() {
+    // Private constructor to prevent instantiation
+    private ContentDatabase() {
         this.contentlist = new ArrayList<>();
         readFromFile();
     }
+
+    /**
+     * Get the single instance of ContentDatabase.
+     * 
+     * @return the singleton instance
+     */
+    public static synchronized ContentDatabase getInstance() {
+        if (instance == null) {
+            instance = new ContentDatabase();
+        }
+        return instance;
+    }
+
 
     public ArrayList<Content> getContentlist() {
         return contentlist;

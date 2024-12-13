@@ -16,4 +16,31 @@
   "isRead" : {
     "1" : false
   }
+}, {
+  "notificationid" : "5de22202-82ec-410f-a85d-416ce54a95fd",
+  "text" : "test testsur Sent You A Friend Request",
+  "type" : "Friend",
+  "timestamp" : "2024-12-13",
+  "receivers" : [ 1 ],
+  "isRead" : {
+    "1" : false
+  }
+}, {
+  "notificationid" : "94deceb1-6c18-458f-9f11-d243a3bd862c",
+  "text" : "test testsur Sent You A Friend Request",
+  "type" : "Friend",
+  "timestamp" : "2024-12-13",
+  "receivers" : [ 1 ],
+  "isRead" : {
+    "1" : false
+  }
+}, {
+  "notificationid" : "376c30cf-1b25-48d2-9f57-b3fa53b33d78",
+  "text" : "test testsur Sent You A Friend Request",
+  "type" : "Friend",
+  "timestamp" : "2024-12-13",
+  "receivers" : [ 1 ],
+  "isRead" : {
+    "1" : false
+  }
 } ]

@@ -97,4 +97,125 @@
   "groupPhotoPath" : "",
   "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab2\\Screenshot 2024-11-26 202739.png",
   "description" : ""
+}, {
+  "groupId" : 9,
+  "name" : "gp",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 10,
+  "name" : "gp2",
+  "primaryAdmin" : 2,
+  "secondaryAdmins" : [ ],
+  "members" : [ 10, 11, 9 ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 11,
+  "name" : "gp",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 12,
+  "name" : "gp2",
+  "primaryAdmin" : 2,
+  "secondaryAdmins" : [ ],
+  "members" : [ 10, 11, 9 ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 13,
+  "name" : "gp",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 14,
+  "name" : "gp2",
+  "primaryAdmin" : 2,
+  "secondaryAdmins" : [ ],
+  "members" : [ 10, 11, 9 ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 15,
+  "name" : null,
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ "b40bcdc5-2b6a-4276-8050-55e828c45409" ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 16,
+  "name" : "gg",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ "3f138fd4-8d76-4436-9e86-2aa95be98fad" ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 17,
+  "name" : "test",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ "1fa222d7-7867-448c-8758-32287bb8f695" ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 18,
+  "name" : "test",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ "7d4bd2f8-f0f8-4bd9-9912-3c5140000206" ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 19,
+  "name" : "test",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ "9537a9de-5083-4842-9c06-1989aef22f0b" ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
 } ]
