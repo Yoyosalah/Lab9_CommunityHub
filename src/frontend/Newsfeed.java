@@ -33,11 +33,12 @@ public class Newsfeed extends Window {
     private ArrayList<Content> contentList;
     private int currentIndex;
     private HashMap<User, String> comboBoxMap;
-    private NotificationDatabase notificationDatabase = NotificationDatabase.getInstance();
+    private NotificationDatabase notificationDatabase;
 
     public Newsfeed(User user, ContentDatabase contentDatabase) {
         this.user = user;
         this.friendManager = new FriendsManager();
+        this.notificationDatabase = NotificationDatabase.getInstance();
         this.requestHandler = new RequestHandler(friendManager);
         this.profile = new ProfileContent(user, contentDatabase);
         this.comboBoxMap = new HashMap<>();
@@ -335,6 +336,10 @@ public class Newsfeed extends Window {
         this.friendManager = new FriendsManager();
         this.requestHandler = new RequestHandler(friendManager);
         this.profile = new ProfileContent(user, contentDatabase);
+        Notification n =new Notification(new Date(),"Friend",NotificationIDGenerator.generateUniqueId(),user.getUsername() + " Sent You A Friend Request");
+        n.getReceivers().add(user.getUserId());
+        n.getIsRead().put(user.getUserId(),false);
+        notificationDatabase.addNotification(n);
         loadContent();
         fillJTable();
         if (!contentList.isEmpty()) {
@@ -363,8 +368,8 @@ public class Newsfeed extends Window {
                     JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
                     updateComboBox();
                     Notification n =new Notification(new Date(),"Friend",NotificationIDGenerator.generateUniqueId(),user.getUsername() + " Sent You A Friend Request");
-                    n.getReceivers().add(user);
-                    n.getMap().put(user,false);
+                    n.getReceivers().add(selectedUser.getUserId());
+                    n.getIsRead().put(selectedUser.getUserId(),false);
                     notificationDatabase.addNotification(n);
                 } else {
                     JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -392,7 +397,7 @@ public class Newsfeed extends Window {
 
     private void NotificationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationsButtonActionPerformed
         // TODO add your handling code here:
-        NotificationsPanel np = new NotificationsPanel(user,notificationDatabase);
+        NotificationsPanel np = new NotificationsPanel(user,notificationDatabase.getNotifications());
         np.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_NotificationsButtonActionPerformed
 

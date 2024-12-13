@@ -14,16 +14,14 @@ import java.util.ArrayList;
  * @author BLU-RAY
  */
 public class NotificationsPanel extends javax.swing.JFrame {
-    private NotificationDatabase notifictaionDB;
     private ArrayList<Notification> Notifications;
     private User user;
     /**
      * Creates new form NotificationsPanel
      */
-    public NotificationsPanel(User user, NotificationDatabase notifictaionDB) {
+    public NotificationsPanel(User user, ArrayList<Notification> Notifications) {
         initComponents();
-        this.notifictaionDB = notifictaionDB;
-        this.Notifications = notifictaionDB.getNotifications();
+        this.Notifications = Notifications;
         this.user = user;
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -40,12 +38,12 @@ public class NotificationsPanel extends javax.swing.JFrame {
                     notification.getType(),
                     notification.getText()
             );
-            if (notification.getReceivers().contains(user))
+            if (notification.getReceivers().contains(user.getUserId()))
                 listModel.addElement(displayText);
         }
 
         JList<String> notificationList = new JList<>(listModel);
-        notificationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //needs filtering 😂
+        notificationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         notificationList.setVisibleRowCount(10);//testing ba3deen
         JScrollPane scrollPane = new JScrollPane(notificationList);
         jPanel1.setLayout(new BorderLayout());
@@ -56,7 +54,7 @@ public class NotificationsPanel extends javax.swing.JFrame {
             if (!e.getValueIsAdjusting()) {
                 int selectedIndex = notificationList.getSelectedIndex();
                 if (selectedIndex != -1) {
-                    Notifications.get(selectedIndex).MarkAsRead(user);
+                    Notifications.get(selectedIndex).MarkAsRead(user.getUserId());
                    populateNotifications();
                 }
             }

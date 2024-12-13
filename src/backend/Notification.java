@@ -7,8 +7,11 @@ public class Notification {
     private String text;
     private String type;
     private Date timestamp;
-    private ArrayList<User> receivers;
-    private HashMap<User,Boolean> isRead;
+    private ArrayList<Integer> receivers;
+    private HashMap<Integer,Boolean> isRead;
+
+    public Notification() {
+    }
 
     public Notification(Date timestamp, String type, String notificationid, String text) {
         this.timestamp = timestamp;
@@ -51,24 +54,24 @@ public class Notification {
         this.timestamp = timestamp;
     }
 
-    public HashMap<User, Boolean> getMap() {
+    public HashMap<Integer, Boolean> getIsRead() {
         return isRead;
     }
 
-    public ArrayList<User> getReceivers() {
+    public ArrayList<Integer> getReceivers() {
         return receivers;
     }
 
-    public void setReceivers(ArrayList<User> receivers) {
+    public void setReceivers(ArrayList<Integer> receivers) {
         this.receivers = receivers;
     }
 
-    public void setIsRead(HashMap<User, Boolean> isRead) {
+    public void setIsRead(HashMap<Integer, Boolean> isRead) {
         this.isRead = isRead;
     }
 
-    public void MarkAsRead(User user){
-        isRead.put(user, true);
+    public void MarkAsRead(Integer id){
+        isRead.put(id, true);
     }
 
 

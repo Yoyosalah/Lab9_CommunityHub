@@ -20,13 +20,10 @@ public class NotificationDatabase {
     private static NotificationDatabase instance = null; //singleton design pattern
 
     static {
-
         objectMapper = new ObjectMapper();
-        //trying to configure the date format
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
     }
 
     private NotificationDatabase() {
@@ -51,9 +48,9 @@ public class NotificationDatabase {
             if (file.exists()) {
                 notifications = objectMapper.readValue(file, new TypeReference<ArrayList<Notification>>() {
                 });
-
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -61,6 +58,7 @@ public class NotificationDatabase {
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(filename), notifications);
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
