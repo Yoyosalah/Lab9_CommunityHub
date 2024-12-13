@@ -23,9 +23,8 @@ public class Newsfeed extends Window {
 
     //for logout 
     //String email;
-    
     public void setEmail(String email) {
-       // this.email = email;
+        // this.email = email;
         this.exitEmail = email;
     }
 
@@ -37,8 +36,9 @@ public class Newsfeed extends Window {
     private ArrayList<Content> contentList;
     private int currentIndex;
     private HashMap<User, String> comboBoxMap;
+    private UserDatabase userDatabase = UserDatabase.getInstance();
 
-    public Newsfeed(User user,ContentDatabase contentDatabase) {
+    public Newsfeed(User user, ContentDatabase contentDatabase) {
         this.user = user;
         this.friendManager = new FriendsManager();
         this.requestHandler = new RequestHandler(friendManager);
@@ -380,7 +380,7 @@ public class Newsfeed extends Window {
         if (index >= 0 && index < contentList.size()) {
             Content content = contentList.get(index);
             textArea.setText(content.getText());
-            AuthorArea.setText("Author: " + content.getAuthorid());
+            AuthorArea.setText("Author: " + userDatabase.getUserById(Integer.parseInt(content.getAuthorid())).getUsername() );
             dateArea.setText("Date: " + content.getTimestamp().toString());
 
             if (content.getImage() != null) {
@@ -423,7 +423,7 @@ public class Newsfeed extends Window {
 
     private void displayProfilePicture() {//display users profile picture and resizing it to fit the jlabel
         profilePic.setIcon(null);
-        
+
         String profilePicPath = user.getProfilePhotoPath();
 
         if (profilePicPath != null && !profilePicPath.isEmpty()) {
@@ -475,7 +475,6 @@ public class Newsfeed extends Window {
     /**
      * @param args the command line arguments
      */
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -503,7 +502,7 @@ public class Newsfeed extends Window {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Newsfeed(new User(),new ContentDatabase()).setVisible(true);
+                new Newsfeed(new User(), new ContentDatabase()).setVisible(true);
             }
         });
     }
