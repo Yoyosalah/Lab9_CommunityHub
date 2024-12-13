@@ -58,11 +58,9 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="addPostBTN" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="editPostBTN" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="deletePostBTN" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -79,7 +77,6 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="addPostBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="editPostBTN" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="deletePostBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="manageGroupBTN" min="-2" max="-2" attributes="0"/>
@@ -149,6 +146,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Add post"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPostBTNActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="editPostBTN">
           <Properties>
@@ -165,11 +165,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageGroupBTNActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="deletePostBTN">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Delete post"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="groupCoverLabel">
           <Properties>

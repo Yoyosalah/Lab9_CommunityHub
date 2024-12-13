@@ -43,14 +43,12 @@ public class GroupGUI extends Window {
         
         //hides buttons for members only
         deleteGroupBTN.setVisible(false);
-        deletePostBTN.setVisible(false);
         editPostBTN.setVisible(false);
         addPostBTN.setVisible(false);
         manageGroupBTN.setVisible(false);
         
         if(user.getUserId() == group.getPrimaryAdmin().getUserId()){ //shows the primary admin operation buttons
             deleteGroupBTN.setVisible(true);
-            deletePostBTN.setVisible(true);
             editPostBTN.setVisible(true);
             addPostBTN.setVisible(true);
             manageGroupBTN.setVisible(true);
@@ -58,7 +56,6 @@ public class GroupGUI extends Window {
         
         for(User admin : group.getSecondaryAdmins()){ //goes through the secondary admins
             if(admin.getUserId() == user.getUserId()){ //shows the secondary admin operation buttons
-                deletePostBTN.setVisible(true);
                 editPostBTN.setVisible(true);
                 addPostBTN.setVisible(true);
                 manageGroupBTN.setVisible(true);
@@ -87,7 +84,6 @@ public class GroupGUI extends Window {
         addPostBTN = new javax.swing.JButton();
         editPostBTN = new javax.swing.JButton();
         manageGroupBTN = new javax.swing.JButton();
-        deletePostBTN = new javax.swing.JButton();
         groupCoverLabel = new javax.swing.JLabel();
         deleteGroupBTN = new javax.swing.JButton();
 
@@ -117,6 +113,11 @@ public class GroupGUI extends Window {
         groupDescLabel.setText("description");
 
         addPostBTN.setText("Add post");
+        addPostBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPostBTNActionPerformed(evt);
+            }
+        });
 
         editPostBTN.setText("Edit post");
         editPostBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -131,8 +132,6 @@ public class GroupGUI extends Window {
                 manageGroupBTNActionPerformed(evt);
             }
         });
-
-        deletePostBTN.setText("Delete post");
 
         groupCoverLabel.setText("cover photo");
 
@@ -161,11 +160,9 @@ public class GroupGUI extends Window {
                         .addGap(160, 160, 160))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(addPostBTN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(editPostBTN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deletePostBTN)
-                        .addGap(77, 77, 77))))
+                        .addGap(123, 123, 123))))
             .addComponent(groupCoverLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -177,8 +174,7 @@ public class GroupGUI extends Window {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addPostBTN)
-                            .addComponent(editPostBTN)
-                            .addComponent(deletePostBTN))
+                            .addComponent(editPostBTN))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(manageGroupBTN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -209,11 +205,17 @@ public class GroupGUI extends Window {
 
     private void editPostBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPostBTNActionPerformed
         // TODO add your handling code here:
+        new GroupEditPost(group);
     }//GEN-LAST:event_editPostBTNActionPerformed
 
     private void manageGroupBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageGroupBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_manageGroupBTNActionPerformed
+
+    private void addPostBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPostBTNActionPerformed
+        // TODO add your handling code here:
+        new GroupAddPost(group, user);
+    }//GEN-LAST:event_addPostBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,7 +339,6 @@ public class GroupGUI extends Window {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPostBTN;
     private javax.swing.JButton deleteGroupBTN;
-    private javax.swing.JButton deletePostBTN;
     private javax.swing.JButton editPostBTN;
     private javax.swing.JLabel groupCoverLabel;
     private javax.swing.JLabel groupDescLabel;
