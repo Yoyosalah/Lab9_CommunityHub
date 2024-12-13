@@ -39,8 +39,7 @@ public class FriendManagerGUI extends Window {
 
     private UserDatabase userDatabase = UserDatabase.getInstance();
 
-    private ContentDatabase contentDatabase =  ContentDatabase.getInstance();
-
+    private ContentDatabase contentDatabase = ContentDatabase.getInstance();
     private FriendsManager friendsManager = new FriendsManager();
     private RequestHandler requestHandler = new RequestHandler(friendsManager);
     private BlockHandler blockHandler = new BlockHandler(friendsManager);
