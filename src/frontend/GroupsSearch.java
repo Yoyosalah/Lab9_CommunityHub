@@ -276,9 +276,9 @@ public class GroupsSearch extends Window {
 
     private void ViewGroupbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupbtnActionPerformed
         // TODO add your handling code here:
-        GroupGUIPreviewOnly G = new GroupGUIPreviewOnly();
+        GroupGUIPreviewONLYY G = new GroupGUIPreviewONLYY(selectedGroup);
         G.setPrevWindow(this);
-        G.setGroup(selectedGroup);
+        
         this.setVisible(false);
     }//GEN-LAST:event_ViewGroupbtnActionPerformed
 
@@ -296,7 +296,7 @@ public class GroupsSearch extends Window {
             // set the search bar text
             searchBar.setText(selectedGroupName);
 
-            Group selectedGroup = null;
+            // selectedGroup = null;
 
             for (Group group : allGroups) {
                 if (group.getName().equals(selectedGroupName)) {
@@ -343,7 +343,7 @@ public class GroupsSearch extends Window {
         }
 
         GroupDatabase groupDatabase = GroupDatabase.getInstance();
-        Group selectedGroup = null;
+//         selectedGroup = null;
         for (Group group : groupDatabase.getGroupsList()) {
             if (group.getName().equals(selectedGroupName)) {
                 selectedGroup = group;
@@ -437,7 +437,7 @@ public class GroupsSearch extends Window {
 
             String selectedGroupName = SearchOutput.getSelectedValue();
 
-            Group selectedGroup = null;
+            // selectedGroup = null;
 
             for (Group group : allGroups) {
                 if (group.getName().equals(selectedGroupName)) {
