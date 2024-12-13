@@ -32,9 +32,8 @@ public class GroupAddPost extends Window {
         this.user = user;
         this.imgs = null;
         this.a = new SecondaryAdminRole(group);
-        
-        
-        
+        prepare("Add post");
+     
     }
 
     /**

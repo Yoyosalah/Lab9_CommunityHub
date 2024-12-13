@@ -78,9 +78,9 @@ public class ContentDatabase {
         contentlist.add(content);
     }
 
-    public Content getContentById(int contentId) {
+    public Content getContentById(String contentId) {
         for (Content c : contentlist) {
-            if (c.getContentid().equals(String.valueOf(contentId))) {
+            if (c.getContentid().equals(contentId)) {
                 return c;
             }
         }

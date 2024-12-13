@@ -19,7 +19,7 @@ public class Group {
     private Integer primaryAdmin;
     private List<Integer> secondaryAdmins;
     private List<Integer> members;
-    private List<Integer> posts;
+    private List<String> posts;
     private List<Integer> requests;
     
     //databases to help conversions from ids to posts and users
@@ -93,11 +93,11 @@ public class Group {
         this.members = members;
     }
 
-    public List<Integer> getPosts() {
+    public List<String> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<Integer> posts) {
+    public void setPosts(List<String> posts) {
         this.posts = posts;
     }
 
@@ -152,18 +152,18 @@ public class Group {
         return ids;
     }
     @JsonIgnore
-    public List<Post> idsToPosts(List<Integer> ids){
+    public List<Post> idsToPosts(List<String> ids){
         List<Post> postsList = new ArrayList<>();
-        for(Integer id:ids){
+        for(String id:ids){
             postsList.add((Post) contentDatabase.getContentById(id));
         }
         return postsList;
     }
     @JsonIgnore
-    public static List<Integer> postsToIds(List<Post> posts){
-        List<Integer> ids = new ArrayList<>();
+    public static List<String> postsToIds(List<Post> posts){
+        List<String> ids = new ArrayList<>();
         for(Post post: posts){
-            ids.add(Integer.valueOf(post.getContentid()));
+            ids.add(post.getContentid());
         }
         return ids;
     }

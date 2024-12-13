@@ -42,4 +42,48 @@
   "groupPhotoPath" : null,
   "coverPhotoPath" : null,
   "description" : "fuck jackson"
+}, {
+  "groupId" : 4,
+  "name" : "gp",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 5,
+  "name" : "gp2",
+  "primaryAdmin" : 2,
+  "secondaryAdmins" : [ ],
+  "members" : [ 10, 11, 9 ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 6,
+  "name" : "hjj",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ "dc8bca12-a78e-4474-81ae-a4e5993bec3e" ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 7,
+  "name" : "testt",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ "eae1a316-c9cb-4217-8c82-951127798a56" ],
+  "requests" : [ ],
+  "groupPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab2\\Screenshot 2024-11-26 203433.png",
+  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab2\\Screenshot 2024-11-26 202739.png",
+  "description" : "ashjsaj"
 } ]

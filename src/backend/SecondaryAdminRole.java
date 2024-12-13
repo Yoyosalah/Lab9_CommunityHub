@@ -41,9 +41,10 @@ public class SecondaryAdminRole {
             group.setPosts(new ArrayList<>()); // Initialize if null
         }
 
-        List<Integer> allPostIds = new ArrayList<>();
+        List<String> allPostIds = new ArrayList<>();
         allPostIds.addAll(group.getPosts());
-        allPostIds.add(Integer.parseInt(post.getContentid()));
+        System.out.println(post.getContentid());
+        allPostIds.add(post.getContentid());
         group.setPosts(allPostIds);
         groupDatabase.saveToFile();
     }
@@ -64,9 +65,9 @@ public class SecondaryAdminRole {
         }
 
         if (group.getPosts().contains(Integer.parseInt(post.getContentid()))) {
-            List<Integer> allPostIds = new ArrayList<>();
+            List<String> allPostIds = new ArrayList<>();
             allPostIds.addAll(group.getPosts());
-            allPostIds.remove(Integer.valueOf(post.getContentid()));
+            allPostIds.remove(post.contentid);
             group.setPosts(allPostIds);
             groupDatabase.saveToFile();
         } else {

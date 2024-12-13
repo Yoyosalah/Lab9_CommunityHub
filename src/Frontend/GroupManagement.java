@@ -366,6 +366,7 @@ public class GroupManagement extends Window {
         String path = fileChooser.getSelectedFile().getAbsolutePath();
         if(path != null){   
             group.setGroupPhotoPath(path); //updates the profile photo
+            refresh();
         }
         else
             JOptionPane.showInternalMessageDialog(null,"No image has been selected" , "Error", JOptionPane.ERROR_MESSAGE);
@@ -414,6 +415,7 @@ public class GroupManagement extends Window {
         String path = fileChooser.getSelectedFile().getAbsolutePath();
         if(path != null){   
             group.setCoverPhotoPath(path); //updates the profile photo
+            refresh();
         }
         else
             JOptionPane.showInternalMessageDialog(null,"No image has been selected" , "Error", JOptionPane.ERROR_MESSAGE);
@@ -457,6 +459,7 @@ public class GroupManagement extends Window {
         // TODO add your handling code here:
         String desc = JOptionPane.showInputDialog(null, "Description:", "Change description", JOptionPane.PLAIN_MESSAGE);
         group.setDescription(desc);
+        refresh();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
