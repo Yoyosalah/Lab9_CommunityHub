@@ -73,6 +73,11 @@ public class ContentDatabase {
         }
     }
 
+
+    public void addContent(Content content) {
+        contentlist.add(content);
+    }
+
     public Content getContentById(int contentId) {
         for (Content c : contentlist) {
             if (c.getContentid().equals(String.valueOf(contentId))) {
@@ -80,9 +85,5 @@ public class ContentDatabase {
             }
         }
         return null;
-    }
-
-    public void addContent(Content content) {
-        contentlist.add(content);
     }
 }
