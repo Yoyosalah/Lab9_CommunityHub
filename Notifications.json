@@ -1,0 +1,10 @@
+[ {
+  "notificationid" : "04b7a702-a3e0-4689-a32c-47604607b7b8",
+  "text" : "test testsur Sent You A Friend Request",
+  "type" : "Friend",
+  "timestamp" : "2024-12-13",
+  "receivers" : [ 1 ],
+  "isRead" : {
+    "1" : true
+  }
+} ]

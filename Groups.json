@@ -1,0 +1,45 @@
+[ {
+  "groupId" : 0,
+  "name" : "Group A",
+  "primaryAdmin" : 0,
+  "secondaryAdmins" : [ 1 ],
+  "members" : [ 1, 2, 3 ],
+  "posts" : null,
+  "requests" : null,
+  "groupPhotoPath" : null,
+  "coverPhotoPath" : null,
+  "description" : "fuck jackson"
+}, {
+  "groupId" : 1,
+  "name" : "Group A",
+  "primaryAdmin" : 0,
+  "secondaryAdmins" : [ 1 ],
+  "members" : [ 1, 2, 3 ],
+  "posts" : null,
+  "requests" : null,
+  "groupPhotoPath" : null,
+  "coverPhotoPath" : null,
+  "description" : "fuck jackson"
+}, {
+  "groupId" : 2,
+  "name" : "Group A",
+  "primaryAdmin" : 0,
+  "secondaryAdmins" : [ 1 ],
+  "members" : [ 1, 2, 3 ],
+  "posts" : null,
+  "requests" : null,
+  "groupPhotoPath" : null,
+  "coverPhotoPath" : null,
+  "description" : "fuck jackson"
+}, {
+  "groupId" : 3,
+  "name" : "Group A",
+  "primaryAdmin" : 0,
+  "secondaryAdmins" : [ 1 ],
+  "members" : [ 1, 2, 3 ],
+  "posts" : null,
+  "requests" : null,
+  "groupPhotoPath" : null,
+  "coverPhotoPath" : null,
+  "description" : "fuck jackson"
+} ]

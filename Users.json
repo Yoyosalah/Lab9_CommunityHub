@@ -101,9 +101,9 @@
   "password" : "6161b2838ffa6ce17b84db3b45b4f8437855ecf43e75de2d1ad0008eaae91aa0",
   "mobileNumber" : "01019011788",
   "gender" : "male",
-  "profilePhotoPath" : null,
-  "coverPhotoPath" : null,
-  "bio" : null,
+  "profilePhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Signals\\Lab\\ass1\\2-c.png",
+  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab3\\pic3.png",
+  "bio" : "hello! ;>",
   "dateOfBirth" : "2004-09-06",
   "status" : "offline"
 } ]
