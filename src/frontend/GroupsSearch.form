@@ -51,7 +51,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="SelectedUserTxt" min="-2" max="-2" attributes="0"/>
+                                          <Component id="SelectedGroup" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="ViewGroupbtn" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -93,20 +93,17 @@
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Component id="profilePic" min="-2" pref="79" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="profilePic" min="-2" pref="79" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jSeparator2" pref="71" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="jSeparator1" min="-2" pref="13" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="JoinButton" linkSize="2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="LeaveButton" linkSize="2" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jSeparator2" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
                           <Component id="Back" min="-2" max="-2" attributes="0"/>
@@ -114,7 +111,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="searchBar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SelectedUserTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="SelectedGroup" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="ViewGroupbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -200,9 +197,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="SelectedUserTxt">
+        <Component class="javax.swing.JLabel" name="SelectedGroup">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Selected User: "/>
+            <Property name="text" type="java.lang.String" value="Selected Group: "/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="infoPanel">
@@ -220,7 +217,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="email" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Description" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="mobile" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="Gender" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="dateOfBirth" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -243,7 +240,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="email" min="-2" max="-2" attributes="0"/>
+                      <Component id="Description" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="mobile" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -268,9 +265,9 @@
                 <Property name="text" type="java.lang.String" value="Info:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="email">
+            <Component class="javax.swing.JLabel" name="Description">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Email: "/>
+                <Property name="text" type="java.lang.String" value="Description:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="mobile">

@@ -36,7 +36,7 @@ public class Profile extends Window {
     private ProfileContent profileContent;
     private User user;
     private ContentDatabase contentDatabase;
-    
+
     public Profile(User user, ContentDatabase contentDatabase) {
         initComponents();
         prepare("Profile");
@@ -214,16 +214,22 @@ public class Profile extends Window {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfileActionPerformed
-        EditProfile ep =new EditProfile(user, this);
+        EditProfile ep = new EditProfile(user, this);
         ep.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
     }//GEN-LAST:event_editProfileActionPerformed
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
         // TODO add your handling code here:
-        FriendManagerGUI f = new FriendManagerGUI(user, UserDatabase.getInstance().returnAllUsers());
+//        FriendManagerGUI f = new FriendManagerGUI(user, UserDatabase.getInstance().returnAllUsers());
+//        f.setPrevPage(this);
+//        this.setVisible(false);
+
+        //to test
+        GroupsSearch f = new GroupsSearch(user, UserDatabase.getInstance().returnAllUsers());
         f.setPrevPage(this);
         this.setVisible(false);
+        
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed

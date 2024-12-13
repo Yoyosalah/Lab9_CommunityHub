@@ -33,6 +33,9 @@ public class GroupsSearch extends Window {
         this.exitEmail = email;
     }
 
+    GroupDatabase groupDatabase = GroupDatabase.getInstance();
+    ArrayList<Group> allGroups = groupDatabase.getGroupsList();
+
     private UserDatabase userDatabase = UserDatabase.getInstance();
 
     private ContentDatabase contentDatabase = new ContentDatabase();
@@ -46,14 +49,23 @@ public class GroupsSearch extends Window {
         initComponents();
         prepare("Search Groups");
         this.user = user;
-        this.JoinButton.setVisible(false);
-        this.LeaveButton.setVisible(true);
 
-        this.searchBar.setVisible(false);
-        this.jScrollPane1.setVisible(false);
+        this.jScrollPane1.setVisible(true);
+        this.SearchOutput.setVisible(true);
 
-        this.SelectedUserTxt.setVisible(false);
+        this.SelectedGroup.setVisible(true);
+        this.ViewGroupbtn.setVisible(true);
         this.infoPanel.setVisible(false);
+        this.searchBar.setVisible(true);
+        this.SearchOutput.setListData(new String[0]);
+        this.searchBar.setText("");
+
+        this.JoinButton.setVisible(false);
+        this.LeaveButton.setVisible(false);
+//        this.jScrollPane1.setVisible(false);
+
+        this.SelectedGroup.setVisible(false);
+//        this.infoPanel.setVisible(false);
         this.ViewGroupbtn.setVisible(false);
 
     }
@@ -74,10 +86,10 @@ public class GroupsSearch extends Window {
         jScrollPane1 = new javax.swing.JScrollPane();
         SearchOutput = new javax.swing.JList<>();
         Back = new javax.swing.JButton();
-        SelectedUserTxt = new javax.swing.JLabel();
+        SelectedGroup = new javax.swing.JLabel();
         infoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        email = new javax.swing.JLabel();
+        Description = new javax.swing.JLabel();
         mobile = new javax.swing.JLabel();
         Gender = new javax.swing.JLabel();
         dateOfBirth = new javax.swing.JLabel();
@@ -140,14 +152,14 @@ public class GroupsSearch extends Window {
             }
         });
 
-        SelectedUserTxt.setText("Selected User: ");
+        SelectedGroup.setText("Selected Group: ");
 
         infoPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel1.setText("Info:");
 
-        email.setText("Email: ");
+        Description.setText("Description:");
 
         mobile.setText("Mobile:");
 
@@ -168,7 +180,7 @@ public class GroupsSearch extends Window {
                     .addGroup(infoPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(email)
+                            .addComponent(Description)
                             .addComponent(mobile)
                             .addComponent(Gender)
                             .addComponent(dateOfBirth)
@@ -185,7 +197,7 @@ public class GroupsSearch extends Window {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(email)
+                .addComponent(Description)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mobile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,7 +236,7 @@ public class GroupsSearch extends Window {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(SelectedUserTxt)
+                                        .addComponent(SelectedGroup)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(ViewGroupbtn))
                                     .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -256,24 +268,22 @@ public class GroupsSearch extends Window {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(JoinButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LeaveButton)))
+                                .addComponent(LeaveButton))
+                            .addComponent(jSeparator2))
                         .addGap(271, 271, 271)
                         .addComponent(Back))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SelectedUserTxt)
+                            .addComponent(SelectedGroup)
                             .addComponent(ViewGroupbtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -316,52 +326,43 @@ public class GroupsSearch extends Window {
 
     private void SearchOutputValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_SearchOutputValueChanged
         // TODO add your handling code here:
-        String selectedUsername = SearchOutput.getSelectedValue();
+        String selectedGroupName = SearchOutput.getSelectedValue();
 
-        if (selectedUsername != null && !selectedUsername.isEmpty()) {
+        if (selectedGroupName != null && !selectedGroupName.isEmpty()) {
             // set the search bar text
-            searchBar.setText(selectedUsername);
+            searchBar.setText(selectedGroupName);
 
-            ArrayList<User> allUsers = userDatabase.returnAllUsers();
-            selectedGroup = null;
+            Group selectedGroup = null;
 
-            for (User user : allUsers) {
-                if (user.getUsername().equals(selectedUsername)) {
-                    selectedGroup = user;
+            for (Group group : allGroups) {
+                if (group.getName().equals(selectedGroupName)) {
+                    selectedGroup = group;
                     break;
                 }
             }
-            SelectedUserTxt.setText("Selected User: " + selectedGroup.getUsername());
-            email.setText("Email: " + selectedGroup.getEmail());
-            mobile.setText("Mobile: " + selectedGroup.getMobileNumber());
-            Gender.setText("Gender: " + selectedGroup.getGender());
-            dateOfBirth.setText("Birthday: " + selectedGroup.getDateOfBirth());
-            statusInfo.setText("Status: " + selectedGroup.getStatus());
 
-            if (selectedGroup.getBio() != null) {
-                bio.setText("Bio: " + selectedGroup.getBio());
-                bio.setVisible(true);
-            } else {
-                bio.setVisible(false);
+            if (selectedGroup != null) {
+                SelectedGroup.setText("Selected Group: " + selectedGroup.getName());
+                Description.setText("Description: " + selectedGroup.getDescription());
+                profilePic.setIcon(new ImageIcon(selectedGroup.getGroupPhotoPath()));
+
+//                String profilePhotoPath = selectedGroup.getGroupPhotoPath();
+//                ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
+//                Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
+//                profilePic.setIcon(new ImageIcon(scaledImage));
             }
-
-            //profille pic
-            String profilePhotoPath = selectedGroup.getProfilePhotoPath();
-            ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
-            Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
-            profilePic.setIcon(new ImageIcon(scaledImage));
 
             this.infoPanel.setVisible(true);
 
             // Check if the selected user is a friend
-            if (selectedGroup != null && !friendsManager.areFriends(user.getUserId(), selectedGroup.getUserId())) {
+            if (!selectedGroup.getMembers().contains(user.getUserId())) {
                 this.JoinButton.setVisible(true);
                 this.LeaveButton.setVisible(false);
-
             } else {
                 this.JoinButton.setVisible(false);
                 this.LeaveButton.setVisible(true);
             }
+
         }
     }//GEN-LAST:event_SearchOutputValueChanged
 
@@ -369,7 +370,7 @@ public class GroupsSearch extends Window {
         // TODO add your handling code here:
 
         this.jScrollPane1.setVisible(true);
-        this.SelectedUserTxt.setVisible(true);
+        this.SelectedGroup.setVisible(true);
         this.ViewGroupbtn.setVisible(true);
         this.infoPanel.setVisible(false);
         this.searchBar.setVisible(true);
@@ -417,7 +418,8 @@ public class GroupsSearch extends Window {
 
     private void searchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBarKeyReleased
         // TODO add your handling code here:
-
+        //this.infoPanel.setVisible(true);
+        //this.jScrollPane1.setVisible(true);
         String searchKey = searchBar.getText().trim();
         if (searchKey.isEmpty()) {
             this.SearchOutput.setListData(new String[0]);
@@ -427,8 +429,6 @@ public class GroupsSearch extends Window {
             return;
         }
         // get all users to be filtered based on the search key
-        GroupDatabase groupDatabase = GroupDatabase.getInstance();
-        ArrayList<Group> allGroups = groupDatabase.getGroupsList();
         ArrayList<String> filteredGroups = new ArrayList<>();
 
         // filteration
@@ -466,7 +466,6 @@ public class GroupsSearch extends Window {
 //            } else {
 //                bio.setVisible(false);
 //            }
-
 //            //profile pic
 //            String profilePhotoPath = selectedGroup.getProfilePhotoPath();
 //            ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
@@ -474,7 +473,6 @@ public class GroupsSearch extends Window {
 //            profilePic.setIcon(new ImageIcon(scaledImage));
 //
 //            this.infoPanel.setVisible(true);
-
             // Show buttons based on membership status
             if (!selectedGroup.getMembers().contains(user.getUserId())) {
                 this.JoinButton.setVisible(true);
@@ -497,9 +495,9 @@ public class GroupsSearch extends Window {
     }
 
 
-
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_searchBarActionPerformed
 
     /**
@@ -508,16 +506,16 @@ public class GroupsSearch extends Window {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JLabel Description;
     private javax.swing.JLabel Gender;
     private javax.swing.JButton JoinButton;
     private javax.swing.JButton LeaveButton;
     private javax.swing.JButton RefreshBTN;
     private javax.swing.JList<String> SearchOutput;
-    private javax.swing.JLabel SelectedUserTxt;
+    private javax.swing.JLabel SelectedGroup;
     private javax.swing.JButton ViewGroupbtn;
     private javax.swing.JLabel bio;
     private javax.swing.JLabel dateOfBirth;
-    private javax.swing.JLabel email;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
