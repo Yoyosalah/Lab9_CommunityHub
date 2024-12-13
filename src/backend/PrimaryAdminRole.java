@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author Mustafa
  */
 public class PrimaryAdminRole extends SecondaryAdminRole{
-
+    private GroupDatabase groupDatabase = GroupDatabase.getInstance();
     public PrimaryAdminRole(Group group){
         super(group);
     }
@@ -19,8 +19,12 @@ public class PrimaryAdminRole extends SecondaryAdminRole{
     
     @Override
     public void removeMember(User user){
-        group.getMembers().remove(user.getUserId());
-        //save changes to database here ya salah ;)
+        if(group.getSecondaryAdmins().contains(user.getUserId())){
+            group.getSecondaryAdmins().remove(user.getUserId());
+            groupDatabase.saveToFile();
+        }else{
+            super.removeMember(user);
+        }
     }
     
     public void promoteUserToAdmin(User user){
@@ -29,7 +33,8 @@ public class PrimaryAdminRole extends SecondaryAdminRole{
         }
         else{
             group.getSecondaryAdmins().add(user.getUserId());
-            //save changes to database here ya salah ;>
+            group.getMembers().remove(user.getUserId());
+            groupDatabase.saveToFile();
             JOptionPane.showMessageDialog(null, user.getUsername() + " has been promoted.", "Promote", JOptionPane.PLAIN_MESSAGE);
         }
     }
@@ -40,13 +45,14 @@ public class PrimaryAdminRole extends SecondaryAdminRole{
         }
         else{
             group.getSecondaryAdmins().remove(user.getUserId());
-            //save changes to database here ya salah :]
+            group.getMembers().add(user.getUserId());
+            groupDatabase.saveToFile();
             JOptionPane.showMessageDialog(null, user.getUsername() + " has been demoted.", "Promote", JOptionPane.PLAIN_MESSAGE);
         }
     }
     
     public void deleteGroup(){
-        //this one is all urs salah ;0
+       groupDatabase.deleteGroup(group);
     }
     
         

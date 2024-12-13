@@ -78,6 +78,14 @@ public class GroupDatabase {
     public void deleteGroup(Group group){
         groups.remove(group);
         decrementGroups();
-        
+    }
+    
+    public Group getGroupById(int id) {
+        for (Group group : groups) {
+            if (group.getGroupId()== id) {
+                return group;
+            }
+        }
+        return null;
     }
 }
