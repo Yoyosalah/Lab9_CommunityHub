@@ -9,6 +9,8 @@ import frontend.Window;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -48,7 +50,7 @@ public class GroupGUI extends Window {
         addPostBTN.setVisible(false);
         manageGroupBTN.setVisible(false);
         
-        if(user.getUserId() == group.getPrimaryAdmin().getUserId()){ //shows the primary admin operation buttons
+        if(user.getUserId() == group.getPrimaryAdmin()){ //shows the primary admin operation buttons
             deleteGroupBTN.setVisible(true);
             editPostBTN.setVisible(true);
             addPostBTN.setVisible(true);
@@ -58,7 +60,8 @@ public class GroupGUI extends Window {
         else
             admin = null;
         
-        for(User admin : group.getSecondaryAdmins()){ //goes through the secondary admins
+        
+        for(User admin : group.idsToUsers(group.getSecondaryAdmins())){ //goes through the secondary admins
             if(admin.getUserId() == user.getUserId()){ //shows the secondary admin operation buttons
                 editPostBTN.setVisible(true);
                 addPostBTN.setVisible(true);
@@ -281,7 +284,7 @@ public class GroupGUI extends Window {
             return;
         }
 
-        for (Content post : group.getPosts()) {
+        for (Content post : group.idsToPosts(group.getPosts())) {
             if (post instanceof Post ) {
                 //creats panel for each post
                 JPanel singlePost = new JPanel();

@@ -37,8 +37,9 @@ public class GroupEditPost extends Window{
     public GroupEditPost(Group group) {
         initComponents();
         this.group = group;
-        this.posts = group.getPosts();
+        this.posts = group.idsToPosts(group.getPosts());
         this.currentIndex = 0;
+        database = GroupDatabase.getInstance();
         prepare("Edit posts");
         
         
@@ -250,7 +251,8 @@ public class GroupEditPost extends Window{
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        admin.editPost(posts.get(currentIndex));
+        group.setPosts(Group.postsToIds(posts));
+        database.saveToFile();
         this.setVisible(false);
         prev.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed

@@ -49,7 +49,7 @@ public class GroupManagement extends Window {
         jButton6.setVisible(false);
         jButton7.setVisible(false);
         
-        if(group.getPrimaryAdmin().getUserId() == user.getUserId()){ //only primary admin can promote and demote
+        if(group.getPrimaryAdmin() == user.getUserId()){ //only primary admin can promote and demote
             jButton1.setVisible(true);
             jButton2.setVisible(true);
             jButton3.setVisible(true);
@@ -380,7 +380,7 @@ public class GroupManagement extends Window {
             JOptionPane.showMessageDialog(null, "no user selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            Admin.declineMembershipRequest();
+            Admin.declineMembershipRequest(u);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -428,7 +428,7 @@ public class GroupManagement extends Window {
             JOptionPane.showMessageDialog(null, "no user selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            Admin.approveMembershipRequest();
+            Admin.approveMembershipRequest(u);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -439,7 +439,7 @@ public class GroupManagement extends Window {
             JOptionPane.showMessageDialog(null, "no user selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            Admin.removeMember(user);
+            Admin.removeMember(u);
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -469,7 +469,7 @@ public class GroupManagement extends Window {
     private void updateRequestComboBox(){
         requestComboMap.clear();
         jComboBox1.removeAll();
-        for(User u : group.getRequests()){ 
+        for(User u : group.idsToUsers(group.getRequests())){ 
             requestComboMap.put(u, u.getUsername());
             jComboBox1.addItem(u.getUsername());
         }
@@ -488,7 +488,7 @@ public class GroupManagement extends Window {
     private void updateMemberComboBox(){
         membersComboMap.clear();
         jComboBox2.removeAll();
-        for(User u : group.getMembers()){
+        for(User u : group.idsToUsers(group.getMembers())){
             membersComboMap.put(u, u.getUsername());
             jComboBox2.addItem(u.getUsername());
         }
