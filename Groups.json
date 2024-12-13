@@ -164,17 +164,6 @@
   "coverPhotoPath" : "",
   "description" : ""
 }, {
-  "groupId" : 15,
-  "name" : null,
-  "primaryAdmin" : 1,
-  "secondaryAdmins" : [ ],
-  "members" : [ ],
-  "posts" : [ "b40bcdc5-2b6a-4276-8050-55e828c45409" ],
-  "requests" : [ ],
-  "groupPhotoPath" : "",
-  "coverPhotoPath" : "",
-  "description" : ""
-}, {
   "groupId" : 16,
   "name" : "gg",
   "primaryAdmin" : 1,

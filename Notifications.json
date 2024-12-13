@@ -7,4 +7,13 @@
   "isRead" : {
     "1" : false
   }
+}, {
+  "notificationid" : "f84ff6f4-71d0-4fb5-bf99-de646134f885",
+  "text" : "test testsur Sent You A Friend Request",
+  "type" : "Friend",
+  "timestamp" : "2024-12-14",
+  "receivers" : [ 3 ],
+  "isRead" : {
+    "3" : true
+  }
 } ]
