@@ -94,6 +94,7 @@ public class Newsfeed extends Window {
         addFriendButton = new javax.swing.JButton();
         NotificationsButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,6 +199,13 @@ public class Newsfeed extends Window {
             }
         });
 
+        jButton4.setText("Create group");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -226,7 +234,8 @@ public class Newsfeed extends Window {
                                 .addComponent(refreshButton))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4)))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -289,7 +298,8 @@ public class Newsfeed extends Window {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Logoutbtn)
                             .addComponent(NotificationsButton)
-                            .addComponent(jButton3))
+                            .addComponent(jButton3)
+                            .addComponent(jButton4))
                         .addGap(13, 13, 13)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -418,6 +428,20 @@ public class Newsfeed extends Window {
         f.setPrevPage(this);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String name = JOptionPane.showInputDialog(null, "Enter group name: ", "Create group", JOptionPane.PLAIN_MESSAGE);
+        if(name == null){
+            JOptionPane.showMessageDialog(null, "No name has been entered", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            Group g = new Group(name,user.getUserId());
+            GroupGUI gui = new GroupGUI(g, user);
+            gui.setPrevWindow(this);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void displayContent(int index) {
         textArea.setText(""); // Clear text area
@@ -565,6 +589,7 @@ public class Newsfeed extends Window {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
