@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author BLU-RAY
  */
 public class NotificationsPanel extends javax.swing.JFrame {
-    private NotificationDatabase notifictaionDB = new NotificationDatabase();
+    private NotificationDatabase notifictaionDB = NotificationDatabase.getInstance();
     private ArrayList<Notification> Notifications = notifictaionDB.getNotifications();
     private User user;
     /**
@@ -41,7 +41,7 @@ public class NotificationsPanel extends javax.swing.JFrame {
         }
 
         JList<String> notificationList = new JList<>(listModel);
-        notificationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        notificationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //needs filtering 😂
         notificationList.setVisibleRowCount(10);//testing ba3deen
         JScrollPane scrollPane = new JScrollPane(notificationList);
         jPanel1.setLayout(new BorderLayout());
@@ -136,7 +136,7 @@ public class NotificationsPanel extends javax.swing.JFrame {
     private void RefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshButtonActionPerformed
         // TODO add your handling code here:
         notifictaionDB.saveToFile();
-        notifictaionDB =new NotificationDatabase();
+        notifictaionDB = NotificationDatabase.getInstance();
         populateNotifications();
     }//GEN-LAST:event_RefreshButtonActionPerformed
 

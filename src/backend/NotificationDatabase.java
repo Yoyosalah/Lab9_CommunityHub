@@ -17,6 +17,7 @@ public class NotificationDatabase {
     private ArrayList<Notification> notifications;
     private final String filename = NOTIFICATION_FILENAME;
     private static final ObjectMapper objectMapper;
+    private static NotificationDatabase instance = null;
 
     static { // static block is used to initialize the static variable without errors
 
@@ -28,9 +29,16 @@ public class NotificationDatabase {
 
     }
 
-    public NotificationDatabase() {
+    private NotificationDatabase() {
         notifications = new ArrayList<>();
         readFromFile();
+    }
+
+    public static NotificationDatabase getInstance() {
+        if (instance == null) {
+            instance = new NotificationDatabase();
+        }
+        return instance;
     }
 
     public void addNotification(Notification notification){

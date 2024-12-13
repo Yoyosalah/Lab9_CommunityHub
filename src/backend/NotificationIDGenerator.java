@@ -6,7 +6,7 @@ import java.util.UUID;
 public class NotificationIDGenerator {
     public static String generateUniqueId() {
         String notificationID = null;
-        ArrayList<Notification> notificationList = new NotificationDatabase().getNotifications();
+        ArrayList<Notification> notificationList = NotificationDatabase.getInstance().getNotifications();
         boolean isDuplicate = false;
         do {
             notificationID = UUID.randomUUID().toString();// Generate a random notification ID
