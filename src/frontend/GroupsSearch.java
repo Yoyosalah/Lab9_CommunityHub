@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -82,7 +83,6 @@ public class GroupsSearch extends Window {
         searchBar = new javax.swing.JTextField();
         JoinButton = new javax.swing.JButton();
         LeaveButton = new javax.swing.JButton();
-        RefreshBTN = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         SearchOutput = new javax.swing.JList<>();
         Back = new javax.swing.JButton();
@@ -90,11 +90,7 @@ public class GroupsSearch extends Window {
         infoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Description = new javax.swing.JLabel();
-        mobile = new javax.swing.JLabel();
-        Gender = new javax.swing.JLabel();
-        dateOfBirth = new javax.swing.JLabel();
-        bio = new javax.swing.JLabel();
-        statusInfo = new javax.swing.JLabel();
+        primaryAdmin = new javax.swing.JLabel();
         ViewGroupbtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -126,13 +122,6 @@ public class GroupsSearch extends Window {
             }
         });
 
-        RefreshBTN.setText("Refresh");
-        RefreshBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RefreshBTNActionPerformed(evt);
-            }
-        });
-
         SearchOutput.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -161,15 +150,7 @@ public class GroupsSearch extends Window {
 
         Description.setText("Description:");
 
-        mobile.setText("Mobile:");
-
-        Gender.setText("Gender:");
-
-        dateOfBirth.setText("Birthday:");
-
-        bio.setText("Bio:");
-
-        statusInfo.setText("Status:");
+        primaryAdmin.setText("Primary Admin:");
 
         javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
         infoPanel.setLayout(infoPanelLayout);
@@ -181,11 +162,7 @@ public class GroupsSearch extends Window {
                         .addContainerGap()
                         .addGroup(infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Description)
-                            .addComponent(mobile)
-                            .addComponent(Gender)
-                            .addComponent(dateOfBirth)
-                            .addComponent(bio)
-                            .addComponent(statusInfo)))
+                            .addComponent(primaryAdmin)))
                     .addGroup(infoPanelLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jLabel1)))
@@ -199,16 +176,8 @@ public class GroupsSearch extends Window {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Description)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mobile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Gender)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dateOfBirth)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(statusInfo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(primaryAdmin)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         ViewGroupbtn.setText("View Group");
@@ -229,20 +198,15 @@ public class GroupsSearch extends Window {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(SelectedGroup)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(ViewGroupbtn))
-                                    .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(154, 154, 154)
-                                .addComponent(RefreshBTN)))
+                                .addComponent(SelectedGroup)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ViewGroupbtn))
+                            .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,20 +242,19 @@ public class GroupsSearch extends Window {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LeaveButton))
                             .addComponent(jSeparator2))
-                        .addGap(271, 271, 271)
-                        .addComponent(Back))
+                        .addGap(300, 300, 300))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SelectedGroup)
                             .addComponent(ViewGroupbtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
-                        .addComponent(RefreshBTN)))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(106, 106, 106)
+                        .addComponent(Back)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JoinButton, LeaveButton});
@@ -304,7 +267,7 @@ public class GroupsSearch extends Window {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -342,8 +305,13 @@ public class GroupsSearch extends Window {
             }
 
             if (selectedGroup != null) {
+                this.ViewGroupbtn.setVisible(true);
+                this.SelectedGroup.setVisible(true);
+
                 SelectedGroup.setText("Selected Group: " + selectedGroup.getName());
                 Description.setText("Description: " + selectedGroup.getDescription());
+                primaryAdmin.setText("Primary Admin: " + userDatabase.getUserById(selectedGroup.getPrimaryAdmin()).getUsername());
+
                 profilePic.setIcon(new ImageIcon(selectedGroup.getGroupPhotoPath()));
 
 //                String profilePhotoPath = selectedGroup.getGroupPhotoPath();
@@ -366,54 +334,74 @@ public class GroupsSearch extends Window {
         }
     }//GEN-LAST:event_SearchOutputValueChanged
 
-    private void RefreshBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshBTNActionPerformed
-        // TODO add your handling code here:
-
-        this.jScrollPane1.setVisible(true);
-        this.SelectedGroup.setVisible(true);
-        this.ViewGroupbtn.setVisible(true);
-        this.infoPanel.setVisible(false);
-        this.searchBar.setVisible(true);
-        this.SearchOutput.setVisible(true);
-        this.SearchOutput.setListData(new String[0]);
-        this.searchBar.setText("");
-
-        this.LeaveButton.setVisible(false);
-    }//GEN-LAST:event_RefreshBTNActionPerformed
-
     private void LeaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveButtonActionPerformed
-//        if (SearchOutput.getModel().getSize() > 0) {
-//
-//            if (selectedGroup != null) {
-//                blockHandler.removeFriend(user, selectedGroup);
-//                JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedGroup.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
-//
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "No Users in List", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
+        String selectedGroupName = SearchOutput.getSelectedValue();
+        if (selectedGroupName == null || selectedGroupName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a group first.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        GroupDatabase groupDatabase = GroupDatabase.getInstance();
+        Group selectedGroup = null;
+        for (Group group : groupDatabase.getGroupsList()) {
+            if (group.getName().equals(selectedGroupName)) {
+                selectedGroup = group;
+                break;
+            }
+        }
+
+        if (selectedGroup != null) {
+            // Remove the user from the group's members
+            if (selectedGroup.getMembers().contains(user.getUserId())) {
+                selectedGroup.getMembers().remove(Integer.valueOf(user.getUserId()));
+                groupDatabase.saveToFile(); // Save changes to the database
+                JOptionPane.showMessageDialog(this, "You have successfully left the group: " + selectedGroup.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                // Update button visibility
+                this.JoinButton.setVisible(true);
+                this.LeaveButton.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(this, "You are not a member of this group.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selected group not found.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_LeaveButtonActionPerformed
 
     private void JoinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinButtonActionPerformed
-//        if (SearchOutput.getModel().getSize() > 0) {
-//
-//            if (selectedGroup != null) {
-//                boolean success = requestHandler.sendFriendRequest(user, selectedGroup);
-//                if (success) {
-//                    JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedGroup.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "No users in the list.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
+        String selectedGroupName = SearchOutput.getSelectedValue();
+        if (selectedGroupName == null || selectedGroupName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a group first.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // find the selected group
+        for (Group group : groupDatabase.getGroupsList()) {
+            if (group.getName().equals(selectedGroupName)) {
+                selectedGroup = group;
+                break;
+            }
+        }
+
+        if (selectedGroup != null) {
+            // Add the user to the group's members
+            if (!selectedGroup.getMembers().contains(user.getUserId())) {
+                //send request
+                selectedGroup.getRequests().add(user.getUserId());
+                groupDatabase.saveToFile();
+
+                JOptionPane.showMessageDialog(this, "You sent a request tojoin the group: " + selectedGroup.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                // Update button visibility
+                this.JoinButton.setVisible(false);
+                this.LeaveButton.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "You are already a member of this group.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selected group not found.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_JoinButtonActionPerformed
 
     private void searchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBarKeyReleased
@@ -446,33 +434,34 @@ public class GroupsSearch extends Window {
             searchBar.setText(filteredGroups.get(0));
             selectGroupByName(filteredGroups.get(0), allGroups);
 
-//            for (User user : allUsers) {
-//                if (user.getUsername().equals(filteredGroups.get(0))) {
-//                    selectedGroup = user;
-//                    break;
-//                }
-//            }
-//            SelectedUserTxt.setText("Selected User: " + selectedGroup.getUsername());
-//            email.setText("Email: " + selectedGroup.getEmail());
-//            mobile.setText("Mobile: " + selectedGroup.getMobileNumber());
-//            Gender.setText("Gender: " + selectedGroup.getGender());
-//            dateOfBirth.setText("Birthday: " + selectedGroup.getDateOfBirth());
-//            statusInfo.setText("Status: " + selectedGroup.getStatus());
-//
-//            if (selectedGroup.getBio() != null) {
-//                bio.setText("Bio: " + selectedGroup.getBio());
-//                bio.setVisible(true);
-//
-//            } else {
-//                bio.setVisible(false);
-//            }
-//            //profile pic
+            String selectedGroupName = SearchOutput.getSelectedValue();
+
+            Group selectedGroup = null;
+
+            for (Group group : allGroups) {
+                if (group.getName().equals(selectedGroupName)) {
+                    selectedGroup = group;
+                    break;
+                }
+            }
+
+            if (selectedGroup != null) {
+                this.ViewGroupbtn.setVisible(true);
+                this.SelectedGroup.setVisible(true);
+
+                SelectedGroup.setText("Selected Group: " + selectedGroup.getName());
+                Description.setText("Description: " + selectedGroup.getDescription());
+                primaryAdmin.setText("Primary Admin: " + userDatabase.getUserById(selectedGroup.getPrimaryAdmin()).getUsername());
+
+                profilePic.setIcon(new ImageIcon(selectedGroup.getGroupPhotoPath()));
+
+//            //old profile pic
 //            String profilePhotoPath = selectedGroup.getProfilePhotoPath();
 //            ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
 //            Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
 //            profilePic.setIcon(new ImageIcon(scaledImage));
-//
-//            this.infoPanel.setVisible(true);
+            }
+
             // Show buttons based on membership status
             if (!selectedGroup.getMembers().contains(user.getUserId())) {
                 this.JoinButton.setVisible(true);
@@ -484,6 +473,7 @@ public class GroupsSearch extends Window {
 
         }
     }//GEN-LAST:event_searchBarKeyReleased
+
     private void selectGroupByName(String groupName, ArrayList<Group> allGroups) {
         for (Group group : allGroups) {
             if (group.getName().equals(groupName)) {
@@ -507,24 +497,19 @@ public class GroupsSearch extends Window {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JLabel Description;
-    private javax.swing.JLabel Gender;
     private javax.swing.JButton JoinButton;
     private javax.swing.JButton LeaveButton;
-    private javax.swing.JButton RefreshBTN;
     private javax.swing.JList<String> SearchOutput;
     private javax.swing.JLabel SelectedGroup;
     private javax.swing.JButton ViewGroupbtn;
-    private javax.swing.JLabel bio;
-    private javax.swing.JLabel dateOfBirth;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel mobile;
+    private javax.swing.JLabel primaryAdmin;
     private javax.swing.JLabel profilePic;
     private javax.swing.JTextField searchBar;
-    private javax.swing.JLabel statusInfo;
     // End of variables declaration//GEN-END:variables
 }

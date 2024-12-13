@@ -221,14 +221,14 @@ public class Profile extends Window {
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed
         // TODO add your handling code here:
-//        FriendManagerGUI f = new FriendManagerGUI(user, UserDatabase.getInstance().returnAllUsers());
-//        f.setPrevPage(this);
-//        this.setVisible(false);
-
-        //to test
-        GroupsSearch f = new GroupsSearch(user, UserDatabase.getInstance().returnAllUsers());
+        FriendManagerGUI f = new FriendManagerGUI(user, UserDatabase.getInstance().returnAllUsers());
         f.setPrevPage(this);
         this.setVisible(false);
+
+        //to test
+//        GroupsSearch f = new GroupsSearch(user, UserDatabase.getInstance().returnAllUsers());
+//        f.setPrevPage(this);
+//        this.setVisible(false);
         
     }//GEN-LAST:event_friendsButtonActionPerformed
 
