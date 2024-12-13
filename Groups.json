@@ -86,4 +86,15 @@
   "groupPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab2\\Screenshot 2024-11-26 203433.png",
   "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab2\\Screenshot 2024-11-26 202739.png",
   "description" : "ashjsaj"
+}, {
+  "groupId" : 8,
+  "name" : "sas",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ "05e4bcab-67d3-4862-aea5-ec939b4f0e45" ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "C:\\Users\\Mustafa\\Documents\\mekhraf\\Electronics\\lab2\\Screenshot 2024-11-26 202739.png",
+  "description" : ""
 } ]

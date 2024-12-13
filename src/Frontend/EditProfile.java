@@ -6,7 +6,6 @@ package frontend;
 
 import backend.ProfileEditor;
 import backend.User;
-import frontend.ImgSelect;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;

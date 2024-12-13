@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package frontend;
 
 import backend.*;
 import frontend.Window;
@@ -62,6 +62,7 @@ public class GroupManagement extends Window {
         }
         
         prepare("Group management");
+        refresh();
         updateMemberComboBox();
         updateRequestComboBox();
     }
@@ -517,30 +518,30 @@ public class GroupManagement extends Window {
     }
     
     protected void refresh(){
-        groupPhotoLabel.setText("");
+        groupPhotoLabel1.setText("");
         if (group.getGroupPhotoPath() != null) {
             ImageIcon groupPhoto = new ImageIcon(group.getGroupPhotoPath());
-            int photoWidth = groupPhotoLabel.getWidth();
-            int photoHeight = groupPhotoLabel.getHeight();
+            int photoWidth = groupPhotoLabel1.getWidth();
+            int photoHeight = groupPhotoLabel1.getHeight();
             Image scaledPFP = groupPhoto.getImage().getScaledInstance( //scale image to fit label in panel
                     photoWidth, photoHeight, Image.SCALE_SMOOTH);
-            groupPhotoLabel.setIcon(new ImageIcon(scaledPFP)); //puts the pfp on the label
+            groupPhotoLabel1.setIcon(new ImageIcon(scaledPFP)); //puts the pfp on the label
         }
         
-        groupCoverLabel.setText("");
+        groupCoverLabel1.setText("");
         if (group.getCoverPhotoPath() != null) {
             ImageIcon groupcover = new ImageIcon(group.getCoverPhotoPath());
-            int coverWidth = groupCoverLabel.getWidth();
-            int coverHeight = groupCoverLabel.getHeight();
+            int coverWidth = groupCoverLabel1.getWidth();
+            int coverHeight = groupCoverLabel1.getHeight();
             Image scaledCVP = groupcover.getImage().getScaledInstance( //scale image to fit label in panel
                     coverWidth, coverHeight, Image.SCALE_SMOOTH);
-            groupCoverLabel.setIcon(new ImageIcon(scaledCVP)); //puts the cover photo on the label
+            groupCoverLabel1.setIcon(new ImageIcon(scaledCVP)); //puts the cover photo on the label
         }
 
         String description = group.getDescription();
         String name = group.getName();
-        groupNameLabel.setText(name);
-        groupDescLabel.setText(description);
+        groupNameLabel1.setText(name);
+        groupDescLabel1.setText(description);
     }
     
 

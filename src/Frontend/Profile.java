@@ -5,11 +5,9 @@
 package frontend;
 
 import backend.*;
-import frontend.AddPost;
 import java.awt.Image;
 import javax.swing.*;
 
-import frontend.Window;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
