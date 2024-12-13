@@ -39,7 +39,7 @@ public class GroupsSearch extends Window {
 
     private UserDatabase userDatabase = UserDatabase.getInstance();
 
-    private ContentDatabase contentDatabase = new ContentDatabase();
+    private ContentDatabase contentDatabase =  ContentDatabase.getInstance();
 
     // private List<User> allUsers;
     private User user;

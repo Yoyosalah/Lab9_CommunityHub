@@ -139,10 +139,10 @@ public class GroupAddPost extends Window {
                     JOptionPane.ERROR_MESSAGE
             );
         } else {
-            ContentDatabase cdb = new ContentDatabase();
+            ContentDatabase cdb =  ContentDatabase.getInstance();
             // Create the Post using content factory
             Post post = (Post)ContentFactory.createContent("Post", cdb.getContentlist(),text, String.valueOf(user.getUserId()), img);
-            group.getPosts().add(Integer.parseInt(post.getContentid()));
+            //group.getPosts().add(Integer.parseInt(post.getContentid()));
             database.saveToFile();
             JOptionPane.showMessageDialog(
                     null, // to center the message
