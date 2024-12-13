@@ -218,4 +218,70 @@
   "groupPhotoPath" : "",
   "coverPhotoPath" : "",
   "description" : ""
+}, {
+  "groupId" : 20,
+  "name" : "sa",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 21,
+  "name" : "kk",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ ],
+  "members" : [ 2 ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 22,
+  "name" : "meme",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ 1 ],
+  "members" : [ 0 ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 23,
+  "name" : "mm",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ 1 ],
+  "members" : [ 2, 0 ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 24,
+  "name" : "me",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ 1 ],
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 25,
+  "name" : "meme",
+  "primaryAdmin" : 1,
+  "secondaryAdmins" : [ 1 ],
+  "members" : [ 2, 3 ],
+  "posts" : [ ],
+  "requests" : [ 0 ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
 } ]
