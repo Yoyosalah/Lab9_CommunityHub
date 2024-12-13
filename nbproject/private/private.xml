@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/backend/Group.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/backend/GroupDatabase.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/frontend/GroupGUI.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/frontend/FriendManagerGUI.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/frontend/GroupsSearch.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/frontend/GroupManagement.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/frontend/GroupAddPost.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/backend/User.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/backend/UserDatabase.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/groups%20serach/Lab9_CommunityHub/src/frontend/Profile.java</file>
+            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Groups/Lab9_CommunityHub/src/frontend/GroupGUI.java</file>
+            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Groups/Lab9_CommunityHub/src/frontend/GroupAddPost.java</file>
+            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Groups/Lab9_CommunityHub/src/frontend/LandingPage.java</file>
+            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Groups/Lab9_CommunityHub/src/frontend/Newsfeed.java</file>
+            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Groups/Lab9_CommunityHub/src/frontend/GroupGUIPreviewONLYY.java</file>
+            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Groups/Lab9_CommunityHub/src/frontend/Profile.java</file>
+            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Groups/Lab9_CommunityHub/src/frontend/FriendManagerGUI.java</file>
+            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Groups/Lab9_CommunityHub/src/frontend/GroupsSearch.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,0 +1,19 @@
+[ {
+  "notificationid" : "5143a3bb-3fc5-46ad-8405-c86099cdc36d",
+  "text" : "test testsur Sent You A Friend Request",
+  "type" : "Friend",
+  "timestamp" : "2024-12-13",
+  "receivers" : [ 1 ],
+  "isRead" : {
+    "1" : true
+  }
+}, {
+  "notificationid" : "db61ab62-1ba6-4d3a-a9aa-a4d1b34eadbc",
+  "text" : "test testsur Sent You A Friend Request",
+  "type" : "Friend",
+  "timestamp" : "2024-12-13",
+  "receivers" : [ 1 ],
+  "isRead" : {
+    "1" : true
+  }
+} ]
