@@ -30,6 +30,7 @@ public class GroupGUI extends Window {
     private Group group;
     private User user;
     private UserDatabase userDatabase= UserDatabase.getInstance();
+    private PrimaryAdminRole admin;
     
     public void setPrevWindow(Window prev){
         this.prevWindow = prev;
@@ -52,7 +53,10 @@ public class GroupGUI extends Window {
             editPostBTN.setVisible(true);
             addPostBTN.setVisible(true);
             manageGroupBTN.setVisible(true);
+            admin = new PrimaryAdminRole(group);
         }
+        else
+            admin = null;
         
         for(User admin : group.getSecondaryAdmins()){ //goes through the secondary admins
             if(admin.getUserId() == user.getUserId()){ //shows the secondary admin operation buttons
@@ -138,6 +142,11 @@ public class GroupGUI extends Window {
         deleteGroupBTN.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         deleteGroupBTN.setForeground(new java.awt.Color(255, 0, 0));
         deleteGroupBTN.setText("Delete group");
+        deleteGroupBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteGroupBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -205,17 +214,28 @@ public class GroupGUI extends Window {
 
     private void editPostBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPostBTNActionPerformed
         // TODO add your handling code here:
-        new GroupEditPost(group);
+        GroupEditPost ge = new GroupEditPost(group);
+        ge.setPrevWindow(this);
+        this.setVisible(false);
     }//GEN-LAST:event_editPostBTNActionPerformed
 
     private void manageGroupBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageGroupBTNActionPerformed
         // TODO add your handling code here:
+        GroupManagement gm = new GroupManagement(group, user);
+        gm.setPrevWindow(this);
+        this.setVisible(false);
     }//GEN-LAST:event_manageGroupBTNActionPerformed
 
     private void addPostBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPostBTNActionPerformed
         // TODO add your handling code here:
         new GroupAddPost(group, user);
     }//GEN-LAST:event_addPostBTNActionPerformed
+
+    private void deleteGroupBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGroupBTNActionPerformed
+        // TODO add your handling code here:
+        admin.deleteGroup();
+        this.setVisible(false);
+    }//GEN-LAST:event_deleteGroupBTNActionPerformed
 
     /**
      * @param args the command line arguments

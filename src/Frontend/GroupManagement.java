@@ -43,11 +43,16 @@ public class GroupManagement extends Window {
         this.requestComboMap = new HashMap<>();
         this.membersComboMap = new HashMap<>();
         
-        
+        jButton1.setVisible(false);
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
         jButton6.setVisible(false);
         jButton7.setVisible(false);
         
         if(group.getPrimaryAdmin().getUserId() == user.getUserId()){ //only primary admin can promote and demote
+            jButton1.setVisible(true);
+            jButton2.setVisible(true);
+            jButton3.setVisible(true);
             jButton6.setVisible(true);
             jButton7.setVisible(true);
             Admin = new PrimaryAdminRole(group);
@@ -447,6 +452,8 @@ public class GroupManagement extends Window {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         //saves to file
+        this.setVisible(false);
+        prev.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
     
     private User getSelectedRequester(){ 
