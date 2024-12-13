@@ -21,7 +21,7 @@
   "coverPhotoPath" : null,
   "bio" : null,
   "dateOfBirth" : "2024-12-01",
-  "status" : "offline"
+  "status" : "online"
 }, {
   "userId" : 2,
   "email" : "testAgain@yahoo.com",
