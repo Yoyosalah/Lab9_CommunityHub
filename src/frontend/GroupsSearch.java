@@ -276,9 +276,10 @@ public class GroupsSearch extends Window {
 
     private void ViewGroupbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupbtnActionPerformed
         // TODO add your handling code here:
-//        Profile p = new Profile(selectedGroup, contentDatabase);
-//        p.setPrevPage(this);
-//        this.setVisible(false);
+        GroupGUIPreviewOnly G = new GroupGUIPreviewOnly();
+        G.setPrevWindow(this);
+        G.setGroup(selectedGroup);
+        this.setVisible(false);
     }//GEN-LAST:event_ViewGroupbtnActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
