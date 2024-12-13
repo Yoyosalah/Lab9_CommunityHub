@@ -5,7 +5,7 @@
   "timestamp" : "2024-12-13",
   "receivers" : [ 1 ],
   "isRead" : {
-    "1" : false
+    "1" : true
   }
 }, {
   "notificationid" : "db61ab62-1ba6-4d3a-a9aa-a4d1b34eadbc",
@@ -14,7 +14,7 @@
   "timestamp" : "2024-12-13",
   "receivers" : [ 1 ],
   "isRead" : {
-    "1" : false
+    "1" : true
   }
 }, {
   "notificationid" : "5de22202-82ec-410f-a85d-416ce54a95fd",

@@ -3,7 +3,7 @@
   "name" : "Group A",
   "primaryAdmin" : 0,
   "secondaryAdmins" : [ 1 ],
-  "members" : [ 1, 2, 3 ],
+  "members" : [ 2, 3 ],
   "posts" : null,
   "requests" : null,
   "groupPhotoPath" : null,
