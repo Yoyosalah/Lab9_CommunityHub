@@ -16,11 +16,13 @@ import java.util.ArrayList;
 public class NotificationsPanel extends javax.swing.JFrame {
     private ArrayList<Notification> Notifications;
     private User user;
+    private RequestHandler requestHandler;
     /**
      * Creates new form NotificationsPanel
      */
-    public NotificationsPanel(User user, ArrayList<Notification> Notifications) {
+    public NotificationsPanel(User user, ArrayList<Notification> Notifications,RequestHandler requestHandler) {
         initComponents();
+        this.requestHandler = requestHandler;
         this.Notifications = Notifications;
         this.user = user;
         this.setLocationRelativeTo(null);
@@ -30,7 +32,7 @@ public class NotificationsPanel extends javax.swing.JFrame {
     }
 
     private void populateNotifications() {
-        DefaultListModel<String> listModel = new DefaultListModel<>();
+        DefaultListModel<String> listModel = new DefaultListModel<>(); //list with notifications that should apper for this specific user
 
         for (Notification notification : Notifications) {
             String displayText = String.format("[%s] %s: %s",
@@ -38,7 +40,7 @@ public class NotificationsPanel extends javax.swing.JFrame {
                     notification.getType(),
                     notification.getText()
             );
-            if (notification.getReceivers().contains(user.getUserId()))
+            if (notification.getReceivers().contains(user.getUserId())) //filtering
                 listModel.addElement(displayText);
         }
 
@@ -46,16 +48,49 @@ public class NotificationsPanel extends javax.swing.JFrame {
         notificationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         notificationList.setVisibleRowCount(10);//testing ba3deen
         JScrollPane scrollPane = new JScrollPane(notificationList);
+        jPanel1.removeAll();
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(scrollPane, BorderLayout.CENTER);
+
+        JPanel buttonPanel = new JPanel();
+        JButton acceptButton = new JButton("Accept");
+        JButton declineButton = new JButton("Decline");
+        buttonPanel.setVisible(false);
+        buttonPanel.add(acceptButton);
+        buttonPanel.add(declineButton);
+        jPanel1.add(buttonPanel, BorderLayout.SOUTH);
         jPanel1.revalidate();
         jPanel1.repaint();
-        notificationList.addListSelectionListener(e -> { //when clicked turns notification to read
+        notificationList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 int selectedIndex = notificationList.getSelectedIndex();
                 if (selectedIndex != -1) {
-                    Notifications.get(selectedIndex).MarkAsRead(user.getUserId());
-                   populateNotifications();
+                    Notification selectedNotification = Notifications.get(selectedIndex);
+
+                    // Mark notification as read
+                    selectedNotification.MarkAsRead(user.getUserId());
+                    populateNotifications(); // Refresh notifications
+
+                    // Show buttons if notification type is "Friend"
+                    if ("Friend".equalsIgnoreCase(selectedNotification.getType())) {
+                        buttonPanel.setVisible(true);
+
+                        // Add action for "Accept" button
+                        acceptButton.addActionListener(event -> {
+                            //requestHandler.acceptFriendRequest(user,sender);
+                            Notifications.remove(selectedNotification); // Remove after handling
+                            populateNotifications(); // Refresh notifications
+                        });
+
+                        // Add action for "Decline" button
+                        declineButton.addActionListener(event -> {
+                            //requestHandler.declineFriendRequest(user,sender);
+                            Notifications.remove(selectedNotification); // Remove after handling
+                            populateNotifications(); // Refresh notifications
+                        });
+                    } else {
+                        buttonPanel.setVisible(false);
+                    }
                 }
             }
         });
@@ -70,8 +105,6 @@ public class NotificationsPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        RefreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,35 +112,11 @@ public class NotificationsPanel extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 386, Short.MAX_VALUE)
-        );
-
-        RefreshButton.setText("Refresh");
-        RefreshButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RefreshButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(RefreshButton)
-                .addContainerGap(419, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(RefreshButton)
-                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,11 +124,8 @@ public class NotificationsPanel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,20 +133,11 @@ public class NotificationsPanel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void RefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshButtonActionPerformed
-        // TODO add your handling code here:
-       // notifictaionDB.saveToFile();
-        //notifictaionDB = NotificationDatabase.getInstance();
-        populateNotifications();
-    }//GEN-LAST:event_RefreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,8 +175,6 @@ public class NotificationsPanel extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RefreshButton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

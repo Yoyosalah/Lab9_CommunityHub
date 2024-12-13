@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package frontend;
 
 import backend.*;
 import frontend.Window;
@@ -241,7 +241,7 @@ public class GroupGUI extends Window {
     }//GEN-LAST:event_deleteGroupBTNActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @param //args the command line arguments
      */
     
     protected void refresh(){

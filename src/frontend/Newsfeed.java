@@ -397,7 +397,7 @@ public class Newsfeed extends Window {
 
     private void NotificationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificationsButtonActionPerformed
         // TODO add your handling code here:
-        NotificationsPanel np = new NotificationsPanel(user,notificationDatabase.getNotifications());
+        NotificationsPanel np = new NotificationsPanel(user,notificationDatabase.getNotifications(),requestHandler);
         np.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_NotificationsButtonActionPerformed
 
