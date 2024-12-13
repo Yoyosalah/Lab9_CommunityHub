@@ -420,9 +420,9 @@ public class Newsfeed extends Window {
         String name = JOptionPane.showInputDialog(null, "Enter group name: ", "Create group", JOptionPane.PLAIN_MESSAGE);
         Group g = new Group(name,user.getUserId());
         groupDatabase.addGroup(g);
-        /*g.getRequests().add(0);
+        g.getRequests().add(0);
         g.getRequests().add(2);
-        g.getRequests().add(3);*/
+        g.getRequests().add(3);
         groupDatabase.saveToFile();
         GroupGUI gui = new GroupGUI(g,user);
         gui.setPrevWindow(this);

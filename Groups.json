@@ -284,4 +284,26 @@
   "groupPhotoPath" : "",
   "coverPhotoPath" : "",
   "description" : ""
+}, {
+  "groupId" : 26,
+  "name" : "mam",
+  "primaryAdmin" : 9,
+  "secondaryAdmins" : [ ],
+  "members" : [ ],
+  "posts" : [ ],
+  "requests" : [ ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
+}, {
+  "groupId" : 27,
+  "name" : "mams",
+  "primaryAdmin" : 9,
+  "secondaryAdmins" : [ 9 ],
+  "members" : [ 0, 2 ],
+  "posts" : [ ],
+  "requests" : [ 3 ],
+  "groupPhotoPath" : "",
+  "coverPhotoPath" : "",
+  "description" : ""
 } ]

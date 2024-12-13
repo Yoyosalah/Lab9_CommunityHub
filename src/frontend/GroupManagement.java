@@ -381,7 +381,7 @@ public class GroupManagement extends Window {
             JOptionPane.showMessageDialog(null, "no user selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            ((PrimaryAdminRole) Admin).promoteUserToAdmin(user);
+            ((PrimaryAdminRole) Admin).promoteUserToAdmin(u);
             updateMemberComboBox();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -433,7 +433,7 @@ public class GroupManagement extends Window {
             JOptionPane.showMessageDialog(null, "no user selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            ((PrimaryAdminRole) Admin).demoteAdminToUser(user);
+            ((PrimaryAdminRole) Admin).demoteAdminToUser(u);
             updateMemberComboBox();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
