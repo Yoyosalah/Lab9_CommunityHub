@@ -558,7 +558,7 @@ public class Newsfeed extends Window {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Newsfeed(new User(), new ContentDatabase()).setVisible(true);
+                new Newsfeed(new User(), ContentDatabase.getInstance()).setVisible(true);
             }
         });
     }
