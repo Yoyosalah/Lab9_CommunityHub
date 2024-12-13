@@ -26,6 +26,8 @@ public class Newsfeed extends Window {
     }
 
     private User user;
+    private UserDatabase userDatabase = UserDatabase.getInstance();
+
     private FriendsManager friendManager;
     private RequestHandler requestHandler;
     private ProfileContent profile;
@@ -427,7 +429,7 @@ public class Newsfeed extends Window {
         if (index >= 0 && index < contentList.size()) {
             Content content = contentList.get(index);
             textArea.setText(content.getText());
-            AuthorArea.setText("Author: " + content.getAuthorid());
+            AuthorArea.setText("Author: " + userDatabase.getUserById(Integer.parseInt(content.getAuthorid())).getUsername());
             dateArea.setText("Date: " + content.getTimestamp().toString());
 
             if (content.getImage() != null) {
