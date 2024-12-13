@@ -47,22 +47,7 @@
                       <Component id="groupDescLabel" alignment="0" min="-2" pref="301" max="-2" attributes="0"/>
                       <Component id="groupNameLabel" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="deleteGroupBTN" min="-2" pref="108" max="-2" attributes="0"/>
-                              <Component id="manageGroupBTN" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="addPostBTN" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="editPostBTN" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace min="160" max="32767" attributes="0"/>
               </Group>
               <Component id="groupCoverLabel" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -72,27 +57,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="groupCoverLabel" min="-2" pref="139" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="addPostBTN" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="editPostBTN" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="groupNameLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="manageGroupBTN" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="deleteGroupBTN" min="-2" max="-2" attributes="0"/>
+                          <Component id="groupDescLabel" min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="groupNameLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="groupDescLabel" min="-2" pref="44" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="groupPhotoLabel" min="-2" pref="80" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="groupPhotoLabel" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="284" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -142,48 +115,10 @@
             <Property name="text" type="java.lang.String" value="description"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="addPostBTN">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Add post"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPostBTNActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="editPostBTN">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit post"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editPostBTNActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="manageGroupBTN">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Manage group"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageGroupBTNActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="groupCoverLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="cover photo"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="deleteGroupBTN">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Delete group"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteGroupBTNActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

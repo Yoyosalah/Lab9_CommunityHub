@@ -24,15 +24,16 @@ public class GroupAddPost extends Window {
     private Group group;
     private User user;
     private GroupDatabase database = GroupDatabase.getInstance();
+    private SecondaryAdminRole a;
     
     public GroupAddPost(Group group,User user) {
         initComponents();
         this.group = group;
         this.user = user;
         this.imgs = null;
-        
-        
-        
+        this.a = new SecondaryAdminRole(group);
+        prepare("Add post");
+     
     }
 
     /**
@@ -139,10 +140,11 @@ public class GroupAddPost extends Window {
                     JOptionPane.ERROR_MESSAGE
             );
         } else {
-            ContentDatabase cdb = new ContentDatabase();
+            ContentDatabase cdb = ContentDatabase.getInstance();
             // Create the Post using content factory
             Post post = (Post)ContentFactory.createContent("Post", cdb.getContentlist(),text, String.valueOf(user.getUserId()), img);
-            group.getPosts().add(Integer.parseInt(post.getContentid()));
+            a.addPost(post);
+            //group.getPosts().add(Integer.parseInt(post.getContentid()));
             database.saveToFile();
             JOptionPane.showMessageDialog(
                     null, // to center the message

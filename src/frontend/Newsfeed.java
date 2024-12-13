@@ -30,10 +30,10 @@ public class Newsfeed extends Window {
     private RequestHandler requestHandler;
     private ProfileContent profile;
     private ContentDatabase contentDatabase;
+    private GroupDatabase groupDatabase;
     private ArrayList<Content> contentList;
     private int currentIndex;
     private HashMap<User, String> comboBoxMap;
-
     private NotificationDatabase notificationDatabase;
 
     private UserDatabase userDatabase = UserDatabase.getInstance();
@@ -48,6 +48,7 @@ public class Newsfeed extends Window {
         this.comboBoxMap = new HashMap<>();
         this.contentDatabase = contentDatabase;
         this.contentList = contentDatabase.getContentlist();
+        this.groupDatabase = GroupDatabase.getInstance();
         this.currentIndex = 0;
 
         initComponents();
@@ -405,6 +406,27 @@ public class Newsfeed extends Window {
         np.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_NotificationsButtonActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        GroupsSearch f = new GroupsSearch(user, UserDatabase.getInstance().returnAllUsers());
+        f.setPrevPage(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String name = JOptionPane.showInputDialog(null, "Enter group name: ", "Create group", JOptionPane.PLAIN_MESSAGE);
+        if(name == null){
+            JOptionPane.showMessageDialog(null, "No name has been entered", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            Group g = new Group(name,user.getUserId());
+            GroupGUI gui = new GroupGUI(g, user);
+            gui.setPrevWindow(this);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void displayContent(int index) {
         textArea.setText(""); // Clear text area
         AuthorArea.setText(""); // Clear author area
@@ -414,7 +436,7 @@ public class Newsfeed extends Window {
         if (index >= 0 && index < contentList.size()) {
             Content content = contentList.get(index);
             textArea.setText(content.getText());
-            AuthorArea.setText("Author: " + userDatabase.getUserById(Integer.parseInt(content.getAuthorid())).getUsername() );
+            AuthorArea.setText("Author: " + content.getAuthorid());
             dateArea.setText("Date: " + content.getTimestamp().toString());
 
             if (content.getImage() != null) {

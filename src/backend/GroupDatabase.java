@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package backend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -5,7 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import static constants.GroupStatistics.*;
 
 public class GroupDatabase {
 
@@ -24,11 +27,10 @@ public class GroupDatabase {
     private GroupDatabase() {
         this.groups = new ArrayList<>();
         readFromFile(); // Load the data when the object is created
-        setGroupsNum(groups.size());
-        numGps = getGroupsNum();
+        numGps = groups.size();
         System.out.println(groups.size());
     }
-
+ 
     public static GroupDatabase getInstance() {
         if (instance == null) {
             instance = new GroupDatabase();
@@ -37,6 +39,12 @@ public class GroupDatabase {
     }
     public int getnum(){
         return numGps;
+    }
+    public void incrementNum(){
+        numGps++;
+    }
+    public void decrementNum(){
+        numGps--;
     }
     //saving to json file
     public void saveToFile() {
@@ -66,16 +74,15 @@ public class GroupDatabase {
     public ArrayList<Group> getGroupsList() {
         return groups;
     }
-
+    
     public void addGroup(Group group){
         groups.add(group);
-        incrementGroups();
     }
     public void deleteGroup(Group group){
         groups.remove(group);
-        decrementGroups();
+        decrementNum();
     }
-
+    
     public Group getGroupById(int id) {
         for (Group group : groups) {
             if (group.getGroupId()== id) {

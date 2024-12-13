@@ -106,4 +106,16 @@
   "bio" : "hello! ;>",
   "dateOfBirth" : "2004-09-06",
   "status" : "offline"
+}, {
+  "userId" : 9,
+  "email" : "momo@gmail.com",
+  "username" : "momo momo",
+  "password" : "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "mobileNumber" : "01019011788",
+  "gender" : "male",
+  "profilePhotoPath" : null,
+  "coverPhotoPath" : null,
+  "bio" : null,
+  "dateOfBirth" : "2020-12-04",
+  "status" : "offline"
 } ]

@@ -62,6 +62,7 @@ public class GroupManagement extends Window {
         }
         
         prepare("Group management");
+        refresh();
         updateMemberComboBox();
         updateRequestComboBox();
     }
@@ -366,6 +367,7 @@ public class GroupManagement extends Window {
         String path = fileChooser.getSelectedFile().getAbsolutePath();
         if(path != null){   
             group.setGroupPhotoPath(path); //updates the profile photo
+            refresh();
         }
         else
             JOptionPane.showInternalMessageDialog(null,"No image has been selected" , "Error", JOptionPane.ERROR_MESSAGE);
@@ -379,7 +381,8 @@ public class GroupManagement extends Window {
             JOptionPane.showMessageDialog(null, "no user selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            ((PrimaryAdminRole) Admin).promoteUserToAdmin(user);
+            ((PrimaryAdminRole) Admin).promoteUserToAdmin(u);
+            updateMemberComboBox();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -391,6 +394,8 @@ public class GroupManagement extends Window {
         }
         else{
             Admin.declineMembershipRequest(u);
+            updateMemberComboBox();
+            updateRequestComboBox();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -414,6 +419,7 @@ public class GroupManagement extends Window {
         String path = fileChooser.getSelectedFile().getAbsolutePath();
         if(path != null){   
             group.setCoverPhotoPath(path); //updates the profile photo
+            refresh();
         }
         else
             JOptionPane.showInternalMessageDialog(null,"No image has been selected" , "Error", JOptionPane.ERROR_MESSAGE);
@@ -427,7 +433,8 @@ public class GroupManagement extends Window {
             JOptionPane.showMessageDialog(null, "no user selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            ((PrimaryAdminRole) Admin).demoteAdminToUser(user);
+            ((PrimaryAdminRole) Admin).demoteAdminToUser(u);
+            updateMemberComboBox();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -439,6 +446,8 @@ public class GroupManagement extends Window {
         }
         else{
             Admin.approveMembershipRequest(u);
+            updateMemberComboBox();
+            updateRequestComboBox();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -450,6 +459,7 @@ public class GroupManagement extends Window {
         }
         else{
             Admin.removeMember(u);
+            updateMemberComboBox();
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -457,6 +467,7 @@ public class GroupManagement extends Window {
         // TODO add your handling code here:
         String desc = JOptionPane.showInputDialog(null, "Description:", "Change description", JOptionPane.PLAIN_MESSAGE);
         group.setDescription(desc);
+        refresh();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -467,12 +478,12 @@ public class GroupManagement extends Window {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
-        updateMemberComboBox();
+
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        updateRequestComboBox();
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
     
     private User getSelectedRequester(){ 
@@ -487,7 +498,7 @@ public class GroupManagement extends Window {
     
     private void updateRequestComboBox(){
         requestComboMap.clear();
-        jComboBox1.removeAll();
+        jComboBox1.removeAllItems();
         for(User u : group.idsToUsers(group.getRequests())){ 
             requestComboMap.put(u, u.getUsername());
             jComboBox1.addItem(u.getUsername());
@@ -506,7 +517,7 @@ public class GroupManagement extends Window {
     
     private void updateMemberComboBox(){
         membersComboMap.clear();
-        jComboBox2.removeAll();
+        jComboBox2.removeAllItems();
         for(User u : group.idsToUsers(group.getMembers())){
             membersComboMap.put(u, u.getUsername());
             jComboBox2.addItem(u.getUsername());
@@ -514,30 +525,30 @@ public class GroupManagement extends Window {
     }
     
     protected void refresh(){
-        groupPhotoLabel.setText("");
+        groupPhotoLabel1.setText("");
         if (group.getGroupPhotoPath() != null) {
             ImageIcon groupPhoto = new ImageIcon(group.getGroupPhotoPath());
-            int photoWidth = groupPhotoLabel.getWidth();
-            int photoHeight = groupPhotoLabel.getHeight();
+            int photoWidth = groupPhotoLabel1.getWidth();
+            int photoHeight = groupPhotoLabel1.getHeight();
             Image scaledPFP = groupPhoto.getImage().getScaledInstance( //scale image to fit label in panel
                     photoWidth, photoHeight, Image.SCALE_SMOOTH);
-            groupPhotoLabel.setIcon(new ImageIcon(scaledPFP)); //puts the pfp on the label
+            groupPhotoLabel1.setIcon(new ImageIcon(scaledPFP)); //puts the pfp on the label
         }
         
-        groupCoverLabel.setText("");
+        groupCoverLabel1.setText("");
         if (group.getCoverPhotoPath() != null) {
             ImageIcon groupcover = new ImageIcon(group.getCoverPhotoPath());
-            int coverWidth = groupCoverLabel.getWidth();
-            int coverHeight = groupCoverLabel.getHeight();
+            int coverWidth = groupCoverLabel1.getWidth();
+            int coverHeight = groupCoverLabel1.getHeight();
             Image scaledCVP = groupcover.getImage().getScaledInstance( //scale image to fit label in panel
                     coverWidth, coverHeight, Image.SCALE_SMOOTH);
-            groupCoverLabel.setIcon(new ImageIcon(scaledCVP)); //puts the cover photo on the label
+            groupCoverLabel1.setIcon(new ImageIcon(scaledCVP)); //puts the cover photo on the label
         }
 
         String description = group.getDescription();
         String name = group.getName();
-        groupNameLabel.setText(name);
-        groupDescLabel.setText(description);
+        groupNameLabel1.setText(name);
+        groupDescLabel1.setText(description);
     }
     
 

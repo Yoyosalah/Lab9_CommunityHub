@@ -4,12 +4,10 @@
  */
 package frontend;
 
-import backend.*;
-import frontend.AddPost;
+import backend.*;   
 import java.awt.Image;
 import javax.swing.*;
 
-import frontend.Window;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ public class Profile extends Window {
     private ProfileContent profileContent;
     private User user;
     private ContentDatabase contentDatabase;
-    
+
     public Profile(User user, ContentDatabase contentDatabase) {
         initComponents();
         prepare("Profile");
@@ -214,7 +212,7 @@ public class Profile extends Window {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfileActionPerformed
-        EditProfile ep =new EditProfile(user, this);
+        EditProfile ep = new EditProfile(user, this);
         ep.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
     }//GEN-LAST:event_editProfileActionPerformed
@@ -224,6 +222,12 @@ public class Profile extends Window {
         FriendManagerGUI f = new FriendManagerGUI(user, UserDatabase.getInstance().returnAllUsers());
         f.setPrevPage(this);
         this.setVisible(false);
+
+        //to test
+//        GroupsSearch f = new GroupsSearch(user, UserDatabase.getInstance().returnAllUsers());
+//        f.setPrevPage(this);
+//        this.setVisible(false);
+        
     }//GEN-LAST:event_friendsButtonActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
