@@ -24,12 +24,14 @@ public class GroupAddPost extends Window {
     private Group group;
     private User user;
     private GroupDatabase database = GroupDatabase.getInstance();
+    private SecondaryAdminRole a;
     
     public GroupAddPost(Group group,User user) {
         initComponents();
         this.group = group;
         this.user = user;
         this.imgs = null;
+        this.a = new SecondaryAdminRole(group);
         
         
         
@@ -142,8 +144,7 @@ public class GroupAddPost extends Window {
             ContentDatabase cdb = new ContentDatabase();
             // Create the Post using content factory
             Post post = (Post)ContentFactory.createContent("Post", cdb.getContentlist(),text, String.valueOf(user.getUserId()), img);
-            group.getPosts().add(Integer.parseInt(post.getContentid()));
-            database.saveToFile();
+            a.addPost(post);
             JOptionPane.showMessageDialog(
                     null, // to center the message
                     "Post Added Successfully!",
