@@ -33,7 +33,11 @@ public class Newsfeed extends Window {
     private ArrayList<Content> contentList;
     private int currentIndex;
     private HashMap<User, String> comboBoxMap;
+
     private NotificationDatabase notificationDatabase;
+
+    private UserDatabase userDatabase = UserDatabase.getInstance();
+
 
     public Newsfeed(User user, ContentDatabase contentDatabase) {
         this.user = user;
@@ -410,7 +414,7 @@ public class Newsfeed extends Window {
         if (index >= 0 && index < contentList.size()) {
             Content content = contentList.get(index);
             textArea.setText(content.getText());
-            AuthorArea.setText("Author: " + content.getAuthorid());
+            AuthorArea.setText("Author: " + userDatabase.getUserById(Integer.parseInt(content.getAuthorid())).getUsername() );
             dateArea.setText("Date: " + content.getTimestamp().toString());
 
             if (content.getImage() != null) {

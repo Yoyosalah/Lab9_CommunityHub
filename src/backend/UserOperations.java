@@ -13,10 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class UserOperations {
 
-    protected static final UserDatabase databaseManager = UserDatabase.getInstance();
-
-    ;
-
+    private static final UserDatabase databaseManager = UserDatabase.getInstance();
 
 
     public static boolean signUp(String email, String username, String password, LocalDate dateOfBirth, String mobileNumber, String gender) {
