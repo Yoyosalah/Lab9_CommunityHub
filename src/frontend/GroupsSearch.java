@@ -4,21 +4,15 @@
  */
 package frontend;
 
-import frontend.Profile;
-import frontend.Window;
-import backend.BlockHandler;
 import backend.ContentDatabase;
-import backend.FriendsManager;
-import backend.RequestHandler;
+import backend.Group;
+import backend.GroupDatabase;
 import backend.User;
 import backend.UserDatabase;
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,21 +37,15 @@ public class GroupsSearch extends Window {
 
     private ContentDatabase contentDatabase = new ContentDatabase();
 
-    private FriendsManager friendsManager = new FriendsManager();
-    private RequestHandler requestHandler = new RequestHandler(friendsManager);
-    private BlockHandler blockHandler = new BlockHandler(friendsManager);
-    private List<User> allUsers;
+    // private List<User> allUsers;
     private User user;
-    private int listIndicator;
-    User selectedUser = null;
+    Group selectedGroup = null;
 
     public GroupsSearch(User user, List<User> allUsers) {
-        this.listIndicator = 0;
         setEmail(user.getEmail());
         initComponents();
         prepare("Search Groups");
         this.user = user;
-        this.allUsers = allUsers;
         this.JoinButton.setVisible(false);
         this.LeaveButton.setVisible(true);
 
@@ -315,9 +303,9 @@ public class GroupsSearch extends Window {
 
     private void ViewGroupbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewGroupbtnActionPerformed
         // TODO add your handling code here:
-        Profile p = new Profile(selectedUser, contentDatabase);
-        p.setPrevPage(this);
-        this.setVisible(false);
+//        Profile p = new Profile(selectedGroup, contentDatabase);
+//        p.setPrevPage(this);
+//        this.setVisible(false);
     }//GEN-LAST:event_ViewGroupbtnActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -335,30 +323,30 @@ public class GroupsSearch extends Window {
             searchBar.setText(selectedUsername);
 
             ArrayList<User> allUsers = userDatabase.returnAllUsers();
-            selectedUser = null;
+            selectedGroup = null;
 
             for (User user : allUsers) {
                 if (user.getUsername().equals(selectedUsername)) {
-                    selectedUser = user;
+                    selectedGroup = user;
                     break;
                 }
             }
-            SelectedUserTxt.setText("Selected User: " + selectedUser.getUsername());
-            email.setText("Email: " + selectedUser.getEmail());
-            mobile.setText("Mobile: " + selectedUser.getMobileNumber());
-            Gender.setText("Gender: " + selectedUser.getGender());
-            dateOfBirth.setText("Birthday: " + selectedUser.getDateOfBirth());
-            statusInfo.setText("Status: " + selectedUser.getStatus());
+            SelectedUserTxt.setText("Selected User: " + selectedGroup.getUsername());
+            email.setText("Email: " + selectedGroup.getEmail());
+            mobile.setText("Mobile: " + selectedGroup.getMobileNumber());
+            Gender.setText("Gender: " + selectedGroup.getGender());
+            dateOfBirth.setText("Birthday: " + selectedGroup.getDateOfBirth());
+            statusInfo.setText("Status: " + selectedGroup.getStatus());
 
-            if (selectedUser.getBio() != null) {
-                bio.setText("Bio: " + selectedUser.getBio());
+            if (selectedGroup.getBio() != null) {
+                bio.setText("Bio: " + selectedGroup.getBio());
                 bio.setVisible(true);
             } else {
                 bio.setVisible(false);
             }
 
             //profille pic
-            String profilePhotoPath = selectedUser.getProfilePhotoPath();
+            String profilePhotoPath = selectedGroup.getProfilePhotoPath();
             ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
             Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
             profilePic.setIcon(new ImageIcon(scaledImage));
@@ -366,7 +354,7 @@ public class GroupsSearch extends Window {
             this.infoPanel.setVisible(true);
 
             // Check if the selected user is a friend
-            if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
+            if (selectedGroup != null && !friendsManager.areFriends(user.getUserId(), selectedGroup.getUserId())) {
                 this.JoinButton.setVisible(true);
                 this.LeaveButton.setVisible(false);
 
@@ -379,7 +367,6 @@ public class GroupsSearch extends Window {
 
     private void RefreshBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshBTNActionPerformed
         // TODO add your handling code here:
-        this.listIndicator = 99; // another state
 
         this.jScrollPane1.setVisible(true);
         this.SelectedUserTxt.setVisible(true);
@@ -390,111 +377,108 @@ public class GroupsSearch extends Window {
         this.SearchOutput.setListData(new String[0]);
         this.searchBar.setText("");
 
-
         this.LeaveButton.setVisible(false);
-
-        //using my new added method
     }//GEN-LAST:event_RefreshBTNActionPerformed
 
     private void LeaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveButtonActionPerformed
-        if ( SearchOutput.getModel().getSize() > 0) {
+//        if (SearchOutput.getModel().getSize() > 0) {
+//
+//            if (selectedGroup != null) {
+//                blockHandler.removeFriend(user, selectedGroup);
+//                JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedGroup.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+//
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "No Users in List", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
 
-            if (selectedUser != null) {
-                blockHandler.removeFriend(user, selectedUser);
-                JOptionPane.showMessageDialog(this, "You are no longer friends with " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No Users in List", "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_LeaveButtonActionPerformed
 
     private void JoinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinButtonActionPerformed
-        if ( SearchOutput.getModel().getSize() > 0) {
-            
-            if (selectedUser != null) {
-                boolean success = requestHandler.sendFriendRequest(user, selectedUser);
-                if (success) {
-                    JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No users in the list.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        if (SearchOutput.getModel().getSize() > 0) {
+//
+//            if (selectedGroup != null) {
+//                boolean success = requestHandler.sendFriendRequest(user, selectedGroup);
+//                if (success) {
+//                    JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedGroup.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
+//
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Please select a user first.", "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "No users in the list.", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_JoinButtonActionPerformed
 
     private void searchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBarKeyReleased
         // TODO add your handling code here:
 
-        //System.out.println("text ava");
         String searchKey = searchBar.getText().trim();
         if (searchKey.isEmpty()) {
             this.SearchOutput.setListData(new String[0]);
             this.JoinButton.setVisible(false);
-            //System.out.println("no text");
+            this.LeaveButton.setVisible(false);
 
             return;
         }
         // get all users to be filtered based on the search key
-        ArrayList<User> allUsers = userDatabase.returnAllUsers();
-        ArrayList<String> filteredUsers = new ArrayList<>();
-        allUsers.remove(this.user);
+        GroupDatabase groupDatabase = GroupDatabase.getInstance();
+        ArrayList<Group> allGroups = groupDatabase.getGroupsList();
+        ArrayList<String> filteredGroups = new ArrayList<>();
+
         // filteration
-        for (User user : allUsers) {
-            if (user.getUsername().toLowerCase().contains(searchKey.toLowerCase())) {
-                filteredUsers.add(user.getUsername());
+        for (Group group : allGroups) {
+            if (group.getName().toLowerCase().contains(searchKey.toLowerCase())) {
+                filteredGroups.add(group.getName());
             }
         }
 
         //add filtred users
-        this.SearchOutput.setListData(filteredUsers.toArray(new String[0])); //new String[0] is used to specify the type of array
+        this.SearchOutput.setListData(filteredGroups.toArray(new String[0]));
 
         // if there is one result, you can automatically select it
-        if (filteredUsers.size() == 1) {
-            searchBar.setText(filteredUsers.get(0)); // Optional: Set the search bar text to the found user
-            selectedUser = null;
+        if (filteredGroups.size() == 1) {
+            searchBar.setText(filteredGroups.get(0));
+            selectGroupByName(filteredGroups.get(0), allGroups);
 
-            for (User user : allUsers) {
-                if (user.getUsername().equals(filteredUsers.get(0))) {
-                    selectedUser = user;
-                    break;
-                }
-            }
-            SelectedUserTxt.setText("Selected User: " + selectedUser.getUsername());
-            email.setText("Email: " + selectedUser.getEmail());
-            mobile.setText("Mobile: " + selectedUser.getMobileNumber());
-            Gender.setText("Gender: " + selectedUser.getGender());
-            dateOfBirth.setText("Birthday: " + selectedUser.getDateOfBirth());
-            statusInfo.setText("Status: " + selectedUser.getStatus());
+//            for (User user : allUsers) {
+//                if (user.getUsername().equals(filteredGroups.get(0))) {
+//                    selectedGroup = user;
+//                    break;
+//                }
+//            }
+//            SelectedUserTxt.setText("Selected User: " + selectedGroup.getUsername());
+//            email.setText("Email: " + selectedGroup.getEmail());
+//            mobile.setText("Mobile: " + selectedGroup.getMobileNumber());
+//            Gender.setText("Gender: " + selectedGroup.getGender());
+//            dateOfBirth.setText("Birthday: " + selectedGroup.getDateOfBirth());
+//            statusInfo.setText("Status: " + selectedGroup.getStatus());
+//
+//            if (selectedGroup.getBio() != null) {
+//                bio.setText("Bio: " + selectedGroup.getBio());
+//                bio.setVisible(true);
+//
+//            } else {
+//                bio.setVisible(false);
+//            }
 
-            if (selectedUser.getBio() != null) {
-                bio.setText("Bio: " + selectedUser.getBio());
-                bio.setVisible(true);
+//            //profile pic
+//            String profilePhotoPath = selectedGroup.getProfilePhotoPath();
+//            ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
+//            Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
+//            profilePic.setIcon(new ImageIcon(scaledImage));
+//
+//            this.infoPanel.setVisible(true);
 
-            } else {
-                bio.setVisible(false);
-            }
-
-            //profile pic
-            String profilePhotoPath = selectedUser.getProfilePhotoPath();
-            ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
-            Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
-            profilePic.setIcon(new ImageIcon(scaledImage));
-
-            this.infoPanel.setVisible(true);
-
-            // Check if the selected user is a friend
-            if (selectedUser != null && !friendsManager.areFriends(user.getUserId(), selectedUser.getUserId())) {
+            // Show buttons based on membership status
+            if (!selectedGroup.getMembers().contains(user.getUserId())) {
                 this.JoinButton.setVisible(true);
                 this.LeaveButton.setVisible(false);
-
             } else {
                 this.JoinButton.setVisible(false);
                 this.LeaveButton.setVisible(true);
@@ -502,6 +486,17 @@ public class GroupsSearch extends Window {
 
         }
     }//GEN-LAST:event_searchBarKeyReleased
+    private void selectGroupByName(String groupName, ArrayList<Group> allGroups) {
+        for (Group group : allGroups) {
+            if (group.getName().equals(groupName)) {
+                // Simulate selection
+                SearchOutput.setSelectedValue(groupName, true);
+                break;
+            }
+        }
+    }
+
+
 
     private void searchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarActionPerformed
         // TODO add your handling code here:
@@ -510,7 +505,6 @@ public class GroupsSearch extends Window {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
