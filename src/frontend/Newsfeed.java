@@ -6,10 +6,7 @@ package frontend;
 
 import backend.*;
 import java.awt.Image;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -364,6 +361,8 @@ public class Newsfeed extends Window {
                 if (success) {
                     JOptionPane.showMessageDialog(this, "Friend request sent to " + selectedUser.getUsername(), "Success", JOptionPane.INFORMATION_MESSAGE);
                     updateComboBox();
+                    Notification n =new Notification(new Date(),"Friend",NotificationIDGenerator.generateUniqueId(),user.getUsername() + " Sent You A Friend Request");
+                    n.getReceivers().add(user);
                 } else {
                     JOptionPane.showMessageDialog(this, "Failed to send friend request. Maybe you're already friends or the request is pending.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
