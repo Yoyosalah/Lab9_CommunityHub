@@ -3,12 +3,40 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Last%20of%20Lab%209%20(fixed%20errors)/Lab9_CommunityHub/src/frontend/Logout_Example.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Last%20of%20Lab%209%20(fixed%20errors)/Lab9_CommunityHub/src/frontend/Newsfeed.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Last%20of%20Lab%209%20(fixed%20errors)/Lab9_CommunityHub/src/frontend/FriendManagerGUI.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Last%20of%20Lab%209%20(fixed%20errors)/Lab9_CommunityHub/src/frontend/Window.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Last%20of%20Lab%209%20(fixed%20errors)/Lab9_CommunityHub/src/frontend/EditProfile.java</file>
-            <file>file:/C:/Users/mikel/My%20Data/My%20Docs/University/Terms/5th%20Term/5-%20Programming/Assignments/Social%20media/Lab%2010/Last%20of%20Lab%209%20(fixed%20errors)/Lab9_CommunityHub/src/frontend/AddStory.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/Window.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/ContentIDGenerator.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/Profile.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/constants/FileNames.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/UserOperations.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/Users.json</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/Groups.json</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/Story.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/ContentDatabase.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/Content.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/constants/PlatformStatistics.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/GroupDatabase.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/User.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/Logout_Example.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/FriendsDatabase.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/Newsfeed.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/Group.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/AddStory.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/blocked.json</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/PrimaryAdminRole.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/AddPost.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/UserDatabase.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/Post.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/BlockHandler.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/SignUpPage.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/LandingPage.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/UserSecurity.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/FriendManagerGUI.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/SecondaryAdminRole.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/frontend/ImgSelect.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/ContentFactory.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/RequestHandler.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/ProfileManager.java</file>
+            <file>file:/C:/Users/Youss/OneDrive/Documents/NetBeansProjects/Lab9_CommunityHub/src/backend/FriendsManager.java</file>
         </group>
     </open-files>
 </project-private>
