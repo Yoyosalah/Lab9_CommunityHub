@@ -111,6 +111,8 @@ public class FriendManagerGUI extends Window {
         bio = new javax.swing.JLabel();
         statusInfo = new javax.swing.JLabel();
         ViewProfilebtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -123,7 +125,6 @@ public class FriendManagerGUI extends Window {
 
         status.setText("status");
 
-        searchBar.setText("Search");
         searchBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBarActionPerformed(evt);
@@ -285,6 +286,8 @@ public class FriendManagerGUI extends Window {
             }
         });
 
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -322,16 +325,19 @@ public class FriendManagerGUI extends Window {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(SearchButton)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(11, 11, 11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jSeparator1)
                                     .addComponent(acceptButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(declineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(unFriendButton)
-                                    .addComponent(blockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                                    .addComponent(declineButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                                    .addComponent(unFriendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(blockButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
                                 .addGap(15, 15, 15)))
                         .addContainerGap(10, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -344,24 +350,9 @@ public class FriendManagerGUI extends Window {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(acceptButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(declineButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(unFriendButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(blockButton)
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(friendsButton)
                             .addComponent(suggestionsButton)
@@ -376,15 +367,33 @@ public class FriendManagerGUI extends Window {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SelectedUserTxt)
-                            .addComponent(ViewProfilebtn))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(ViewProfilebtn)))
+                    .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
-                        .addGap(36, 36, 36)))
-                .addGap(62, 62, 62)
-                .addComponent(Back)
-                .addContainerGap())
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(acceptButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(declineButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(unFriendButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(blockButton))
+                            .addComponent(jSeparator2))
+                        .addGap(107, 107, 107)
+                        .addComponent(Back)
+                        .addContainerGap())))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {acceptButton, addButton, blockButton, declineButton, unFriendButton});
@@ -438,9 +447,15 @@ public class FriendManagerGUI extends Window {
             email.setText("Email: " + selectedUser.getEmail());
             mobile.setText("Mobile: " + selectedUser.getMobileNumber());
             Gender.setText("Gender: " + selectedUser.getGender());
-            bio.setText("Bio: " + selectedUser.getBio());
             dateOfBirth.setText("Birthday: " + selectedUser.getDateOfBirth());
             statusInfo.setText("Status: " + selectedUser.getStatus());
+
+            if (selectedUser.getBio() != null) {
+                bio.setText("Bio: " + selectedUser.getBio());
+                bio.setVisible(true);
+            } else {
+                bio.setVisible(false);
+            }
 
             //profille pic
             String profilePhotoPath = selectedUser.getProfilePhotoPath();
@@ -648,13 +663,12 @@ public class FriendManagerGUI extends Window {
     private void searchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBarKeyReleased
         // TODO add your handling code here:
 
-
-        System.out.println("text ava");
+        //System.out.println("text ava");
         String searchKey = searchBar.getText().trim();
         if (searchKey.isEmpty()) {
             this.SearchOutput.setListData(new String[0]);
             this.addButton.setVisible(false);
-            System.out.println("no text");
+            //System.out.println("no text");
 
             return;
         }
@@ -687,10 +701,18 @@ public class FriendManagerGUI extends Window {
             email.setText("Email: " + selectedUser.getEmail());
             mobile.setText("Mobile: " + selectedUser.getMobileNumber());
             Gender.setText("Gender: " + selectedUser.getGender());
-            bio.setText("Bio: " + selectedUser.getBio());
             dateOfBirth.setText("Birthday: " + selectedUser.getDateOfBirth());
             statusInfo.setText("Status: " + selectedUser.getStatus());
 
+            if (selectedUser.getBio() != null) {
+                bio.setText("Bio: " + selectedUser.getBio());
+                bio.setVisible(true);
+
+            } else {
+                bio.setVisible(false);
+            }
+
+            //profile pic
             String profilePhotoPath = selectedUser.getProfilePhotoPath();
             ImageIcon originalIcon = new ImageIcon(profilePhotoPath);
             Image scaledImage = originalIcon.getImage().getScaledInstance(profilePic.getWidth(), profilePic.getHeight(), Image.SCALE_SMOOTH);
@@ -833,6 +855,8 @@ public class FriendManagerGUI extends Window {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel mobile;
     private javax.swing.JLabel profilePic;
     private javax.swing.JButton requestsButton;
