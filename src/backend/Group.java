@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package backend;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import static constants.GroupStatistics.incrementGroups;
 import static constants.GroupStatistics.getGroupsNum;
@@ -22,7 +19,7 @@ public class Group {
     private List<Integer> members;
     private List<Integer> posts;
     private List<Integer> requests;
-    
+
     //databases to help conversions from ids to posts and users
     @JsonIgnore
     private static UserDatabase userDatabase = UserDatabase.getInstance();
@@ -128,9 +125,24 @@ public class Group {
     public void setRequests(List<Integer> requests) {
         this.requests = requests;
     }
-    
-    
-    
+
+    public void Notify(String type ,String text){ //Creates notification and assigns it to everyone in the group
+        Notification n = new Notification(new Date(),type,NotificationIDGenerator.generateUniqueId(),text);
+        n.getReceivers().addAll(this.getMembers());
+        n.getReceivers().addAll(this.getSecondaryAdmins());
+        n.getReceivers().add(this.getPrimaryAdmin());
+        for(Integer u : this.getMembers()){
+            n.getIsRead().put(u,false);
+        }
+        for(Integer u : this.getSecondaryAdmins()){
+            n.getIsRead().put(u,false);
+        }
+        n.getIsRead().put(this.getPrimaryAdmin(), false);
+        NotificationDatabase nd = NotificationDatabase.getInstance();
+        nd.addNotification(n);
+        nd.saveToFile();
+    }
+
     @JsonIgnore
     public List<User> idsToUsers(List<Integer> ids){
         List<User> users = new ArrayList<>();
@@ -164,4 +176,3 @@ public class Group {
         return ids;
     }
 }
-

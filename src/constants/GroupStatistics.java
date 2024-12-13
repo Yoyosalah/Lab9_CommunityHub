@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package constants;
 
 /**
@@ -29,5 +25,5 @@ public class GroupStatistics {
     public static void setGroupsNum(int GroupsNum) {
         GroupStatistics.GroupsNum = GroupsNum;
     }
-   
+
 }

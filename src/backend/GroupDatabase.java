@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package backend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -32,7 +28,7 @@ public class GroupDatabase {
         numGps = getGroupsNum();
         System.out.println(groups.size());
     }
- 
+
     public static GroupDatabase getInstance() {
         if (instance == null) {
             instance = new GroupDatabase();
@@ -70,7 +66,7 @@ public class GroupDatabase {
     public ArrayList<Group> getGroupsList() {
         return groups;
     }
-    
+
     public void addGroup(Group group){
         groups.add(group);
         incrementGroups();
@@ -79,7 +75,7 @@ public class GroupDatabase {
         groups.remove(group);
         decrementGroups();
     }
-    
+
     public Group getGroupById(int id) {
         for (Group group : groups) {
             if (group.getGroupId()== id) {
