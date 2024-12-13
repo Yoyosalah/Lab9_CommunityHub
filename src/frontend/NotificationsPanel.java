@@ -32,68 +32,51 @@ public class NotificationsPanel extends javax.swing.JFrame {
     }
 
     private void populateNotifications() {
-        DefaultListModel<String> listModel = new DefaultListModel<>(); //list with notifications that should apper for this specific user
+        jPanel1.removeAll();
+        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
 
         for (Notification notification : Notifications) {
-            String displayText = String.format("[%s] %s: %s",
+            if (!notification.getReceivers().contains(user.getUserId())) {
+                continue; // Skip notifications not intended for this user
+            }
+
+            // Determine if the notification is read or unread for this user
+            boolean isUnread = !notification.getIsRead().getOrDefault(user.getUserId(), false);
+
+            // Prepare the display text
+            String displayText = String.format("[%s] %s%s: %s",
                     notification.getTimestamp(),
+                    isUnread ? "NEW NOTIFICATION: " : "",
                     notification.getType(),
-                    notification.getText()
-            );
-            if (notification.getReceivers().contains(user.getUserId())) //filtering
-                listModel.addElement(displayText);
+                    notification.getText());
+
+            // Panel for each notification
+            JPanel notificationPanel = new JPanel();
+            notificationPanel.setLayout(new BorderLayout());
+            JLabel notificationLabel = new JLabel(displayText);
+
+            // "Mark as Read" button
+            JButton markAsReadButton = new JButton("Mark as Read");
+            if (!isUnread) {
+                markAsReadButton.setEnabled(false); // Disable button if already read
+            }
+
+            markAsReadButton.addActionListener(event -> {
+                notification.MarkAsRead(user.getUserId()); // Update isRead status
+                populateNotifications(); // Refresh notifications
+            });
+
+            // Add components to the panel
+            notificationPanel.add(notificationLabel, BorderLayout.CENTER);
+            notificationPanel.add(markAsReadButton, BorderLayout.EAST);
+
+            // Add the notification panel to the main panel
+            jPanel1.add(notificationPanel);
         }
 
-        JList<String> notificationList = new JList<>(listModel);
-        notificationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        notificationList.setVisibleRowCount(10);//testing ba3deen
-        JScrollPane scrollPane = new JScrollPane(notificationList);
-        jPanel1.removeAll();
-        jPanel1.setLayout(new BorderLayout());
-        jPanel1.add(scrollPane, BorderLayout.CENTER);
-
-        JPanel buttonPanel = new JPanel();
-        JButton acceptButton = new JButton("Accept");
-        JButton declineButton = new JButton("Decline");
-        buttonPanel.setVisible(false);
-        buttonPanel.add(acceptButton);
-        buttonPanel.add(declineButton);
-        jPanel1.add(buttonPanel, BorderLayout.SOUTH);
+        // Refresh the panel
         jPanel1.revalidate();
         jPanel1.repaint();
-        notificationList.addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                int selectedIndex = notificationList.getSelectedIndex();
-                if (selectedIndex != -1) {
-                    Notification selectedNotification = Notifications.get(selectedIndex);
-
-                    // Mark notification as read
-                    selectedNotification.MarkAsRead(user.getUserId());
-                    populateNotifications(); // Refresh notifications
-
-                    // Show buttons if notification type is "Friend"
-                    if ("Friend".equalsIgnoreCase(selectedNotification.getType())) {
-                        buttonPanel.setVisible(true);
-
-                        // Add action for "Accept" button
-                        acceptButton.addActionListener(event -> {
-                            //requestHandler.acceptFriendRequest(user,sender);
-                            Notifications.remove(selectedNotification); // Remove after handling
-                            populateNotifications(); // Refresh notifications
-                        });
-
-                        // Add action for "Decline" button
-                        declineButton.addActionListener(event -> {
-                            //requestHandler.declineFriendRequest(user,sender);
-                            Notifications.remove(selectedNotification); // Remove after handling
-                            populateNotifications(); // Refresh notifications
-                        });
-                    } else {
-                        buttonPanel.setVisible(false);
-                    }
-                }
-            }
-        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
