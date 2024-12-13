@@ -17,9 +17,9 @@ public class NotificationDatabase {
     private ArrayList<Notification> notifications;
     private final String filename = NOTIFICATION_FILENAME;
     private static final ObjectMapper objectMapper;
-    private static NotificationDatabase instance = null;
+    private static NotificationDatabase instance = null; //singleton design pattern
 
-    static { // static block is used to initialize the static variable without errors
+    static {
 
         objectMapper = new ObjectMapper();
         //trying to configure the date format

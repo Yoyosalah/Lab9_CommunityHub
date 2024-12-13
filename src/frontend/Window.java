@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
+
+import backend.ContentDatabase;
+import backend.NotificationDatabase;
 import backend.UserDatabase;
 import backend.UserOperations;
 
@@ -36,6 +39,7 @@ public abstract class Window extends javax.swing.JFrame {
             public void windowClosing(WindowEvent e) {
                 if (exitEmail != null) {
                     UserOperations.logout(exitEmail);
+                    NotificationDatabase.getInstance().saveToFile();
                     dispose();
                     System.exit(0);
                 }

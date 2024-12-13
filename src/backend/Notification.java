@@ -51,7 +51,7 @@ public class Notification {
         this.timestamp = timestamp;
     }
 
-    public HashMap<User, Boolean> getIsRead() {
+    public HashMap<User, Boolean> getMap() {
         return isRead;
     }
 
@@ -70,4 +70,6 @@ public class Notification {
     public void MarkAsRead(User user){
         isRead.put(user, true);
     }
+
+
 }

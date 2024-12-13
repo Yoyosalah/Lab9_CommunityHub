@@ -214,8 +214,9 @@ public class Profile extends Window {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfileActionPerformed
-        new EditProfile(user, this);
-        this.setVisible(false);
+        EditProfile ep =new EditProfile(user, this);
+        ep.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
     }//GEN-LAST:event_editProfileActionPerformed
 
     private void friendsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsButtonActionPerformed

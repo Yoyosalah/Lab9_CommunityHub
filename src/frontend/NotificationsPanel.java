@@ -14,14 +14,16 @@ import java.util.ArrayList;
  * @author BLU-RAY
  */
 public class NotificationsPanel extends javax.swing.JFrame {
-    private NotificationDatabase notifictaionDB = NotificationDatabase.getInstance();
-    private ArrayList<Notification> Notifications = notifictaionDB.getNotifications();
+    private NotificationDatabase notifictaionDB;
+    private ArrayList<Notification> Notifications;
     private User user;
     /**
      * Creates new form NotificationsPanel
      */
-    public NotificationsPanel(User user) {
+    public NotificationsPanel(User user, NotificationDatabase notifictaionDB) {
         initComponents();
+        this.notifictaionDB = notifictaionDB;
+        this.Notifications = notifictaionDB.getNotifications();
         this.user = user;
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -31,13 +33,15 @@ public class NotificationsPanel extends javax.swing.JFrame {
 
     private void populateNotifications() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
+
         for (Notification notification : Notifications) {
             String displayText = String.format("[%s] %s: %s",
                     notification.getTimestamp(),
                     notification.getType(),
                     notification.getText()
             );
-            listModel.addElement(displayText);
+            if (notification.getReceivers().contains(user))
+                listModel.addElement(displayText);
         }
 
         JList<String> notificationList = new JList<>(listModel);
@@ -135,21 +139,21 @@ public class NotificationsPanel extends javax.swing.JFrame {
 
     private void RefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshButtonActionPerformed
         // TODO add your handling code here:
-        notifictaionDB.saveToFile();
-        notifictaionDB = NotificationDatabase.getInstance();
+       // notifictaionDB.saveToFile();
+        //notifictaionDB = NotificationDatabase.getInstance();
         populateNotifications();
     }//GEN-LAST:event_RefreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+   /* public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -168,12 +172,12 @@ public class NotificationsPanel extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NotificationsPanel(new User()).setVisible(true);
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
+           /* public void run() {
+                new NotificationsPanel(new User(),NotificationDatabase.getInstance()).setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RefreshButton;
