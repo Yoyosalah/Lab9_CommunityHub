@@ -174,6 +174,11 @@ public class GroupManagement extends Window {
         jLabel1.setText("Join requests :");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Decline");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -190,6 +195,11 @@ public class GroupManagement extends Window {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Members :");
 
@@ -450,11 +460,20 @@ public class GroupManagement extends Window {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        //saves to file
+        
         this.setVisible(false);
         prev.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        updateMemberComboBox();
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        updateRequestComboBox();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
     
     private User getSelectedRequester(){ 
         String selectedUsername = (String) jComboBox1.getSelectedItem();
